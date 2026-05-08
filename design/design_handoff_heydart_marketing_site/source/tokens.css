@@ -1,0 +1,74 @@
+/* heydart.com — Storybook Nightfall (light-mode default) design tokens */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600;1,8..60,700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---- Light mode (default) ---- */
+  --bg: #fbf3df;            /* warm buttercream — page background */
+  --bg-2: #f5e7c1;          /* lifted buttercream */
+  --paper: #ffffff;         /* card surface on cream */
+  --paper-2: #fffaee;       /* card hover */
+  --ink: #1f1b3a;           /* primary text — deep ink with violet warmth */
+  --ink-2: #4d4763;         /* secondary text */
+  --ink-3: #7a7390;         /* muted */
+  --rule: rgba(31, 27, 58, 0.12);
+  --rule-strong: rgba(31, 27, 58, 0.22);
+
+  /* ---- Accents ---- */
+  --brick: #c8362a;         /* primary CTA — theme-park marquee red */
+  --brick-deep: #a52a20;
+  --twilight: #2a2562;      /* dark accent panels — softer than cobalt */
+  --twilight-deep: #1c184a;
+  --magenta: #c1378a;       /* punctuation accent (deeper for cream bg) */
+  --teal: #2c8a82;          /* success / dining (deeper for cream bg) */
+  --gold: #c88a1c;           /* deep amber — vintage poster, accents on cream */
+  --gold-deep: #a07014;
+  --rust: #b96a3c;           /* fox fur tone */
+
+  /* ---- Cream-on-dark (for twilight panels) ---- */
+  --cream: #fbf3df;
+  --cream-2: #ede0bd;
+
+  /* ---- Backwards-compat aliases used across the codebase ---- */
+  --cream-bg: var(--bg);
+  --cream-paper: var(--paper);
+  --cream-ink: var(--ink);
+  --cream-ink-2: var(--ink-2);
+
+  /* Type */
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(31,27,58,0.08), 0 0 0 1px rgba(31,27,58,0.04);
+  --shadow-md: 0 12px 32px rgba(31,27,58,0.12), 0 2px 4px rgba(31,27,58,0.06);
+  --shadow-glow: 0 0 0 1px rgba(200,54,42,0.35), 0 8px 28px rgba(200,54,42,0.18);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+h1, h2, h3, h4, h5, p { margin: 0; }
+img { max-width: 100%; display: block; }
+
+/* utility classes */
+.serif { font-family: var(--serif); }
+.serif-i { font-family: var(--serif); font-style: italic; font-weight: 500; }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; }
