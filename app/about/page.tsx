@@ -105,9 +105,12 @@ export default function AboutPage() {
                 Chief AI Officer at a billion-dollar company.
               </p>
               <p className="lead" style={{ fontSize: 19, marginBottom: 22 }}>
-                She homeschools their kids and runs a bespoke travel agency, planning
-                custom-tailored trips for families who want more than a packaged vacation.
-                She&apos;s used every Disney planning tool there is. She has opinions.
+                She spent a decade at a university planning and coordinating a graduate
+                research department — the kind of work that requires holding a hundred
+                moving pieces together at once. She homeschools their kids and started a
+                bespoke travel agency, planning custom-tailored trips for families who want
+                more than a packaged vacation. She&apos;s used every Disney planning tool
+                there is. She has opinions.
               </p>
               <p className="lead" style={{ fontSize: 19, marginBottom: 22 }}>
                 We&apos;re DVC members, annual passholders, a Disney family. We&apos;ve spent a

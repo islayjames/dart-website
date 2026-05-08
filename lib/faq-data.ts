@@ -57,6 +57,10 @@ export const FAQ_ENTRIES: [string, string][] = [
     "No. Dart watches and books as quickly as possible within Disney's rules, but availability depends on what Disney releases and how fast everyone else is. We don't use words like \"guaranteed\" anywhere on this site for a reason.",
   ],
   [
+    'Can I sometimes do better by searching manually?',
+    "Yes — and we'll be straight with you about it. Someone who is actively watching their phone, refreshing the MDE app repeatedly, and tapping the moment something appears can react just as fast as Dart in that specific window. The difference is that Dart watches even when you're not looking: on rides, in line for food, when the kids need something. If you're happy spending your park day with your phone out refreshing, you don't need Dart. Dart is for people who'd rather not.",
+  ],
+  [
     'Can I use Dart at Disneyland?',
     'Not at launch. Walt Disney World only.',
   ],
@@ -78,7 +82,7 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'Who built Dart?',
-    "Dart is built by a husband-and-wife team. He's a serial software founder who worked at Disneyland through college and is currently Chief AI Officer at a billion-dollar company. She runs a bespoke travel agency planning custom-tailored trips, and homeschools their kids. They're DVC members and annual passholders. Read more on the About page.",
+    "Dart is built by a husband-and-wife team. He's a serial software founder who worked at Disneyland through college and is currently Chief AI Officer at a billion-dollar company. She spent a decade coordinating a graduate research department at a university, started a bespoke travel agency planning custom-tailored trips for families, and homeschools their kids. They're DVC members and annual passholders. Read more on the About page.",
   ],
   [
     'Beta program — how does it work?',
