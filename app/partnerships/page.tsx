@@ -1,15 +1,45 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Partnerships — HeyDart',
   description:
-    "HeyDart partners with Disney planning content creators and travel agents. Affiliate revenue share, licensing fees, white-labeled gift codes, and early access for launch in July 2026.",
+    'HeyDart partners with Disney planning content creators and travel agents. Affiliate revenue share, licensing fees, white-labeled gift codes, and early access for launch in July 2026.',
+  alternates: {
+    canonical: 'https://heydart.com/partnerships',
+  },
+  openGraph: {
+    title: 'Partnerships — HeyDart',
+    description:
+      'HeyDart partners with Disney planning content creators and travel agents. Affiliate revenue share, licensing fees, white-labeled gift codes, and early access for launch in July 2026.',
+    url: 'https://heydart.com/partnerships',
+    images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
+  },
+  twitter: {
+    title: 'Partnerships — HeyDart',
+    description:
+      'HeyDart partners with Disney planning content creators and travel agents. Affiliate revenue share, licensing fees, white-labeled gift codes, and early access for launch in July 2026.',
+    images: ['/images/dart-logo-mark.png'],
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://heydart.com' },
+    { '@type': 'ListItem', position: 2, name: 'Partnerships', item: 'https://heydart.com/partnerships' },
+  ],
 };
 
 export default function PartnershipsPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHeader
         eyebrow="Partnerships"
         title={
@@ -88,6 +118,17 @@ export default function PartnershipsPage() {
               what we can and can&apos;t do.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container-narrow" style={{ textAlign: 'center' }}>
+          <p className="lead" style={{ margin: '0 auto 18px', maxWidth: 520 }}>
+            Want to see what your clients will experience?
+          </p>
+          <Link className="btn btn-primary" href="/pricing">
+            See pricing and tiers →
+          </Link>
         </div>
       </section>
     </div>

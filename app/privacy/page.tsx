@@ -4,11 +4,35 @@ import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | HeyDart',
+  description:
+    'HeyDart collects your email and trip details to send product updates. We do not sell or share your data. Unsubscribe anytime.',
+  alternates: {
+    canonical: 'https://heydart.com/privacy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | HeyDart',
+    description:
+      'HeyDart collects your email and trip details to send product updates. We do not sell or share your data. Unsubscribe anytime.',
+    url: 'https://heydart.com/privacy',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://heydart.com' },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: 'https://heydart.com/privacy' },
+  ],
 };
 
 export default function PrivacyPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHeader eyebrow="Legal" title="Privacy Policy" />
 
       <section className="section">
@@ -46,6 +70,11 @@ export default function PrivacyPage() {
               to delete your data entirely.
             </p>
           </div>
+          <p style={{ marginTop: 24, fontSize: 14, color: 'var(--ink-3)' }}>
+            <Link href="/" style={{ color: 'var(--gold)' }}>← Back to home</Link>
+            {' · '}
+            <Link href="/pricing" style={{ color: 'var(--gold)' }}>See pricing →</Link>
+          </p>
         </div>
       </section>
     </div>

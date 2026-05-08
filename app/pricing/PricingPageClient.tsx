@@ -44,11 +44,11 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
       </header>
 
       {/* Discount banner */}
-      <section style={{ padding: '24px 0', background: 'rgba(200,138,28,0.10)', borderBottom: '1px solid rgba(200,138,28,0.2)' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+      <section className="discount-banner" style={{ padding: '24px 0', background: 'rgba(200,138,28,0.10)', borderBottom: '1px solid rgba(200,138,28,0.2)' }}>
+        <div className="container discount-banner-inner">
+          <div className="discount-banner-text">
             <span className="tag tag-gold">Pre-launch</span>
-            <span className="serif-i" style={{ fontSize: 22, color: 'var(--gold)' }}>
+            <span className="serif-i" style={{ fontSize: 20, color: 'var(--gold)' }}>
               Sign up now and get 25% off any tier through end of 2026.
             </span>
           </div>

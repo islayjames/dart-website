@@ -1,8 +1,29 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | HeyDart',
+  description:
+    'HeyDart terms of service for the interest list and pre-launch discount program. Dart does not guarantee Lightning Lane or dining bookings.',
+  alternates: {
+    canonical: 'https://heydart.com/terms',
+  },
+  openGraph: {
+    title: 'Terms of Service | HeyDart',
+    description:
+      'HeyDart terms of service for the interest list and pre-launch discount program. Dart does not guarantee Lightning Lane or dining bookings.',
+    url: 'https://heydart.com/terms',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://heydart.com' },
+    { '@type': 'ListItem', position: 2, name: 'Terms of Service', item: 'https://heydart.com/terms' },
+  ],
 };
 
 /**
@@ -11,6 +32,10 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHeader eyebrow="Legal" title="Terms of Service" />
 
       <section className="section">
@@ -42,6 +67,11 @@ export default function TermsPage() {
               of selection.
             </p>
           </div>
+          <p style={{ marginTop: 24, fontSize: 14, color: 'var(--ink-3)' }}>
+            <Link href="/" style={{ color: 'var(--gold)' }}>← Back to home</Link>
+            {' · '}
+            <Link href="/pricing" style={{ color: 'var(--gold)' }}>See pricing →</Link>
+          </p>
         </div>
       </section>
     </div>

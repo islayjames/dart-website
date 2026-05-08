@@ -1,11 +1,53 @@
 import type { Metadata } from 'next';
 import NextImage from 'next/image';
+import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
   title: 'About HeyDart — Built by Disney fans',
   description:
     'HeyDart is built by a husband-and-wife team — a software founder who worked at Disneyland through college and a bespoke travel agent who homeschools their kids. DVC members. Annual passholders. Disney family.',
+  alternates: {
+    canonical: 'https://heydart.com/about',
+  },
+  openGraph: {
+    title: 'About HeyDart — Built by Disney fans',
+    description:
+      'HeyDart is built by a husband-and-wife team — a software founder who worked at Disneyland through college and a bespoke travel agent who homeschools their kids. DVC members. Annual passholders.',
+    url: 'https://heydart.com/about',
+    images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
+  },
+  twitter: {
+    title: 'About HeyDart — Built by Disney fans',
+    description:
+      'HeyDart is built by a husband-and-wife team — a software founder who worked at Disneyland through college and a bespoke travel agent who homeschools their kids.',
+    images: ['/images/dart-logo-mark.png'],
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://heydart.com' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://heydart.com/about' },
+  ],
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'HeyDart',
+  url: 'https://heydart.com',
+  logo: 'https://heydart.com/images/dart-logo-mark.png',
+  foundingDate: '2026',
+  description:
+    'HeyDart is a planning and in-park assistant for Walt Disney World guests, built by a husband-and-wife team of Disney annual passholders and DVC members.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'hello@heydart.com',
+    contactType: 'customer support',
+  },
 };
 
 const PRINCIPLES = [
@@ -34,6 +76,14 @@ const PRINCIPLES = [
 export default function AboutPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       <PageHeader
         eyebrow="Why we're building this"
         title={
@@ -148,6 +198,12 @@ export default function AboutPage() {
           <a className="btn btn-primary btn-large" href="mailto:hello@heydart.com">
             hello@heydart.com
           </a>
+          <p style={{ marginTop: 22, fontSize: 14, color: 'var(--ink-3)' }}>
+            Curious about pricing?{' '}
+            <Link href="/pricing" style={{ color: 'var(--gold)' }}>
+              See all tiers →
+            </Link>
+          </p>
         </div>
       </section>
     </div>

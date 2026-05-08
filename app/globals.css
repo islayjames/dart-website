@@ -288,7 +288,11 @@ img { max-width: 100%; display: block; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 .grid-2 > *, .grid-3 > *, .grid-4 > * { min-width: 0; }
-@media (max-width: 880px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+@media (max-width: 880px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  /* When inline styles set a desktop-sized gap (e.g. 56px), pin to 28px on mobile */
+  .grid-2[style*="gap: 56"], .grid-3[style*="gap: 56"], .grid-4[style*="gap: 56"] { gap: 28px !important; }
+}
 
 /* ============= Form ============= */
 .form-field { margin-bottom: 18px; }
@@ -359,12 +363,123 @@ body {
 /* ============= Mobile nav ============= */
 .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
 .nav-mobile-menu { display: none; flex-direction: column; gap: 0; padding: 12px 0; border-top: 1px solid var(--rule); }
-.nav-mobile-menu a { padding: 12px 28px; font-size: 16px; font-weight: 500; display: block; }
+.nav-mobile-menu a { padding: 14px 22px; font-size: 16px; font-weight: 500; display: block; }
 @media (max-width: 720px) {
   .nav-mobile-toggle { display: flex; align-items: center; gap: 6px; margin-left: auto; color: var(--ink); }
   .nav-mobile-menu.open { display: flex; }
   .nav-links { display: none !important; }
   .nav-cta { display: none; }
+}
+
+/* ============= Pricing discount banner (responsive) ============= */
+.discount-banner-inner { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: space-between; }
+.discount-banner-text { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+@media (max-width: 880px) {
+  .discount-banner { padding: 18px 0 !important; }
+  .discount-banner-inner { gap: 14px; }
+  .discount-banner-text { gap: 10px; }
+  .discount-banner .btn { width: 100%; }
+}
+
+/* ============= Mobile-tuned spacing & type ============= */
+@media (max-width: 880px) {
+  /* Tighter container gutters give content more breathing room on a phone */
+  .container, .container-narrow { padding: 0 22px; }
+  .nav-inner { padding: 12px 22px; }
+
+  /* Section padding scales down on mobile — keeps rhythm without feeling cavernous */
+  .section { padding: 56px 0; }
+  .section-tight { padding: 40px 0; }
+
+  /* Hero spacing — slightly more compact and a touch larger headline floor */
+  .hero { padding: 52px 0 40px; }
+  .hero h1 { font-size: clamp(40px, 11vw, 60px); line-height: 1.0; letter-spacing: -0.02em; }
+  .hero p.lead { font-size: 17px; margin-top: 18px; }
+  .hero-meta { gap: 14px 22px; margin-top: 22px; font-size: 12.5px; }
+
+  /* Section headers feel more important on a small canvas */
+  .h-section { font-size: clamp(28px, 7.5vw, 40px); }
+  .h-display { font-size: clamp(38px, 10.5vw, 56px); line-height: 1.04; }
+
+  /* Lead paragraph sized for comfortable mobile reading */
+  .lead { font-size: 17px; }
+
+  /* Cards get a touch less internal padding so they don't feel like walls of text.
+     Inline style="padding: 32" on some cards still wins; we intentionally let those
+     stay roomier and instead trim the cards inside .section to a sensible mobile minimum. */
+  .card { padding: 22px; }
+  .section .card[style*="padding: 32"],
+  .section .card[style*="padding:32"] { padding: 22px !important; }
+  .section .card[style*="padding: 36"] { padding: 26px !important; }
+
+  /* Page header — proportionally smaller on phones */
+  .page-header { padding: 44px 0 28px; }
+  .page-header h1 { font-size: clamp(34px, 9vw, 48px); }
+
+  /* CTAs become full-width by default in hero — easier to tap, more intentional */
+  .hero-ctas { flex-direction: column; gap: 10px; align-items: stretch; }
+  .hero-ctas .btn { width: 100%; }
+
+  /* Tag badges next to card titles — drop to a new line so they don't crowd */
+  .h-card { font-size: 20px; }
+
+  /* Step number stacks above the heading; nudge down to avoid feeling oversized */
+  .step { padding: 24px 0; gap: 8px; }
+  .step-num { font-size: 44px; }
+  .step h3 { font-size: 22px; }
+
+  /* FAQ headings tighter on mobile */
+  .faq-q h3 { font-size: 18px; }
+  .faq-item { padding: 18px 0; }
+
+  /* Footer — give the brand column its full width above the link columns */
+  .footer { padding: 44px 0 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+  .footer-grid > :first-child { grid-column: 1 / -1; margin-bottom: 4px; }
+  .disclaimer { margin-top: 28px; padding-top: 20px; font-size: 12.5px; }
+
+  /* Hero trailing helper text uses too-small inline style — pad it a bit */
+  .hero-grid > div p[style*="italic"] { font-size: 14px !important; }
+
+  /* Background pattern — quiet it down on small screens to reduce visual noise */
+  body { background-size:
+    340px 340px, 340px 340px, 340px 340px, 340px 340px, 340px 340px,
+    340px 340px, 340px 340px, 340px 340px, 340px 340px, 340px 340px,
+    100px 100px, 100px 100px;
+  }
+}
+
+/* Even tighter on the smallest common phones */
+@media (max-width: 720px) {
+  .container, .container-narrow { padding: 0 20px; }
+  .nav-inner { padding: 12px 20px; }
+  .section { padding: 48px 0; }
+  .nav-mobile-menu a { padding: 14px 20px; }
+
+  /* Pricing-page CTAs stack/full-width inside cards too */
+  .card .btn { width: 100%; }
+
+  /* Pricing tables retain horizontal scroll, but with a visible cue */
+  .price-scroll { position: relative; }
+  .price-scroll::after {
+    content: 'swipe →';
+    position: absolute;
+    top: -22px; right: 0;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 600;
+    pointer-events: none;
+  }
+  .section-twilight .price-scroll::after,
+  .section-deep .price-scroll::after { color: rgba(251,243,223,0.55); }
+
+  /* Pricing teaser tier-rows: drop the icon column so price stays readable */
+  .tier-row { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 16px; }
+  .tier-row .icon-badge { display: none; }
+  .tier-row .tier-label { font-size: 17px; }
+  .tier-row .tier-price { font-size: 20px; }
+
+  /* Hero discount banner / pricing banner: stack contents */
+  .hero-meta-item { font-size: 12.5px; }
 }
 
 /* ============= Starlit hero background ============= */

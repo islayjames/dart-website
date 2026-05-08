@@ -5,9 +5,25 @@ import HeroEyebrow from '@/components/HeroEyebrow';
 import { IconHunt, IconDart, IconMagic, IconBadge } from '@/components/Icons';
 
 export const metadata: Metadata = {
-  title: 'Be a guest at your own vacation',
+  title: 'HeyDart — Disney World Lightning Lane booking assistant',
   description:
-    'Your personal concierge, darting through the parks — scoping lines, holding tables, threading the day a step ahead. Phone in pocket. Eyes on the kids.',
+    'HeyDart watches Lightning Lane Multi Pass and books selections as they drop — so you stay present with your family. Walt Disney World planning assistant launching July 2026.',
+  alternates: {
+    canonical: 'https://heydart.com',
+  },
+  openGraph: {
+    title: 'HeyDart — Disney World Lightning Lane booking assistant',
+    description:
+      'HeyDart watches Lightning Lane Multi Pass and books selections as they drop — so you stay present with your family. Launching July 2026.',
+    url: 'https://heydart.com',
+    images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
+  },
+  twitter: {
+    title: 'HeyDart — Disney World Lightning Lane booking assistant',
+    description:
+      'HeyDart watches Lightning Lane Multi Pass and books selections as they drop — so you stay present with your family. Launching July 2026.',
+    images: ['/images/dart-logo-mark.png'],
+  },
 };
 
 const MOVES = [

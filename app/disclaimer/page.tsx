@@ -1,8 +1,33 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Disclaimer | HeyDart',
+  description:
+    'HeyDart and Dart are not affiliated with, endorsed by, or sponsored by The Walt Disney Company or any of its affiliates. Independent third-party planning assistant for Walt Disney World guests.',
+  alternates: {
+    canonical: 'https://heydart.com/disclaimer',
+  },
+  openGraph: {
+    title: 'Disclaimer | HeyDart',
+    description:
+      'HeyDart and Dart are not affiliated with, endorsed by, or sponsored by The Walt Disney Company or any of its affiliates. Independent third-party planning assistant.',
+    url: 'https://heydart.com/disclaimer',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://heydart.com' },
+    { '@type': 'ListItem', position: 2, name: 'Disclaimer', item: 'https://heydart.com/disclaimer' },
+  ],
 };
 
 /**
@@ -14,6 +39,10 @@ export const metadata: Metadata = {
 export default function DisclaimerPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <PageHeader eyebrow="Legal" title="Disclaimer" />
 
       <section className="section">
@@ -64,6 +93,11 @@ export default function DisclaimerPage() {
             </p>
 
           </div>
+          <p style={{ marginTop: 24, fontSize: 14, color: 'var(--ink-3)' }}>
+            <Link href="/" style={{ color: 'var(--gold)' }}>← Back to home</Link>
+            {' · '}
+            <Link href="/pricing" style={{ color: 'var(--gold)' }}>See pricing →</Link>
+          </p>
         </div>
       </section>
     </div>

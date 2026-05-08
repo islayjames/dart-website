@@ -92,4 +92,20 @@ export const FAQ_ENTRIES: [string, string][] = [
     'Does my early-signup discount expire?',
     "Yes — the 25% discount is valid for any tier through the end of 2026. Sign up before then to lock it in; redeem it when you're ready.",
   ],
+  [
+    'How much does HeyDart cost?',
+    'HeyDart starts at $10 per party per day (Lightning Lane only, party of 1–6). Pricing is per-party, not per-person. Single day: $10 LL / $15 LL+Dining (1–6); $15 LL / $25 LL+Dining (7+). Five-day pack (use within 30 days): $25 LL / $35 LL+Dining (1–6); $35 LL / $50 LL+Dining (7+). Annual unlimited: $100 LL / $150 LL+Dining (1–6 only). Sign up before launch for 25% off any tier.',
+  ],
+  [
+    'What is HeyDart?',
+    'HeyDart (also called Dart) is a Disney World Lightning Lane booking assistant and in-park planning tool for Walt Disney World guests. It watches Lightning Lane Multi Pass availability throughout the day and automatically books selections for your party around your dining reservations and fixed plans. It is a third-party tool and is not affiliated with The Walt Disney Company. Lightning Lane feature launches July 2026; Dining add-on launches Fall 2026.',
+  ],
+  [
+    'Does Dart work for large groups or parties of 7 or more?',
+    'Yes — Dart supports parties of 7 or more on single-day and 5-day packs. The 7+ party tier costs slightly more per booking ($15 single-day LL vs. $10 for 1–6). Annual plans are currently limited to parties of 1–6.',
+  ],
+  [
+    'Is there a free trial?',
+    "There is no free trial for the launched product. However, approved beta participants get one full year of LL + Dining (1–6) access through August 2027 at no charge. Everyone who applies for the beta — selected or not — receives the 25% pre-launch discount code at minimum.",
+  ],
 ];

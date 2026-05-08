@@ -46,7 +46,7 @@ export default function PricingTable() {
   return (
     <div>
       {/* Feature comparison */}
-      <div style={{ overflowX: 'auto' }}>
+      <div className="price-scroll" style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0, minWidth: 560 }}>
           <thead>
             <tr>
@@ -112,7 +112,7 @@ export default function PricingTable() {
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-3)', marginBottom: 16 }}>
           Pricing
         </div>
-        <div style={{ overflowX: 'auto' }}>
+        <div className="price-scroll" style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0, minWidth: 540 }}>
             <thead>
               <tr>

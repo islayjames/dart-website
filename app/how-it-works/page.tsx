@@ -4,9 +4,74 @@ import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
-  title: 'How it works',
+  title: 'How HeyDart Works — Lightning Lane booking assistant',
   description:
-    "A mostly conversational planner with a clear schedule and the controls you'd expect. Dart syncs with My Disney Experience, checks Lightning Lane availability throughout the day, and works around your existing dining and fixed plans.",
+    'HeyDart syncs with My Disney Experience, watches Lightning Lane Multi Pass availability throughout the day, and books selections automatically around your dining and fixed plans.',
+  alternates: {
+    canonical: 'https://heydart.com/how-it-works',
+  },
+  openGraph: {
+    title: 'How HeyDart Works — Lightning Lane booking assistant',
+    description:
+      'HeyDart syncs with My Disney Experience, watches Lightning Lane Multi Pass availability throughout the day, and books selections automatically around your dining and fixed plans.',
+    url: 'https://heydart.com/how-it-works',
+    images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
+  },
+  twitter: {
+    title: 'How HeyDart Works — Lightning Lane booking assistant',
+    description:
+      'HeyDart syncs with My Disney Experience, watches Lightning Lane Multi Pass availability throughout the day, and books selections automatically around your dining and fixed plans.',
+    images: ['/images/dart-logo-mark.png'],
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://heydart.com' },
+    { '@type': 'ListItem', position: 2, name: 'How It Works', item: 'https://heydart.com/how-it-works' },
+  ],
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to use HeyDart for Disney World Lightning Lane booking',
+  description:
+    'HeyDart is a Disney World planning assistant that automatically books Lightning Lane Multi Pass selections throughout the day. Here is how it works.',
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Tell Dart your party, dates, and priorities',
+      text: "Mostly conversational — a few short forms where structure helps. Who's coming, where you're staying, whether anyone is height-limited, the rides that matter most, when the youngest naps.",
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Dart syncs with My Disney Experience',
+      text: 'A standard Friends & Family connection — Dart pulls in your party, your tickets, and your existing dining reservations automatically.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Dart checks Lightning Lane availability throughout the day',
+      text: 'Dart polls Multi Pass availability every few minutes, and when a fit appears for your party, it secures it — on the right ride, at the right time, around your other plans.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Dart adjusts when the day shifts',
+      text: 'Running late, a ride goes down, a kid needs a break — Dart suggests the next move and reworks the rest of the day quietly.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: 'Add Dining when it ships (Fall 2026)',
+      text: 'Available Fall 2026 as an optional upgrade — Dart watches dining availability and books hard-to-find reservations when they open.',
+    },
+  ],
 };
 
 const STEPS = [
@@ -55,6 +120,14 @@ const DOESNT_DO = [
 export default function HowItWorksPage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
       <PageHeader
         eyebrow="How it works"
         title={
