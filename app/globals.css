@@ -283,6 +283,14 @@ img { max-width: 100%; display: block; }
 .section-twilight .shot { box-shadow: 0 22px 50px rgba(0,0,0,0.45); }
 .section-twilight .shot-frame { background: linear-gradient(180deg, rgba(200,138,28,0.22), rgba(193,55,138,0.18)); border-color: rgba(251, 243, 223, 0.22); }
 
+/* ============= Responsive show/hide ============= */
+.pricing-mobile { display: none; }
+.pricing-desktop { display: block; }
+@media (max-width: 880px) {
+  .pricing-mobile { display: block; }
+  .pricing-desktop { display: none; }
+}
+
 /* ============= Generic grid utilities ============= */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }

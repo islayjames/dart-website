@@ -1,7 +1,8 @@
+import PricingCardsMobile from '@/components/PricingCardsMobile';
+
 /**
  * PricingTable — Feature comparison + pricing grid.
- * Two products: Lightning Lane / Lightning Lane + Dining Alerts.
- * Server component.
+ * Desktop: full feature/price table. Mobile: stacked expandable cards.
  */
 
 const CHECK = (
@@ -45,6 +46,13 @@ const PRICING: { label: string; sub: string; ll1to6: string; lld1to6: string; ll
 export default function PricingTable() {
   return (
     <div>
+      {/* Mobile: stacked expandable cards */}
+      <div className="pricing-mobile">
+        <PricingCardsMobile />
+      </div>
+
+      {/* Desktop: full feature + price tables */}
+      <div className="pricing-desktop">
       {/* Feature comparison */}
       <div className="price-scroll" style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'separate', borderSpacing: 0, minWidth: 560 }}>
@@ -158,6 +166,7 @@ export default function PricingTable() {
           Lightning Lane + Dining Alerts becomes purchasable when Dining launches Fall 2026.
         </p>
       </div>
+      </div>{/* end .pricing-desktop */}
     </div>
   );
 }
