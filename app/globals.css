@@ -227,9 +227,17 @@ img { max-width: 100%; display: block; }
 .hero .lead { color: var(--cream-2); }
 .hero .eyebrow { color: var(--gold); }
 .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+/* Desktop hero art: natural 4/5 aspect ratio */
+.hero-art { aspect-ratio: 4 / 5; }
 @media (max-width: 880px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero { padding: 60px 0 40px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 0; }
+  .hero { padding: 32px 0 40px; }
+  /* Image first on mobile — pull it above the headline */
+  .hero-image-col { order: -1; }
+  /* Wider, shallower crop so the castle is visible and the CTA stays above the fold */
+  .hero-art { aspect-ratio: 16 / 9; border-radius: var(--r-lg) var(--r-lg) 0 0; border-bottom: none; }
+  /* Push text down a touch so it reads as caption-below-image */
+  .hero-text-col { padding-top: 22px; }
 }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; }
 .hero-eyebrow .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--gold); box-shadow: 0 0 12px var(--gold); animation: pulse 2.4s ease-in-out infinite; }
@@ -286,10 +294,19 @@ img { max-width: 100%; display: block; }
 /* ============= Responsive show/hide ============= */
 .pricing-mobile { display: none; }
 .pricing-desktop { display: block; }
+.moves-mobile { display: none; }
+.moves-desktop { display: block; }
 @media (max-width: 880px) {
   .pricing-mobile { display: block; }
   .pricing-desktop { display: none; }
+  .moves-mobile { display: block; }
+  .moves-desktop { display: none; }
 }
+
+/* ============= Launch / roadmap cards ============= */
+/* Cards live inside section-deep so they inherit the dark card style */
+.launch-card { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.launch-card:hover { transform: translateY(-3px); }
 
 /* ============= Generic grid utilities ============= */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
