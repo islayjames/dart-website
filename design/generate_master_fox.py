@@ -11,9 +11,7 @@ import time
 from openai import OpenAI
 
 # API key from existing project scripts
-API_KEY = "REDACTED"
-
-client = OpenAI(api_key=API_KEY)
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 OUTPUT_DIR = "/Users/james/dev/dart-website/public/images"
 os.makedirs(OUTPUT_DIR, exist_ok=True)

@@ -3,7 +3,7 @@ import base64
 import os
 import time
 
-api_key = "REDACTED"
+api_key = os.environ["OPENAI_API_KEY"]
 headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
 output_dir = "/Users/james/dev/dart-website/public/images"
 
