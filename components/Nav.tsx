@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Fox from './Fox';
+import NextImage from 'next/image';
 
 const NAV_LINKS = [
   { href: '/how-it-works', label: 'How it works' },
@@ -27,7 +27,13 @@ export default function Nav() {
     <nav className="nav" aria-label="Main navigation">
       <div className="nav-inner">
         <Link href="/" className="brand" onClick={closeMobile} aria-label="HeyDart home">
-          <Fox size={32} />
+          <NextImage
+            src="/images/dart-logo-mark.png"
+            alt="Dart"
+            width={32}
+            height={32}
+            style={{ borderRadius: '999px', objectFit: 'cover' }}
+          />
           <span>heydart</span>
         </Link>
 
