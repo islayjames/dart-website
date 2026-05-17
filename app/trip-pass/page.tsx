@@ -40,7 +40,7 @@ export default function TripPassPage() {
                 </div>
               ))}
             </div>
-            <div className="pcard featured" style={{ maxWidth: 380 }}>
+            <div className="pcard featured" style={{ maxWidth: 380, width: '100%' }}>
               <div className="pcard-flag">Most popular</div>
               <div className="pcard-eyebrow" style={{ marginBottom: 4 }}>For the trip</div>
               <div className="pcard-name">Trip Pass</div>
@@ -64,6 +64,17 @@ export default function TripPassPage() {
           </div>
         </div>
       </section>
+
+      <div className="section">
+        <div className="container-narrow">
+          <div className="eyebrow" style={{ marginBottom: 16 }}>Related guides</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
+            <Link href="/lightning-lane-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Lightning Lane help →</Link>
+            <Link href="/dining-mobile-order-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Dining &amp; mobile order help →</Link>
+            <Link href="/first-time-disney-world" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>First time at Disney World →</Link>
+          </div>
+        </div>
+      </div>
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>

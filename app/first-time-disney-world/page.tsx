@@ -2,6 +2,19 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to prepare for your first Disney World trip',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Download My Disney Experience before you arrive', text: 'Link your park tickets, make dining reservations, and connect your party in the MDE app. All Lightning Lane purchases and reservations happen through MDE.' },
+    { '@type': 'HowToStep', position: 2, name: 'Understand Lightning Lane Multi Pass', text: 'Lightning Lane Multi Pass ($15–$29 per person per day) lets you skip the standby line on most attractions. You purchase it in MDE and make one selection at a time. Dart helps you decide when and which selection to make.' },
+    { '@type': 'HowToStep', position: 3, name: 'Plan your dining 60 days out', text: 'Table-service restaurants at Disney World book up fast. Make reservations online or through MDE starting 60 days before your trip. Quick-service uses mobile order through MDE.' },
+    { '@type': 'HowToStep', position: 4, name: 'Arrive at rope drop', text: "The first hour after park opening typically has the shortest wait times. Dart recommends your morning route based on your party's must-dos and height requirements." },
+    { '@type': 'HowToStep', position: 5, name: "Let Dart guide the day", text: "Once you're in the park, Dart connects to live wait times, your Lightning Lane selections, dining reservations, and your family's preferences — and recommends what to do next." },
+  ],
+};
+
 export const metadata: Metadata = {
   title: 'First Time at Disney World? Here\'s What to Know · Dart',
   description: 'Lightning Lane, MDE, and what Dart actually handles — a clear guide for first-time Disney World visitors. Dart launches August 2026.',
@@ -12,6 +25,7 @@ export const metadata: Metadata = {
 export default function FirstTimeDisneyWorldPage() {
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <PageHeader
         eyebrow="First time at Disney World"
         title={<>The system is learnable. <span style={{ color: 'var(--brick)' }}>Dart learns it for you.</span></>}
@@ -50,6 +64,17 @@ export default function FirstTimeDisneyWorldPage() {
           </div>
         </div>
       </section>
+
+      <div className="section">
+        <div className="container-narrow">
+          <div className="eyebrow" style={{ marginBottom: 16 }}>Related guides</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
+            <Link href="/lightning-lane-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Lightning Lane help →</Link>
+            <Link href="/disney-world-with-kids" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Disney World with kids →</Link>
+            <Link href="/dining-mobile-order-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Dining &amp; mobile order help →</Link>
+          </div>
+        </div>
+      </div>
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
