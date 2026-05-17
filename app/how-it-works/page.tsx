@@ -151,14 +151,7 @@ export default function HowItWorksPage() {
             <div className="step" key={step.n}>
               <div className="step-num">{step.n}</div>
               <div>
-                <h3>
-                  {step.title}
-                  {step.tag && (
-                    <span className="tag tag-magenta" style={{ marginLeft: 12, verticalAlign: 'middle' }}>
-                      {step.tag}
-                    </span>
-                  )}
-                </h3>
+                <h3>{step.title}</h3>
                 <p className="lead" style={{ marginTop: 8, marginBottom: 22 }}>{step.body}</p>
                 <div style={{ maxWidth: 720 }}>
                   {step.shot ? (
