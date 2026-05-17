@@ -123,6 +123,47 @@ const palettes = {
   cream:   { bg: 'rgba(251,243,223,0.10)', ring: 'rgba(251,243,223,0.28)', fg: 'var(--gold)' },
 } as const;
 
+/** IconSchedule — Clock face with tick marks */
+export function IconSchedule({ size = 24, color = 'currentColor', className = '', style = {} }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
+      strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg" className={className} style={style} aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 3" />
+      <path d="M12 3v1M12 20v1M3 12h1M20 12h1" opacity="0.6" />
+    </svg>
+  );
+}
+
+/** IconGuide — Open book with bookmark */
+export function IconGuide({ size = 24, color = 'currentColor', className = '', style = {} }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
+      strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg" className={className} style={style} aria-hidden="true">
+      <path d="M2 6c0-1.1.9-2 2-2h7v16H4a2 2 0 0 1-2-2V6z" fill={color} fillOpacity="0.10" />
+      <path d="M22 6c0-1.1-.9-2-2-2h-7v16h7a2 2 0 0 0 2-2V6z" fill={color} fillOpacity="0.10" />
+      <path d="M12 4v16" />
+      <path d="M17 4v7l-1.5-1.5L14 11V4" />
+    </svg>
+  );
+}
+
+/** IconYou — Person silhouette with heart accent */
+export function IconYou({ size = 24, color = 'currentColor', className = '', style = {} }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color}
+      strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg" className={className} style={style} aria-hidden="true">
+      <circle cx="10" cy="7" r="3.5" />
+      <path d="M3 20c0-3.9 3.1-7 7-7s7 3.1 7 7" />
+      <path d="M18 5c.7-.7 1.8-.7 2.5 0s.7 1.8 0 2.5L18 10l-2.5-2.5c-.7-.7-.7-1.8 0-2.5s1.8-.7 2.5 0z"
+        fill={color} fillOpacity="0.25" />
+    </svg>
+  );
+}
+
 /** IconBadge — Reusable round icon badge with colored circle */
 export function IconBadge({ icon: Icon, tint = 'gold', size = 44 }: IconBadgeProps) {
   const p = palettes[tint] ?? palettes.gold;
