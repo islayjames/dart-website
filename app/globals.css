@@ -99,7 +99,7 @@ img { max-width: 100%; display: block; }
 /* ============= Buttons ============= */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 13px 22px; border-radius: var(--r-pill);
+  padding: 14px 22px; border-radius: var(--r-pill); min-height: 44px;
   font-size: 15px; font-weight: 600; line-height: 1;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
@@ -108,7 +108,7 @@ img { max-width: 100%; display: block; }
 .btn-secondary { background: transparent; color: var(--ink); border: 1.5px solid var(--rule-strong); }
 .btn-secondary:hover { border-color: var(--brick); color: var(--brick); }
 .btn-magenta { background: var(--magenta); color: #fff; }
-.btn-large { padding: 16px 28px; font-size: 16px; }
+.btn-large { padding: 16px 32px; font-size: 16px; min-height: 52px; }
 
 /* ============= Tags ============= */
 .tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: var(--r-pill); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }

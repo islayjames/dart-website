@@ -4,19 +4,14 @@ const LOOPS_API = 'https://app.loops.so/api/v1';
 
 interface SignupPayload {
   email?: string;
-  tier?: string;
+  name?: string;
+  interest?: string;
   party_size?: string;
-  trip_status?: string;
-  park_days?: string;
+  trip_type?: string;
+  biggest_stress?: string;
   visit_dates?: string;
   email_consent?: string;
-  beta_optin?: string;
-  fl_ap?: string;
-  visit_window?: string;
-  window_days?: string;
-  disney_employee?: string;
   _source?: string;
-  _beta?: string;
 }
 
 export async function POST(request: NextRequest) {
@@ -39,27 +34,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Server configuration error' }, { status: 500 });
   }
 
-  const isBeta = data._beta === 'yes' || data.beta_optin === 'on';
-  const isDisneyEmployee = data.disney_employee === 'yes';
-
-  // Upsert contact with all form fields as custom properties
+  const nameParts = (data.name ?? '').trim().split(' ');
   const contact = {
     email,
-    source: data._source ?? 'pricing-direct',
-    userGroup: isBeta ? 'beta-applicant' : 'waitlist',
-    mailingLists: { [isBeta ? 'beta' : 'waitlist']: true },
-    // Custom properties — create these in Loops Settings → Custom Attributes
-    tierInterest: data.tier ?? '',
-    partySize: data.party_size ? parseInt(data.party_size, 10) : null,
-    tripStatus: data.trip_status ?? '',
-    parkDays: data.park_days ? parseInt(data.park_days, 10) : null,
+    firstName: nameParts[0] ?? '',
+    lastName: nameParts.slice(1).join(' '),
+    source: data._source ?? 'waitlist',
+    userGroup: 'waitlist',
+    // Custom properties — must exist in Loops Settings → Custom Attributes
+    tierInterest: data.interest ?? '',
+    partySize: data.party_size ?? '',
+    tripType: data.trip_type ?? '',
+    biggestStress: data.biggest_stress ?? '',
     visitDates: data.visit_dates ?? '',
-    betaApplicant: isBeta,
-    disneyEmployee: isDisneyEmployee,
-    floridaAP: data.fl_ap === 'yes',
-    visitWindow: data.visit_window === 'yes',
-    windowDays: data.window_days ? parseInt(data.window_days, 10) : null,
-    signupSource: data._source ?? 'pricing-direct',
+    signupSource: data._source ?? 'waitlist',
   };
 
   try {
@@ -74,13 +62,12 @@ export async function POST(request: NextRequest) {
 
     const result = await res.json();
 
-    // Duplicate email is fine — just means they've already signed up
+    // Duplicate email is fine — contact already on the list
     if (!res.ok && result.message !== 'Contact already exists') {
       console.error('[signup] Loops error:', result);
       return NextResponse.json({ success: false, error: 'Failed to add to list' }, { status: 502 });
     }
 
-    // Fire a signup event for use in Loops automations (welcome email, discount code, etc.)
     await fetch(`${LOOPS_API}/events/send`, {
       method: 'POST',
       headers: {
@@ -89,11 +76,11 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         email,
-        eventName: isBeta ? 'betaSignup' : 'waitlistSignup',
+        eventName: 'waitlistSignup',
         eventProperties: {
-          source: data._source ?? 'pricing-direct',
-          tierInterest: data.tier ?? '',
-          betaApplicant: isBeta,
+          source: data._source ?? 'waitlist',
+          tierInterest: data.interest ?? '',
+          tripType: data.trip_type ?? '',
         },
       }),
     });
