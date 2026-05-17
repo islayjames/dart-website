@@ -4,23 +4,23 @@ import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
-  title: 'How HeyDart Works — Lightning Lane booking assistant',
+  title: 'How HeyDart Works — Real-time Disney World assistant',
   description:
-    'HeyDart syncs with My Disney Experience, watches Lightning Lane Multi Pass availability throughout the day, and books selections automatically around your dining and fixed plans.',
+    "Dart connects to live Disney park data, your plans and commitments, and your family's preferences — and helps you decide what to do next. Pre-trip and in-park, one assistant.",
   alternates: {
     canonical: 'https://heydart.com/how-it-works',
   },
   openGraph: {
-    title: 'How HeyDart Works — Lightning Lane booking assistant',
+    title: 'How HeyDart Works — Real-time Disney World assistant',
     description:
-      'HeyDart syncs with My Disney Experience, watches Lightning Lane Multi Pass availability throughout the day, and books selections automatically around your dining and fixed plans.',
+      "Dart connects to live Disney park data, your plans and commitments, and your family's preferences — and helps you decide what to do next. Pre-trip and in-park, one assistant.",
     url: 'https://heydart.com/how-it-works',
     images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
   },
   twitter: {
-    title: 'How HeyDart Works — Lightning Lane booking assistant',
+    title: 'How HeyDart Works — Real-time Disney World assistant',
     description:
-      'HeyDart syncs with My Disney Experience, watches Lightning Lane Multi Pass availability throughout the day, and books selections automatically around your dining and fixed plans.',
+      "Dart connects to live Disney park data, your plans and commitments, and your family's preferences — and helps you decide what to do next. Pre-trip and in-park, one assistant.",
     images: ['/images/dart-logo-mark.png'],
   },
 };
@@ -37,39 +37,45 @@ const breadcrumbSchema = {
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: 'How to use HeyDart for Disney World Lightning Lane booking',
+  name: 'How to use HeyDart for Disney World planning',
   description:
-    'HeyDart is a Disney World planning assistant that automatically books Lightning Lane Multi Pass selections throughout the day. Here is how it works.',
+    "Dart connects to live Disney park data, your plans and commitments, and your family's preferences — and helps you decide what to do next. Pre-trip and in-park, one assistant.",
   step: [
     {
       '@type': 'HowToStep',
       position: 1,
-      name: 'Tell Dart your party, dates, and priorities',
-      text: "Mostly conversational — a few short forms where structure helps. Who's coming, where you're staying, whether anyone is height-limited, the rides that matter most, when the youngest naps.",
+      name: 'Tell Dart about your trip.',
+      text: 'Party size, ages, heights, mobility needs, interests, must-dos, avoids, pace, and what kind of Disney day you want.',
     },
     {
       '@type': 'HowToStep',
       position: 2,
-      name: 'Dart syncs with My Disney Experience',
-      text: 'A standard Friends & Family connection — Dart pulls in your party, your tickets, and your existing dining reservations automatically.',
+      name: 'Add your plans and commitments.',
+      text: "Dining reservations, meet-ups, naps, breaks, hotel time, stroller or ECV needs, shows, parades, fireworks — anything your family needs to protect. Dart shapes the day around them.",
     },
     {
       '@type': 'HowToStep',
       position: 3,
-      name: 'Dart checks Lightning Lane availability throughout the day',
-      text: 'Dart polls Multi Pass availability every few minutes, and when a fit appears for your party, it secures it — on the right ride, at the right time, around your other plans.',
+      name: 'Dart helps before you enter the park.',
+      text: "Think through priorities, identify must-dos, get ready for Lightning Lane and dining decisions, and understand the shape of the day — so the morning of the park day doesn't feel like a cold start.",
     },
     {
       '@type': 'HowToStep',
       position: 4,
-      name: 'Dart adjusts when the day shifts',
-      text: 'Running late, a ride goes down, a kid needs a break — Dart suggests the next move and reworks the rest of the day quietly.',
+      name: 'Dart connects to live Disney park data.',
+      text: 'Lightning Lane availability, standby waits, dining reservation alerts, walk-up waitlist timing, mobile order wait times, entertainment schedules, park hours, your itinerary where available.',
     },
     {
       '@type': 'HowToStep',
       position: 5,
-      name: 'Add Dining when it ships (Fall 2026)',
-      text: 'Available Fall 2026 as an optional upgrade — Dart watches dining availability and books hard-to-find reservations when they open.',
+      name: 'Dart watches the day as it changes.',
+      text: "Your location and walking time, nearby restrooms and points of interest, directions and transportation, weather, upcoming plans and commitments, party preferences. Things shift, and Dart shifts with them.",
+    },
+    {
+      '@type': 'HowToStep',
+      position: 6,
+      name: 'Dart helps recommend the next move.',
+      text: "Take this Lightning Lane. Stay nearby. Eat before crossing the park. Check mobile order timing. Head toward a restroom. Plan transportation earlier. Protect the nap window. Stop scanning and enjoy the moment.",
     },
   ],
 };
@@ -77,44 +83,49 @@ const howToSchema = {
 const STEPS = [
   {
     n: '01',
-    title: 'Tell Dart your party, dates, and priorities',
-    body: "Mostly conversational — a few short forms where structure helps. Who's coming, where you're staying, whether anyone is height-limited, the rides that matter most, when the youngest naps. Dart asks follow-ups when something's missing.",
-    shot: { src: '/images/product-mobile-welcome.png', alt: 'Dart welcome / onboarding screen' },
+    title: 'Tell Dart about your trip.',
+    body: 'Party size, ages, heights, mobility needs, interests, must-dos, avoids, pace, and what kind of Disney day you want.',
+    shot: { src: '/images/product-mobile-welcome.png', alt: 'Dart welcome and onboarding screen' },
   },
   {
     n: '02',
-    title: 'Dart syncs with My Disney Experience',
-    body: "A standard Friends & Family connection — same as every other tool in the category. Dart pulls in your party, your tickets, and your existing dining reservations automatically. You don't have to retype the things you've already planned.",
-    img: { src: '/images/hiw-2.png', alt: 'Stylized illustration of MDE and Dart connected by a ribbon of light', ratio: '16 / 9' },
+    title: 'Add your plans and commitments.',
+    body: "Dining reservations, meet-ups, naps, breaks, hotel time, stroller or ECV needs, shows, parades, fireworks — anything your family needs to protect. Dart shapes the day around them.",
+    img: { src: '/images/hiw-2.png', alt: 'Illustration of a Disney itinerary with Dart the fox', ratio: '16 / 9' },
   },
   {
     n: '03',
-    title: 'Dart checks Lightning Lane availability throughout the day',
-    body: "Dart polls Multi Pass availability every few minutes, and when a fit appears for your party, it secures it — on the right ride, at the right time, around your other plans. You see what was secured and what Dart is still watching.",
-    shot: { src: '/images/product-mobile-toast.png', alt: 'Dart live day — plan view with a Lightning Lane secured toast' },
+    title: 'Dart helps before you enter the park.',
+    body: "Think through priorities, identify must-dos, get ready for Lightning Lane and dining decisions, and understand the shape of the day — so the morning of the park day doesn't feel like a cold start.",
+    shot: { src: '/images/product-mobile-chat.png', alt: 'Dart mobile chat — pre-trip planning conversation' },
   },
   {
     n: '04',
-    title: 'Dart adjusts when the day shifts',
-    body: "Running late, a ride goes down, a kid needs a break — Dart suggests the next move and reworks the rest of the day quietly. You stay in charge of the schedule; Dart just keeps options ready.",
-    img: { src: '/images/hiw-4.png', alt: 'Fox looking at a winding paper map with two divergent paths', ratio: '16 / 9' },
+    title: 'Dart connects to live Disney park data.',
+    body: 'Lightning Lane availability, standby waits, dining reservation alerts, walk-up waitlist timing, mobile order wait times, entertainment schedules, park hours, your itinerary where available.',
+    img: { src: '/images/hiw-4.png', alt: 'Illustration of live park data signals flowing to Dart', ratio: '16 / 9' },
   },
   {
     n: '05',
-    title: 'Add Dining when it ships',
-    body: "Available Fall 2026 as an optional upgrade — not a replacement of Lightning Lane. Dart watches dining availability and books hard-to-find reservations when they open. Always your choice whether to add it.",
-    img: { src: '/images/hiw-5.png', alt: 'Fox carrying a restaurant menu past colorful umbrella tables', ratio: '16 / 9' },
-    tag: 'Fall 2026',
+    title: 'Dart watches the day as it changes.',
+    body: "Your location and walking time, nearby restrooms and points of interest, directions and transportation, weather, upcoming plans and commitments, party preferences. Things shift, and Dart shifts with them.",
+    shot: { src: '/images/product-mobile-plan.png', alt: 'Dart mobile plan view showing live day updates' },
+  },
+  {
+    n: '06',
+    title: 'Dart helps recommend the next move.',
+    body: "Take this Lightning Lane. Stay nearby. Eat before crossing the park. Check mobile order timing. Head toward a restroom. Plan transportation earlier. Protect the nap window. Stop scanning and enjoy the moment.",
+    shot: { src: '/images/product-mobile-toast.png', alt: 'Dart recommendation toast — Flight of Passage Lightning Lane' },
   },
 ];
 
 const DOESNT_DO = [
   ["Doesn't buy your Lightning Lane Multi Pass for you", 'You purchase Multi Pass in My Disney Experience, the same way you always have.'],
-  ["Doesn't book Individual Lightning Lanes", 'Those are a separate Disney product. Different game.'],
+  ["Doesn't buy Individual Lightning Lanes (LLSP)", "Those are a separate paid Disney product. You handle the purchase in MDE; Dart can move one you already own."],
+  ["Doesn't book dining reservations", "Dart watches dining availability and alerts you the moment something opens — you confirm the booking yourself in MDE."],
+  ["Doesn't place your mobile orders", "Dart uses mobile order timing and pickup data to recommend when to order — you place it yourself in MDE."],
   ["Doesn't join Virtual Queues", "Not at launch. Possibly later."],
-  ["Doesn't replace My Disney Experience", 'Dart works alongside MDE — never instead of it.'],
-  ["Doesn't guarantee bookings", "Availability is outside our control. We watch hard and book fast."],
-  ["Doesn't work at Disneyland", 'Walt Disney World only at launch.'],
+  ["Doesn't replace My Disney Experience", "Dart works alongside MDE — never instead of it."],
 ] as const;
 
 export default function HowItWorksPage() {
@@ -130,10 +141,8 @@ export default function HowItWorksPage() {
       />
       <PageHeader
         eyebrow="How it works"
-        title={
-          <>Tell Dart your day. <span style={{ color: 'var(--gold)' }}>Dart shapes it.</span></>
-        }
-        lead="A mostly conversational planner with a clear schedule and the controls you'd expect when you want them. Dart syncs with My Disney Experience, checks Lightning Lane availability throughout the day, and works around your existing dining and fixed plans."
+        title={<>Tell Dart your trip. <span style={{ color: 'var(--brick)' }}>Live the day.</span></>}
+        lead="Dart connects to live Disney park data, your plans and commitments, and your family's preferences — and helps you decide what to do next. Pre-trip and in-park, one assistant."
       />
 
       <section className="section">
@@ -181,67 +190,6 @@ export default function HowItWorksPage() {
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* The conversation */}
-      <section className="section section-cream">
-        <div className="container">
-          <div className="grid-2" style={{ alignItems: 'center', gap: 56 }}>
-            <div>
-              <div className="eyebrow">The conversation</div>
-              <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
-                Mostly chat. Forms when they help.
-              </h2>
-              <p className="lead">
-                Tell Dart things in plain language.{' '}
-                <em>&ldquo;We want Space Mountain before the kids get hangry.&rdquo;
-                &ldquo;Skip Pirates if the line&apos;s bad.&rdquo;
-                &ldquo;Grandparents are joining day two — they tire easily.&rdquo;</em>{' '}
-                Dart already knows your dining (it pulled it from MDE). For the things structure
-                helps with — party setup, ride preferences — there&apos;s a clean form.
-              </p>
-            </div>
-            <div className="shot-frame shot-mobile">
-              <NextImage
-                className="shot"
-                src="/images/product-mobile-chat.png"
-                alt="Dart mobile chat — Big Thunder return window, TRON booking confirmation"
-                width={320}
-                height={693}
-                style={{ width: '100%', height: 'auto' }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The schedule */}
-      <section className="section">
-        <div className="container">
-          <div className="grid-2" style={{ alignItems: 'center', gap: 56 }}>
-            <div className="shot-frame shot-mobile">
-              <NextImage
-                className="shot"
-                src="/images/product-mobile-plan.png"
-                alt="Dart mobile schedule — bus, park entry, Peter Pan Lightning Lane"
-                width={320}
-                height={693}
-                style={{ width: '100%', height: 'auto' }}
-              />
-            </div>
-            <div>
-              <div className="eyebrow">The schedule</div>
-              <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
-                One day. One view. Lock anything you want.
-              </h2>
-              <p className="lead">
-                Manual blocks (parade, naptime, the character meal you&apos;ve been excited about
-                for six months), Lightning Lane selections, and dining all live in one timeline.
-                Lock anything and Dart works around it. Unlock and Dart includes it again.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
