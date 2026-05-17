@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     userGroup: 'waitlist',
     // Custom properties — must exist in Loops Settings → Custom Attributes
     tierInterest: data.interest ?? '',
-    partySize: data.party_size ?? '',
+    partySizeRange: data.party_size ?? '',
     tripType: data.trip_type ?? '',
     biggestStress: data.biggest_stress ?? '',
     visitDates: data.visit_dates ?? '',
