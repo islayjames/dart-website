@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import PricingPageClient from './PricingPageClient';
 
 export const metadata: Metadata = {
-  title: 'Pricing — HeyDart from $10 a day',
+  title: 'Pricing — HeyDart Disney World assistant',
   description:
-    'HeyDart Lightning Lane booking assistant starts at $10 per party per day. Single day, 5-day pack, and annual plans available. Sign up now for 25% off — valid through end of 2026.',
+    'Day Pass $15, Trip Pass $45, Annual Pass $120. Simple party pricing, no per-person fees. Real-time Disney World guidance for your whole family.',
   alternates: {
     canonical: 'https://heydart.com/pricing',
   },

@@ -1,193 +1,270 @@
 'use client';
 
 import { useState } from 'react';
-import NextImage from 'next/image';
 import Link from 'next/link';
-import PricingTable from '@/components/PricingTable';
+import { IconHunt, IconDart, IconMagic, IconBadge } from '@/components/Icons';
 import SignupForm from '@/components/SignupForm';
 
+const PRICES = {
+  small: { day: 15, trip: 45, annual: 120 },
+  large: { day: 25, trip: 75, annual: null },
+} as const;
+
 const QUICK_FAQS = [
-  ["Can I get a refund?", "Single-day and 5-day packs are non-refundable but transferable to another date. Annual is refundable within 14 days. Beta participants don't pay, so refunds don't apply there."],
-  ["Do I need a My Disney Experience account?", "Yes. Dart connects to MDE via a standard Friends & Family connection — same as every other tool in the category."],
-  ["Do I need an annual pass?", "No. The annual Dart tier is for guests of all kinds with frequent trips. Single-day and 5-day packs work for one-off visits."],
-  ["Does this work at Disneyland?", "Not at launch. Walt Disney World only."],
-  ["Where does my discount get sent?", "To the email you sign up with. We'll send your 25% code shortly after signup; it's good through end of 2026."],
+  ['What does Trip Pass actually cover?', 'Up to 7 park days within a 15-day window. Cover your whole Disney vacation, not just one isolated day.'],
+  ['Is dining a separate tier?', 'No. Every pass includes dining reservation alerts, walk-up waitlist timing, and mobile order timing. It\'s all one Dart experience.'],
+  ['Do I need a My Disney Experience account?', 'Yes. Dart connects to MDE via a standard Friends & Family connection — same as every other tool in the category.'],
+  ['Larger party sizes?', 'Day Pass and Trip Pass support up to 20 guests at a different price. Annual Pass is currently up to 8. Need more? Get in touch.'],
+  ['Where does my discount get sent?', 'To the email you sign up with. We\'ll send your code in time for your first park day.'],
 ] as const;
 
 export default function PricingPageClient({ source = 'pricing-direct' }: { source?: string }) {
-  const [activeTier, setActiveTier] = useState('');
+  const [partyLarge, setPartyLarge] = useState(false);
+  const [signupTier, setSignupTier] = useState('');
 
-  const scrollToSignup = () => {
+  const prices = partyLarge ? PRICES.large : PRICES.small;
+  const partyLabel = partyLarge ? '9–20' : '1–8';
+
+  const goSignup = (tier: string) => {
+    setSignupTier(tier);
     document.getElementById('signup')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const setTierFromCard = (tier: string) => {
-    setActiveTier(tier);
-    scrollToSignup();
   };
 
   return (
     <div>
+      {/* Page header */}
       <header className="page-header">
         <div className="container">
           <div className="eyebrow">Pricing</div>
-          <h1 style={{ marginTop: 12 }}>
-            Priced for everyone.{' '}
-            <span style={{ color: 'var(--gold)' }}>From $10 a day.</span>
+          <h1 style={{ marginTop: 12, fontFamily: 'var(--serif)', fontStyle: 'italic', fontWeight: 600, fontSize: 'clamp(38px, 4.5vw, 60px)', lineHeight: 1.02, letterSpacing: '-0.02em', color: 'var(--twilight)' }}>
+            Simple party pricing.{' '}
+            <span style={{ color: 'var(--brick)' }}>No per-person fees.</span>{' '}
+            No confusing add-ons.
           </h1>
           <p className="lead" style={{ marginTop: 18 }}>
-            Two tiers, both visible, both your choice. Sign up now and we&apos;ll send you 25% off
-            any tier — code valid through end of 2026. Lock in your discount; pick your tier when
-            you&apos;re ready.
+            Every Dart pass includes real-time guidance powered by live Disney park data, your plans,
+            and your family&apos;s preferences. Trip Pass covers up to 7 park days within a 15-day
+            window — best for most Disney vacations.
           </p>
         </div>
       </header>
 
-      {/* Discount banner */}
-      <section className="discount-banner" style={{ padding: '24px 0', background: 'rgba(200,138,28,0.10)', borderBottom: '1px solid rgba(200,138,28,0.2)' }}>
+      {/* Launch discount banner */}
+      <section style={{ padding: '20px 0', background: 'rgba(200,54,42,0.07)', borderBottom: '1px solid rgba(200,54,42,0.18)' }}>
         <div className="container discount-banner-inner">
           <div className="discount-banner-text">
-            <span className="tag tag-gold">Pre-launch</span>
-            <span className="serif-i" style={{ fontSize: 20, color: 'var(--gold)' }}>
-              Sign up now and get 25% off any tier through end of 2026.
+            <span className="tag tag-brick">Pre-launch</span>
+            <span className="serif-i" style={{ fontSize: 18, color: 'var(--brick)' }}>
+              Waitlist members get the launch discount.
             </span>
           </div>
-          <button className="btn btn-primary" onClick={scrollToSignup}>
-            Claim discount →
+          <button className="btn btn-primary" onClick={() => goSignup('')}>
+            Join the waitlist →
           </button>
         </div>
       </section>
 
-      {/* Feature + pricing table */}
+      {/* Pricing cards */}
       <section className="section">
         <div className="container">
-          <h2 className="h-section" style={{ marginBottom: 10 }}>One product. Two tiers.</h2>
-          <p style={{ fontSize: 16, color: 'var(--ink-2)', marginBottom: 32, maxWidth: 680 }}>
-            Lightning Lane is the core — automatic Multi Pass booking, conversational replanning,
-            all your preferences wired in. Add Dining Alerts in Fall 2026 if you want reservation
-            monitoring too. Same conversation. Same interface. Just more of it.
-          </p>
-          <div className="card" style={{ padding: 32 }}>
-            <PricingTable />
-          </div>
-        </div>
-      </section>
-
-      {/* Two tiers explained */}
-      <section className="section section-cream">
-        <div className="container">
-          <div className="grid-2">
-            <div className="card card-cream" style={{ padding: 32 }}>
-              <span className="tag tag-gold">July 2026</span>
-              <h2 className="h-section" style={{ marginTop: 14, marginBottom: 14 }}>Lightning Lane</h2>
-              <p style={{ fontSize: 16, lineHeight: 1.55, color: 'var(--ink-2)', marginBottom: 18 }}>
-                The core product. Dart watches Lightning Lane Multi Pass openings throughout the day,
-                books selections as they drop, and routes everything around your dining, your preferences,
-                and whatever the day throws at you.
-              </p>
-              <ul style={{ paddingLeft: 18, color: 'var(--ink-2)', fontSize: 14.5, marginBottom: 22, lineHeight: 1.7 }}>
-                <li>Automatic Lightning Lane Multi Pass booking</li>
-                <li>Syncs with My Disney Experience — no re-entering your plans</li>
-                <li>Conversational — talk to Dart, not a form</li>
-                <li>Locks around parade, naptime, character meals, anything</li>
-                <li>Re-plans automatically when the day changes</li>
-                <li>Virtual queue reminders, park hopping, wait time awareness</li>
-              </ul>
-              <button className="btn btn-magenta" onClick={() => setTierFromCard('annual-ll')}>
-                Lock in 25% off — Lightning Lane →
+          {/* Header row with toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, marginBottom: 28 }}>
+            <h2 className="h-section">Pick your pass.</h2>
+            <div className="size-toggle">
+              <span className="size-toggle-label">Party size</span>
+              <button
+                className={`size-toggle-btn${!partyLarge ? ' active' : ''}`}
+                onClick={() => setPartyLarge(false)}
+              >
+                1–8
               </button>
-            </div>
-
-            <div className="card card-cream" style={{ padding: 32 }}>
-              <span className="tag tag-magenta">Fall 2026 · optional upgrade</span>
-              <h2 className="h-section" style={{ marginTop: 14, marginBottom: 14 }}>+ Dining Alerts</h2>
-              <p style={{ fontSize: 16, lineHeight: 1.55, color: 'var(--ink-2)', marginBottom: 18 }}>
-                Everything in Lightning Lane, plus dining availability monitoring. Not a different product —
-                just the same conversation with restaurant reservations in the mix. Your call whether to add it.
-              </p>
-              <ul style={{ paddingLeft: 18, color: 'var(--ink-2)', fontSize: 14.5, marginBottom: 22, lineHeight: 1.7 }}>
-                <li>Everything in Lightning Lane</li>
-                <li>Watches for dining availability the moment tables open</li>
-                <li>Monitor by restaurant, price range, cuisine, or location</li>
-                <li>Aware of Dining Plan, character dining, booking nuances</li>
-                <li>Dining recommendations coming with content partners</li>
-              </ul>
-              <button className="btn btn-magenta" onClick={() => setTierFromCard('annual-lld')}>
-                Lock in 25% off — Lightning Lane + Dining →
+              <button
+                className={`size-toggle-btn${partyLarge ? ' active' : ''}`}
+                onClick={() => setPartyLarge(true)}
+              >
+                9–20
               </button>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Beta program */}
-      <section className="section">
-        <div className="container">
-          <div className="grid-2" style={{ alignItems: 'center', gap: 56 }}>
-            <div
-              className="art-frame"
-              style={{ aspectRatio: '4 / 3', position: 'relative', minHeight: 280 }}
-            >
-              <NextImage
-                src="/images/pricing-beta.png"
-                alt="Fox holding a clipboard with checkmark, standing before bunting flags"
-                fill
-                style={{ objectFit: 'cover' }}
-                sizes="(max-width: 880px) 100vw, 50vw"
-              />
-            </div>
-            <div>
-              <div className="eyebrow">Beta program</div>
-              <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
-                Help us build Dart.
-              </h2>
-              <p className="lead" style={{ marginBottom: 18 }}>
-                We&apos;re looking for a small group of Florida annual passholders with planned
-                Disney World visits between May 15 and July 15 to test Dart in low-stakes
-                situations. Selected testers get one full year of LL + Dining (1–6) access through
-                August 2027. Everyone who applies gets the 25% discount code at minimum.
+          <div className="pricing-cards">
+            {/* Day Pass */}
+            <div className="pcard">
+              <div className="pcard-head">
+                <IconBadge icon={IconDart} tint="gold" size={44} />
+                <div>
+                  <div className="pcard-eyebrow">For the day</div>
+                  <div className="pcard-name">Day Pass</div>
+                </div>
+              </div>
+              <p className="pcard-body">
+                Hitting the parks for a single packed day, or just want to try Dart out? Squeeze the
+                most out of your day — from rope drop to fireworks — while we handle the logistics.
               </p>
-              <ul style={{ paddingLeft: 18, color: 'var(--ink-2)', fontSize: 14.5, lineHeight: 1.7, marginBottom: 22 }}>
-                <li>Florida annual passholder, with visits planned May 15 – July 15</li>
-                <li>Planning to use Lightning Lane Multi Pass and/or make dining reservations</li>
-                <li>Willing to test in low-stakes moments and share feedback</li>
-                <li>Pre-release product, no guarantees, no LLMP reimbursement except case-by-case for catastrophic edge cases</li>
-                <li>Disney employees not currently eligible — please email us for a demo conversation instead</li>
+              <div className="pcard-price">
+                <span className="pcard-price-amount">${prices.day}</span>
+                <span className="pcard-price-unit">/ park day · party of {partyLabel}</span>
+              </div>
+              <ul className="pcard-list">
+                <li>Real-time Lightning Lane and dining</li>
+                <li>Live wait times and walking time</li>
+                <li>Your plans and commitments</li>
+              </ul>
+              <button className="btn btn-secondary pcard-cta" onClick={() => goSignup('1day-8')}>
+                Start with Day Pass →
+              </button>
+            </div>
+
+            {/* Trip Pass — featured */}
+            <div className="pcard featured">
+              <div className="pcard-flag">Most popular</div>
+              <div className="pcard-head">
+                <IconBadge icon={IconHunt} tint="brick" size={44} />
+                <div>
+                  <div className="pcard-eyebrow">For the trip</div>
+                  <div className="pcard-name">Trip Pass</div>
+                </div>
+              </div>
+              <p className="pcard-body">
+                Use Dart for up to seven park days over a fifteen-day window, plus as your built-in
+                concierge for everything around Walt Disney World on your rest days. From three to
+                seven days out, all the way to checkout, Dart helps ensure the vacation runs smooth
+                and tailored to your family.
+              </p>
+              <div className="pcard-price">
+                <span className="pcard-price-amount">${prices.trip}</span>
+                <span className="pcard-price-unit">/ trip · 7 days in 15 · party of {partyLabel}</span>
+              </div>
+              <ul className="pcard-list">
+                <li>Everything in Day Pass</li>
+                <li>Pre-trip prep + in-park guidance</li>
+                <li>Resort &amp; between-park concierge on rest days</li>
+                <li>One purchase covers the whole vacation</li>
+              </ul>
+              <button className="btn btn-primary pcard-cta" onClick={() => goSignup('trip-8')}>
+                Start with Trip Pass →
+              </button>
+            </div>
+
+            {/* Annual Pass */}
+            <div className={`pcard${partyLarge ? ' pcard-unavail' : ''}`}>
+              <div className="pcard-head">
+                <IconBadge icon={IconMagic} tint="magenta" size={44} />
+                <div>
+                  <div className="pcard-eyebrow">For the year</div>
+                  <div className="pcard-name">Annual Pass</div>
+                </div>
+              </div>
+              <p className="pcard-body">
+                For frequent visitors. You know your way around — tell Dart what you want and let it
+                handle the rest. Put your day (or half-day) on autopilot and relax in the place you
+                love.
+              </p>
+              <div className="pcard-price">
+                {partyLarge ? (
+                  <span className="pcard-price-unavail">Available for parties up to 8</span>
+                ) : (
+                  <>
+                    <span className="pcard-price-amount">$120</span>
+                    <span className="pcard-price-unit">/ year · party of 1–8</span>
+                  </>
+                )}
+              </div>
+              <ul className="pcard-list">
+                <li>Everything in Trip Pass</li>
+                <li>Unlimited park days for the year</li>
+                <li>Save your party + preferences across visits</li>
               </ul>
               <button
-                className="btn btn-primary"
+                className="btn btn-secondary pcard-cta"
                 onClick={() => {
-                  setActiveTier('annual-lld');
-                  scrollToSignup();
+                  if (partyLarge) setPartyLarge(false);
+                  goSignup('annual-8');
                 }}
               >
-                Apply for the beta →
+                {partyLarge ? 'See Annual Pass (1–8)' : 'Start with Annual Pass →'}
+              </button>
+            </div>
+          </div>
+
+          <p className="muted" style={{ textAlign: 'center', marginTop: 20, fontSize: 14 }}>
+            All passes include the full Dart experience — no per-person fees, no add-ons, no separate dining tier.
+          </p>
+        </div>
+      </section>
+
+      {/* Beta callout */}
+      <section className="section-tight section-cream">
+        <div className="container">
+          <div className="beta-callout">
+            <div className="beta-callout-icon">
+              <IconBadge icon={IconHunt} tint="teal" size={64} />
+            </div>
+            <div className="beta-callout-body">
+              <div className="eyebrow" style={{ color: 'var(--teal)' }}>Beta program · limited</div>
+              <h3 className="h-card" style={{ marginTop: 6, marginBottom: 10, fontStyle: 'italic' }}>
+                Love WDW? Help us shape Dart.
+              </h3>
+              <p style={{ fontSize: 15, color: 'var(--ink-2)', lineHeight: 1.6, marginBottom: 16 }}>
+                We&apos;re looking for Walt Disney World regulars, planners, and folks who genuinely
+                enjoy experimenting to test Dart before launch. Selected testers get a full year of
+                Dart free and a direct line to the team — in exchange for honest feedback in real
+                park conditions.
+              </p>
+              <button className="btn btn-secondary" onClick={() => goSignup('beta')}>
+                Apply to the beta program →
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Master signup form */}
+      {/* Every pass includes */}
+      <section className="section section-cream">
+        <div className="container">
+          <div className="eyebrow">Every pass includes</div>
+          <h2 className="h-section" style={{ marginTop: 8, marginBottom: 32 }}>
+            Real-time guidance across the whole day.
+          </h2>
+          <div className="grid-2" style={{ gap: 32 }}>
+            <ul className="check-list">
+              <li>Lightning Lane availability monitoring</li>
+              <li>Dining reservation alerts</li>
+              <li>Walk-up waitlist timing</li>
+              <li>Mobile order wait times and pickup timing</li>
+              <li>Standby wait awareness</li>
+              <li>Park hours and entertainment</li>
+            </ul>
+            <ul className="check-list">
+              <li>Your itinerary, Lightning Lane selections, and dining</li>
+              <li>Plans and commitments (parades, naps, meet-ups, shows)</li>
+              <li>Location-aware suggestions and walking time</li>
+              <li>Restrooms, points of interest, transportation</li>
+              <li>Weather and family preferences</li>
+              <li>Pre-trip help and in-park guidance</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Signup form */}
       <section className="section section-deep" id="signup">
         <div className="container-narrow">
           <div className="eyebrow">Sign up</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 14 }}>
-            One list.{' '}
-            <span style={{ color: 'var(--gold)' }}>One discount.</span> Pick your tier later.
+            Join the waitlist.{' '}
+            <span style={{ color: 'var(--gold)' }}>Get the launch discount.</span>
           </h2>
           <p className="lead" style={{ marginBottom: 32 }}>
-            Sign up now, lock in 25% off, and choose your tier whenever you&apos;re ready.
-            We&apos;ll keep you posted as we ramp up to launch.
+            Tell us when you&apos;re going. We&apos;ll prioritize beta access and send your discount
+            code in time for your first park day.
           </p>
-          <div className="card" style={{ padding: 32 }}>
-            <SignupForm source={source} preselectedTier={activeTier} />
+          <div className="card">
+            <SignupForm source={source} preselectedTier={signupTier} />
           </div>
           <p className="muted" style={{ marginTop: 18, fontSize: 13 }}>
             We&apos;ll only email you about Dart. You can unsubscribe at any time. Read our{' '}
-            <Link href="/privacy" style={{ color: 'var(--gold)' }}>
-              privacy policy
-            </Link>.
+            <Link href="/privacy" style={{ color: 'var(--gold)' }}>privacy policy</Link>.
           </p>
         </div>
       </section>
@@ -196,9 +273,7 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
       <section className="section">
         <div className="container-narrow">
           <div className="eyebrow">Quick questions</div>
-          <h2 className="h-section" style={{ marginTop: 14, marginBottom: 24 }}>
-            Before you sign up.
-          </h2>
+          <h2 className="h-section" style={{ marginTop: 14, marginBottom: 24 }}>Before you sign up.</h2>
           {QUICK_FAQS.map(([q, a]) => (
             <div key={q} style={{ paddingBottom: 18, marginBottom: 18, borderBottom: '1px solid rgba(200,138,28,0.14)' }}>
               <h3 className="serif-i" style={{ fontSize: 20, marginBottom: 6 }}>{q}</h3>
@@ -206,24 +281,7 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
             </div>
           ))}
           <p style={{ marginTop: 18 }}>
-            <Link href="/learn" style={{ color: 'var(--gold)' }}>
-              See the full FAQ →
-            </Link>
-          </p>
-        </div>
-      </section>
-
-      {/* Categorical comparison */}
-      <section className="section section-cream">
-        <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Where Dart sits</div>
-          <h2 className="h-section" style={{ marginTop: 14, marginBottom: 22 }}>
-            Most Lightning Lane tools just search.<br />Most dining tools only alert.
-          </h2>
-          <p className="lead" style={{ margin: '0 auto', maxWidth: 640 }}>
-            Dart pulls Lightning Lane, dining, and your fixed plans into one optimized day — and
-            starts at $10. We&apos;re another option from a different angle, not a disruption to a
-            community we&apos;re part of.
+            <Link href="/learn" style={{ color: 'var(--gold)' }}>See the full FAQ →</Link>
           </p>
         </div>
       </section>
