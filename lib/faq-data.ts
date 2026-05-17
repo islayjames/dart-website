@@ -1,115 +1,118 @@
 /**
- * FAQ_ENTRIES — All 22 Q&A pairs for the Learn/FAQ page.
+ * FAQ_ENTRIES — All 26 Q&A pairs for the Learn/FAQ page.
  * Each entry is a [question, answer] tuple.
  * Used by FAQAccordion component and JSON-LD FAQPage schema.
+ *
+ * Vocabulary conventions:
+ * - Launch: August 2026
+ * - Discount: "the launch discount" (not a specific percentage)
+ * - Beta reward: "a full year of Dart free"
+ * - Plans and commitments (not "manual blocks")
+ * - Beta is open to WDW regulars and experimenters
  */
 export const FAQ_ENTRIES: [string, string][] = [
   [
-    'What is Dart?',
-    'Dart is a planning and in-park assistant for Walt Disney World guests. You give Dart your party, dates, priorities, and any fixed blocks. Dart watches Lightning Lane Multi Pass openings in real time, books selections as they drop, and routes the day around your dining and your fixed plans. Lightning Lane launches July 2026; an optional Dining add-on launches Fall 2026.',
+    'What live park data does Dart use?',
+    "Dart connects to Lightning Lane Multi Pass availability, standby wait times, dining reservation alerts, walk-up waitlist timing, mobile order wait and pickup timing, park hours, entertainment schedules, and your existing itinerary. It pairs those with your location, walking time, weather, nearby restrooms and points of interest, and your family's preferences and plans to recommend what to do next — and when to stop chasing something.",
+  ],
+  [
+    'How does Dart compare to a generic AI assistant or web search?',
+    "Generic chat assistants can summarize what they read on the web. Dart plugs into the things that actually shape your park day — live Multi Pass availability for your party, the dining waitlist that just opened, the mobile-order line that's spiking, the weather, where you are right now — and gives advice grounded in all of it at once. It's the difference between asking a friend who has read a guide and asking a friend who is in the park with the app open.",
   ],
   [
     'What is Lightning Lane Multi Pass?',
-    'Lightning Lane Multi Pass (LLMP) is a paid Walt Disney World service that lets guests reserve return-time windows for select attractions, then enter through the Lightning Lane queue at their reservation time. It replaced the old FastPass and Genie+ systems. Multi Pass selections are made through My Disney Experience and are subject to availability.',
+    'Lightning Lane Multi Pass (sometimes called LLMP) is a paid Walt Disney World service that lets guests reserve return-time windows for select attractions and enter through the Lightning Lane queue. It replaced the FastPass and Genie+ systems. Multi Pass selections are made through My Disney Experience and are subject to availability.',
   ],
   [
-    'What is My Disney Experience?',
-    "My Disney Experience (MDE) is The Walt Disney Company's official mobile app and web account for Walt Disney World guests. It manages your tickets, dining reservations, Lightning Lane Multi Pass selections, and resort information. Dart works alongside MDE — never instead of it.",
+    'How does Dart use Lightning Lane Multi Pass?',
+    "Dart watches Multi Pass availability in real time and gives you the right recommendation — or a heads-up to act — when something opens for your party. You make the selection yourself in My Disney Experience. Dart's job is to make sure you don't miss the window.",
   ],
   [
-    'Do I need an annual pass to use Dart?',
-    "No. Dart's annual tier is for guests with frequent trips, but Dart is available to all Walt Disney World visitors via single-day passes ($10 LL only / $15 LL + Dining for parties of 1–6) or 5-day packs ($25 LL only / $35 LL + Dining within a 30-day window).",
+    'Does Dart buy my Lightning Lane Multi Pass for me?',
+    "No. Dart monitors availability and tells you when and what to book — you confirm the selection yourself in My Disney Experience. This keeps Dart on the right side of Disney's terms and keeps you in control of what your party commits to.",
   ],
   [
-    'Do I need to be in Florida to use Dart?',
-    'No — Dart is for any Walt Disney World guest. The beta program is currently limited to Florida annual passholders for logistical reasons, but the launched product works for any visitor anywhere.',
+    'Does Dart buy Individual Lightning Lanes (LLSP)?',
+    'Not at launch. Individual Lightning Lanes are a separate paid Disney product. Dart focuses on Lightning Lane Multi Pass. Once you own an Individual Lightning Lane, Dart can help route your day around it like any other fixed commitment.',
   ],
   [
-    'How does Dart work with my MDE account?',
-    "Dart connects to your My Disney Experience account through a standard Friends & Family connection, the same way other planning tools in the category do. Dart can see your party roster, tickets, and existing dining; Dart never logs in as you and never makes Lightning Lane Multi Pass purchases on your behalf — you do that in MDE.",
+    "What's the difference between Day Pass, Trip Pass, and Annual Pass?",
+    'Day Pass is for a single park day — try Dart out or cover one big day. Trip Pass covers up to 7 park days within a 15-day window — best for most Disney vacations, and Dart also helps before you arrive and on your rest days. Annual Pass is for frequent visitors and passholders who want Dart available year-round. All three include the full Dart experience.',
+  ],
+  [
+    'What does Trip Pass actually cover?',
+    'Trip Pass gives you up to 7 active park days within any 15-day window. On park days Dart is your real-time in-park assistant. On arrival and rest days Dart helps with pre-trip planning, dining strategy, and itinerary prep. One price, one pass, the whole trip.',
+  ],
+  [
+    'Is dining a separate add-on?',
+    'No. Every Dart pass includes dining-availability monitoring, walk-up waitlist timing, and mobile order timing. Note: Dart watches and alerts — you confirm the booking yourself in MDE. It\'s one assistant, one price.',
+  ],
+  [
+    'Does Dart book dining reservations for me?',
+    "Not on your behalf. Dart watches dining availability throughout the day and alerts you the moment something opens up that fits your party — you confirm the booking yourself in My Disney Experience. This is by design: dining reservations move fast and the few seconds it takes you to confirm are how we stay on the right side of Disney's rules.",
+  ],
+  [
+    'Does Dart place my mobile orders?',
+    'No. Dart uses mobile-order wait times and pickup-window data to recommend when to order — but you still place the order yourself in My Disney Experience.',
   ],
   [
     'What does Dart cost?',
-    'Single day: $10 (LL only, 1–6) / $15 (LL + Dining, 1–6) / $15 (LL only, 7+) / $25 (LL + Dining, 7+). Five-day pack within 30 days: $25 / $35 / $35 / $50. Annual (1–6 only): $100 (LL only) / $150 (LL + Dining). Annual is not offered for parties of 7 or more. Sign up before launch and get 25% off any tier through end of 2026.',
+    'Day Pass is $15 for parties up to 8, or $25 for parties of 9–20. Trip Pass (up to 7 park days within a 15-day window) is $45 for parties up to 8, or $75 for parties of 9–20. Annual Pass is $120 for parties up to 8. Every pass includes the full Dart experience — no per-person fees, no add-ons. Waitlist members get the launch discount.',
   ],
   [
-    "What's the difference between Lightning Lane and Lightning Lane + Dining tiers?",
-    "Lightning Lane is the core product — Dart watches Lightning Lane Multi Pass openings and books them as they drop. LL + Dining adds dining-availability monitoring and booking. The two tiers are a permanent choice, not a price increase. You always have the option to start with Lightning Lane only and upgrade later.",
+    'Do I need a My Disney Experience account?',
+    'Yes. My Disney Experience is how Disney manages Lightning Lane Multi Pass, dining reservations, and mobile orders. Dart works alongside your MDE account — it cannot replace it.',
   ],
   [
-    'When does Dart launch?',
-    'Lightning Lane launches July 2026. The Dining add-on launches in Fall 2026 (1–2 months after Lightning Lane).',
+    'How does Dart connect to My Disney Experience?',
+    "Dart connects to your My Disney Experience account through a standard Friends & Family connection, the same way other planning tools in the category do. Dart can see your party roster, tickets, and existing dining reservations. Dart never logs in as you and never makes Lightning Lane Multi Pass purchases on your behalf — you handle that in MDE.",
   ],
   [
-    'When does the dining add-on come?',
-    'Fall 2026, 1–2 months after the Lightning Lane launch. Sign up for the interest list now to be notified the moment it goes live.',
-  ],
-  [
-    "Can I get a refund if I don't use Dart?",
-    "Single-day and 5-day packs are non-refundable but transferable to another date. Annual subscriptions are refundable within 14 days of purchase. Beta participants don't pay during the beta, so refunds don't apply there.",
-  ],
-  [
-    "What happens if Dart can't find a Lightning Lane?",
-    "Dart watches as long as you want it to and tries to grab the next-best option for your party. Availability is outside our control — there are days when popular attractions simply don't open up. Dart will tell you what it tried, what landed, and what didn't.",
-  ],
-  [
-    'Is Dart guaranteed to find me a Lightning Lane?',
-    "No. Dart watches and books as quickly as possible within Disney's rules, but availability depends on what Disney releases and how fast everyone else is. We don't use words like \"guaranteed\" anywhere on this site for a reason.",
-  ],
-  [
-    'Can I sometimes do better by searching manually?',
-    "Yes — and we'll be straight with you about it. Someone who is actively watching their phone, refreshing the MDE app repeatedly, and tapping the moment something appears can react just as fast as Dart in that specific window. The difference is that Dart watches even when you're not looking: on rides, in line for food, when the kids need something. If you're happy spending your park day with your phone out refreshing, you don't need Dart. Dart is for people who'd rather not.",
-  ],
-  [
-    'Can I use Dart at Disneyland?',
+    'Does Dart work at Disneyland?',
     'Not at launch. Walt Disney World only.',
   ],
   [
-    'Does Dart work with Individual Lightning Lanes?',
-    'No. Individual Lightning Lanes are a separate paid product from Disney with different mechanics. Dart focuses on Lightning Lane Multi Pass.',
+    'Does Dart join Virtual Queues?',
+    "Not at launch. We may add Virtual Queue support later if there's demand.",
   ],
   [
-    'Does Dart work with Virtual Queues?',
-    "Not at launch. We may add Virtual Queue support later if there's demand.",
+    'When does Dart launch?',
+    'August 2026. Join the waitlist to get the launch discount and early access.',
+  ],
+  [
+    'What is the beta program?',
+    "We're looking for Walt Disney World regulars, planners, and folks who genuinely enjoy experimenting to help us test Dart before launch. Selected testers get a full year of Dart free and a direct line to the team — in exchange for honest feedback in real park conditions. Apply through the signup form on the Pricing page.",
+  ],
+  [
+    'Who is the beta program for?',
+    "The beta is for Walt Disney World regulars and people who enjoy experimenting with new tools. If you visit WDW more than once a year, or if you're the person in your group who handles the planning, we want to hear from you. Apply on the Pricing page.",
+  ],
+  [
+    'Does my launch discount expire?',
+    'The launch discount applies to passes purchased through 2026. Sign up for the waitlist before launch to lock it in; redeem it when you\'re ready.',
+  ],
+  [
+    'Can I use Dart for free?',
+    "There is no free tier for the launched product. Approved beta participants get a full year of Dart free — in exchange for honest feedback in real park conditions. Everyone who applies for the beta receives early-access information regardless of selection.",
+  ],
+  [
+    "What if I'm a Disney cast member?",
+    "You're welcome to join the waitlist and you'll receive the launch discount like everyone else. For the beta program specifically, please email hello@heydart.com — we'd love to chat directly.",
+  ],
+  [
+    'Does Dart work for large groups?',
+    'Yes. Day Pass and Trip Pass both support parties of up to 20. The 9–20 party tier is priced slightly higher to reflect the additional coordination involved. Annual Pass currently supports parties up to 8.',
   ],
   [
     'Is Dart affiliated with Disney?',
     'No. Dart and HeyDart are not affiliated with, endorsed by, or sponsored by The Walt Disney Company or any of its affiliates or subsidiaries. All Disney park names, attraction names, and related marks are the property of their respective owners.',
   ],
   [
-    'How does Dart compare to other Disney planning tools?',
-    "The Disney planning tool community is small and friendly, and we've learned from many of the existing options. Most Lightning Lane tools just search. Most dining tools only alert. Dart is conversational instead of form-based, integrated instead of single-purpose, optimizes the whole day around your dining and fixed plans, and starts at $10. We're another option from a different angle, not a disruption.",
-  ],
-  [
     'Who built Dart?',
-    "Dart is built by a husband-and-wife team. He's a serial software founder who worked at Disneyland through college and is currently Chief AI Officer at a billion-dollar company. She spent a decade coordinating a graduate research department at a university, started a bespoke travel agency planning custom-tailored trips for families, and homeschools their kids. They're DVC members and annual passholders. Read more on the About page.",
+    "Dart is built by a husband-and-wife team. He's a serial software founder who worked at Disneyland through college and is currently Chief AI Officer at a billion-dollar company. She started a bespoke travel agency planning custom-tailored trips, and homeschools their kids. They're DVC members and annual passholders. Read more on the About page.",
   ],
   [
-    'Beta program — how does it work?',
-    'The beta is open to Florida annual passholders with planned Walt Disney World visits between May 15 and July 15, 2026. Selected testers get one full year of LL + Dining (1–6) access through August 2027. Everyone who applies — selected or not — gets the standard 25% discount code at minimum. Apply through the signup form on the Pricing page.',
-  ],
-  [
-    "What if I'm a Disney employee?",
-    "Disney cast members are not currently eligible for the beta. We'd love to talk separately about a demo — please email hello@heydart.com. Your interest-list signup will still be processed and you'll receive the 25% discount code.",
-  ],
-  [
-    'Does my early-signup discount expire?',
-    "Yes — the 25% discount is valid for any tier through the end of 2026. Sign up before then to lock it in; redeem it when you're ready.",
-  ],
-  [
-    'How much does HeyDart cost?',
-    'HeyDart starts at $10 per party per day (Lightning Lane only, party of 1–6). Pricing is per-party, not per-person. Single day: $10 LL / $15 LL+Dining (1–6); $15 LL / $25 LL+Dining (7+). Five-day pack (use within 30 days): $25 LL / $35 LL+Dining (1–6); $35 LL / $50 LL+Dining (7+). Annual unlimited: $100 LL / $150 LL+Dining (1–6 only). Sign up before launch for 25% off any tier.',
-  ],
-  [
-    'What is HeyDart?',
-    'HeyDart (also called Dart) is a Disney World Lightning Lane booking assistant and in-park planning tool for Walt Disney World guests. It watches Lightning Lane Multi Pass availability throughout the day and automatically books selections for your party around your dining reservations and fixed plans. It is a third-party tool and is not affiliated with The Walt Disney Company. Lightning Lane feature launches July 2026; Dining add-on launches Fall 2026.',
-  ],
-  [
-    'Does Dart work for large groups or parties of 7 or more?',
-    'Yes — Dart supports parties of 7 or more on single-day and 5-day packs. The 7+ party tier costs slightly more per booking ($15 single-day LL vs. $10 for 1–6). Annual plans are currently limited to parties of 1–6.',
-  ],
-  [
-    'Is there a free trial?',
-    "There is no free trial for the launched product. However, approved beta participants get one full year of LL + Dining (1–6) access through August 2027 at no charge. Everyone who applies for the beta — selected or not — receives the 25% pre-launch discount code at minimum.",
+    'How do I get in touch?',
+    "Email hello@heydart.com — we read every message. For beta questions, general feedback, press, or partnership inquiries, that's the right address. We're a small team and we'll get back to you.",
   ],
 ];

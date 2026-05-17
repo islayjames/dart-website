@@ -4,23 +4,23 @@ import FAQAccordion from '@/components/FAQAccordion';
 import { FAQ_ENTRIES } from '@/lib/faq-data';
 
 export const metadata: Metadata = {
-  title: 'FAQ — HeyDart Lightning Lane booking assistant',
+  title: 'Dart FAQ — Disney World assistant questions answered',
   description:
-    'Answers about HeyDart, Lightning Lane Multi Pass, My Disney Experience, Dart pricing, the beta program, and how Dart compares to other Disney planning tools.',
+    'Everything you need to know about Dart — live park data, Lightning Lane, dining alerts, pricing, beta program, and how it all works at Walt Disney World.',
   alternates: {
     canonical: 'https://heydart.com/learn',
   },
   openGraph: {
-    title: 'FAQ — HeyDart Lightning Lane booking assistant',
+    title: 'Dart FAQ — Disney World assistant questions answered',
     description:
-      'Answers about HeyDart, Lightning Lane Multi Pass, My Disney Experience, Dart pricing, the beta program, and how Dart compares to other Disney planning tools.',
+      'Everything you need to know about Dart — live park data, Lightning Lane, dining alerts, pricing, beta program, and how it all works at Walt Disney World.',
     url: 'https://heydart.com/learn',
     images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
   },
   twitter: {
-    title: 'FAQ — HeyDart Lightning Lane booking assistant',
+    title: 'Dart FAQ — Disney World assistant questions answered',
     description:
-      'Answers about HeyDart, Lightning Lane Multi Pass, My Disney Experience, Dart pricing, the beta program, and how Dart compares to other Disney planning tools.',
+      'Everything you need to know about Dart — live park data, Lightning Lane, dining alerts, pricing, beta program, and how it all works at Walt Disney World.',
     images: ['/images/dart-logo-mark.png'],
   },
 };
@@ -61,11 +61,11 @@ export default function LearnPage() {
         eyebrow="Learn / FAQ"
         title={
           <>
-            Everything we get asked.{' '}
-            <span style={{ color: 'var(--gold)' }}>Answered plainly.</span>
+            Dart FAQ.{' '}
+            <span style={{ color: 'var(--brick)' }}>Everything you need to know.</span>
           </>
         }
-        lead="Substantive answers about Lightning Lane, My Disney Experience, Dart's pricing and beta program, and how all of it fits together. Tap a question to expand."
+        lead="Live park data, Lightning Lane, dining, pricing, beta — all the questions, answered honestly."
       />
 
       <section className="section">
