@@ -27,7 +27,19 @@ export default function Footer() {
             <ul>
               <li><Link href="/how-it-works">How it works</Link></li>
               <li><Link href="/pricing">Pricing</Link></li>
+              <li><Link href="/trip-pass">Trip Pass</Link></li>
               <li><Link href="/learn">Learn / FAQ</Link></li>
+            </ul>
+          </div>
+
+          {/* For your trip */}
+          <div>
+            <h4>For your trip</h4>
+            <ul>
+              <li><Link href="/first-time-disney-world">First time at Disney World</Link></li>
+              <li><Link href="/disney-world-with-kids">Disney World with kids</Link></li>
+              <li><Link href="/lightning-lane-help">Lightning Lane help</Link></li>
+              <li><Link href="/dining-mobile-order-help">Dining & mobile order timing</Link></li>
             </ul>
           </div>
 
