@@ -63,7 +63,7 @@ export default function DisneyWorldWithKidsPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Launching August 2026</div>
+          <div className="eyebrow">Early access starts September 1</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Phone in pocket. Eyes on the kids.
           </h2>

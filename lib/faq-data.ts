@@ -4,7 +4,7 @@
  * Used by FAQAccordion component and JSON-LD FAQPage schema.
  *
  * Vocabulary conventions:
- * - Launch: August 2026
+ * - Dining alerts: August 2026; product early access: September 1; full launch: October 2026
  * - Discount: "the launch discount" (not a specific percentage)
  * - Beta reward: "a full year of Dart free"
  * - Plans and commitments (not "manual blocks")
@@ -25,11 +25,11 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'How does Dart use Lightning Lane Multi Pass?',
-    "Dart watches Multi Pass availability in real time and gives you the right recommendation — or a heads-up to act — when something opens for your party. You make the selection yourself in My Disney Experience. Dart's job is to make sure you don't miss the window.",
+    'Dart watches Multi Pass availability in real time. After you purchase the entitlement, Dart can book, replace, and reschedule selections based on your preferences and availability.',
   ],
   [
     'Does Dart buy my Lightning Lane Multi Pass for me?',
-    "No. Dart monitors availability and tells you when and what to book — you confirm the selection yourself in My Disney Experience. This keeps Dart on the right side of Disney's terms and keeps you in control of what your party commits to.",
+    'No. You purchase the entitlement in My Disney Experience. Once it is active, Dart can book, replace, and reschedule Lightning Lane Multi Pass selections based on your preferences and availability.',
   ],
   [
     'Does Dart buy Individual Lightning Lanes (LLSP)?',
@@ -65,7 +65,7 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'How does Dart connect to My Disney Experience?',
-    "Dart connects to your My Disney Experience account through a standard Friends & Family connection, the same way other planning tools in the category do. Dart can see your party roster, tickets, and existing dining reservations. Dart never logs in as you and never makes Lightning Lane Multi Pass purchases on your behalf — you handle that in MDE.",
+    'Dart connects through My Disney Experience Friends & Family. Dart can see the party context and existing plans needed to help run the day. Dart never purchases Lightning Lane entitlements on your behalf — you handle that in MDE.',
   ],
   [
     'Does Dart work at Disneyland?',
@@ -77,7 +77,7 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'When does Dart launch?',
-    'August 2026. Join the waitlist to get the launch discount and early access.',
+    'Dining alerts open in August. Controlled early access to the full Dart assistant starts September 1, followed by the full seasonal launch in October 2026.',
   ],
   [
     'What is the beta program?',

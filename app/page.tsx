@@ -7,19 +7,19 @@ import { IconHunt, IconDart, IconMagic, IconBadge, IconSchedule, IconGuide, Icon
 export const metadata: Metadata = {
   title: 'HeyDart — Real-time Disney World assistant powered by live park data',
   description:
-    'Dart connects to live Disney park data — Lightning Lane availability, dining alerts, wait times, mobile order timing — and your own plans, then helps your family decide what to do next. Launching August 2026.',
+    'Dining alerts open in August. Controlled early access to Dart starts September 1, followed by the full seasonal launch in October 2026.',
   alternates: { canonical: 'https://heydart.com' },
   openGraph: {
     title: 'HeyDart — Real-time Disney World assistant',
     description:
-      'Dart connects to live Disney park data and your plans, then helps your family decide what to do next. Launching August 2026.',
+      'Dining alerts open in August. Early access starts September 1, followed by the full seasonal launch in October.',
     url: 'https://heydart.com',
     images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
   },
   twitter: {
     title: 'HeyDart — Real-time Disney World assistant',
     description:
-      'Dart connects to live Disney park data and your plans, then helps your family decide what to do next. Launching August 2026.',
+      'Dining alerts open in August. Early access starts September 1, followed by the full seasonal launch in October.',
     images: ['/images/dart-logo-mark.png'],
   },
 };
@@ -32,7 +32,7 @@ export default function HomePage() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-text-col">
-              <HeroEyebrow>Launching August 2026 · Join the waitlist</HeroEyebrow>
+              <HeroEyebrow>Dining alerts open in August · Early access starts September 1</HeroEyebrow>
               <h1>
                 Be a guest at<br />
                 <span className="alt">your own vacation.</span>
@@ -51,7 +51,7 @@ export default function HomePage() {
                 </Link>
               </div>
               <p style={{ marginTop: 14, fontSize: 13.5, color: 'var(--cream-2)', opacity: 0.78, fontStyle: 'italic' }}>
-                Be first in line for August launch access and early pricing.
+                Join for August dining alerts, controlled September access, and early pricing.
               </p>
             </div>
 

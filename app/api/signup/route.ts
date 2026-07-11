@@ -48,6 +48,8 @@ export async function POST(request: NextRequest) {
     biggestStress: data.biggest_stress ?? '',
     visitDates: data.visit_dates ?? '',
     signupSource: data._source ?? 'waitlist',
+    betaInterest: data.interest === 'beta',
+    diningAlertsInterest: data.interest === 'dining-alerts',
   };
 
   try {
@@ -68,7 +70,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Failed to add to list' }, { status: 502 });
     }
 
-    await fetch(`${LOOPS_API}/events/send`, {
+    const eventRes = await fetch(`${LOOPS_API}/events/send`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -81,9 +83,16 @@ export async function POST(request: NextRequest) {
           source: data._source ?? 'waitlist',
           tierInterest: data.interest ?? '',
           tripType: data.trip_type ?? '',
+          betaInterest: data.interest === 'beta',
+          diningAlertsInterest: data.interest === 'dining-alerts',
         },
       }),
     });
+
+    if (!eventRes.ok) {
+      console.error('[signup] Loops event error:', await eventRes.text());
+      return NextResponse.json({ success: false, error: 'Failed to record signup' }, { status: 502 });
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {

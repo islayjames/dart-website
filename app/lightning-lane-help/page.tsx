@@ -53,7 +53,7 @@ export default function LightningLaneHelpPage() {
                 ["Dart doesn't buy LLMP for you", 'You purchase Multi Pass in MDE. Dart helps with the decision, not the transaction.'],
                 ["Dart doesn't buy Individual Lightning Lanes", 'LLSP are a separate paid Disney product. You handle those in MDE; Dart can help move one you already own.'],
                 ["No guarantees on availability", "Lightning Lane availability is controlled by Disney. We watch fast and surface recommendations — we can't create openings."],
-                ["Walt Disney World only at launch", "Disneyland support isn't planned for the August 2026 launch."],
+                ["Walt Disney World only at launch", "Disneyland support isn't planned for the September 2026 early-access launch."],
               ].map(([title, body]) => (
                 <div key={title as string} className="card" style={{ marginBottom: 14, padding: 20 }}>
                   <h4 style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 17, marginBottom: 6, color: 'var(--gold)' }}>{title}</h4>
@@ -78,7 +78,7 @@ export default function LightningLaneHelpPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Launching August 2026</div>
+          <div className="eyebrow">Early access starts September 1</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Stop scanning. Start riding.
           </h2>

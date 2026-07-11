@@ -52,8 +52,8 @@ export default function TermsPage() {
             </p>
 
             <p style={{ marginBottom: 18 }}>
-              Pre-launch discount codes are subject to the terms communicated at signup —
-              currently, 25% off any tier through end of 2026, redeemable once at purchase.
+              Launch offers are subject to the eligibility, redemption, and expiration terms
+              communicated with each offer. Offers may not be combined unless explicitly stated.
             </p>
 
             <p style={{ marginBottom: 18 }}>

@@ -83,7 +83,7 @@ export default function DiningMobileOrderHelpPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Launching August 2026</div>
+          <div className="eyebrow">Dining alerts open in August</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Hungry kids don&apos;t wait. Dart doesn&apos;t either.
           </h2>
