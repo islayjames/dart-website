@@ -61,3 +61,8 @@ test('unsupported launch claims are absent', () => {
   });
   assert.deepEqual(violations, []);
 });
+
+test('sitemap does not publish a shared or synthetic last-modified date', () => {
+  const sitemap = read('app/sitemap.ts');
+  assert.doesNotMatch(sitemap, /lastModified|LAST_UPDATED/);
+});
