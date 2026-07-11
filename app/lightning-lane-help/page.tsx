@@ -83,7 +83,7 @@ export default function LightningLaneHelpPage() {
             Stop scanning. Start riding.
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px' }}>
-            Join the waitlist for August launch access and the launch discount.
+            Join for August dining alerts, controlled September access, and the launch discount.
           </p>
           <Link className="btn btn-primary btn-large" href="/pricing?source=lightning-lane-help">
             Join the waitlist & get the launch discount →

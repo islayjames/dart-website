@@ -25,6 +25,8 @@ test('public source uses the staged launch instead of an August product launch',
     /launches August 2026/i,
     /August 2026 launch/i,
     /Launch: August 2026/i,
+    /August launch access/i,
+    /Launch — live park data/i,
   ];
   const stale = sourceFiles()
     .filter((path) => staleLaunchPatterns.some((pattern) => pattern.test(readFileSync(path, 'utf8'))))

@@ -303,16 +303,16 @@ export default function HomePage() {
           <div className="grid-2" style={{ gap: 24 }}>
             <div className="card launch-card" style={{ padding: 32 }}>
               <div className="serif-i" style={{ fontSize: 52, color: 'var(--gold)', lineHeight: 1, marginBottom: 4 }}>August</div>
-              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>2026</div>
+              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>Dining alerts</div>
               <p style={{ color: 'var(--cream-2)', fontSize: 14.5, lineHeight: 1.55 }}>
-                Launch — live park data, in-park guidance, all pricing tiers. Day Pass, Trip Pass, and Annual Pass available at launch.
+                Dining availability monitoring opens first, so families can start watching for hard-to-find reservations.
               </p>
             </div>
             <div className="card launch-card" style={{ padding: 32 }}>
-              <div className="serif-i" style={{ fontSize: 52, color: 'var(--magenta)', lineHeight: 1, marginBottom: 4 }}>Today</div>
-              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>Waitlist</div>
+              <div className="serif-i" style={{ fontSize: 52, color: 'var(--magenta)', lineHeight: 1, marginBottom: 4 }}>September 1</div>
+              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>Early access</div>
               <p style={{ color: 'var(--cream-2)', fontSize: 14.5, lineHeight: 1.55 }}>
-                Join now — early access and the launch discount. We&apos;ll prioritize your trip dates and send your code before your first park day.
+                Controlled early access begins with a small number of live parties, followed by the full seasonal launch in October.
               </p>
             </div>
           </div>
@@ -327,7 +327,7 @@ export default function HomePage() {
             <span style={{ color: 'var(--gold)' }}>More memories.</span>
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px', maxWidth: 540 }}>
-            Join the waitlist for August launch access and the launch discount.
+            Join for August dining alerts, controlled September access, and the launch discount.
           </p>
           <Link className="btn btn-primary btn-large" href="/pricing?source=home-final">
             Join the waitlist →
