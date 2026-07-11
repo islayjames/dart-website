@@ -83,7 +83,7 @@ export default function TripPassPage() {
             Be a guest at your own vacation.
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px' }}>
-            Join the waitlist for August launch access and the launch discount.
+            Join for August dining alerts, controlled September access, and the launch discount.
           </p>
           <Link className="btn btn-primary btn-large" href="/pricing?source=trip-pass-cta">
             Join the waitlist & get the launch discount →

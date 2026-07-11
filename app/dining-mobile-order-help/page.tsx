@@ -88,7 +88,7 @@ export default function DiningMobileOrderHelpPage() {
             Hungry kids don&apos;t wait. Dart doesn&apos;t either.
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px' }}>
-            Join the waitlist for August launch access and the launch discount.
+            Join for August dining alerts, controlled September access, and the launch discount.
           </p>
           <Link className="btn btn-primary btn-large" href="/pricing?source=dining-mobile-order-help">
             Join the waitlist & get the launch discount →
