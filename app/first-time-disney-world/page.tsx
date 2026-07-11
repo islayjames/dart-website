@@ -17,7 +17,7 @@ const howToSchema = {
 
 export const metadata: Metadata = {
   title: 'First Time at Disney World? Here\'s What to Know · Dart',
-  description: 'Lightning Lane, MDE, and what Dart actually handles — a clear guide for first-time Disney World visitors. Dart launches August 2026.',
+  description: 'Lightning Lane, MDE, and what Dart actually handles — a clear guide for first-time Disney World visitors. Early access starts September 1, 2026.',
   alternates: { canonical: 'https://heydart.com/first-time-disney-world' },
   openGraph: { title: 'First Time at Disney World? Here\'s What to Know · Dart', url: 'https://heydart.com/first-time-disney-world', images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart' }] },
 };
@@ -52,7 +52,7 @@ export default function FirstTimeDisneyWorldPage() {
               {[
                 ['Do I have to book every ride in advance?', 'No. Lightning Lane Multi Pass lets you reserve rides throughout the day — Dart watches for the right openings as you go.'],
                 ['What is My Disney Experience?', "Disney's app for tickets, dining, plans, and Lightning Lane. Dart connects to it via a standard Friends & Family link."],
-                ['Will Dart book everything for me?', "Dart watches and recommends — you confirm. It's designed to keep you in control while handling the monitoring."],
+                ['Will Dart book everything for me?', 'No. You purchase Lightning Lane entitlements and confirm dining and mobile orders. Once Lightning Lane access is active, Dart can book and manage Multi Pass selections based on your preferences and availability.'],
                 ['What if plans change?', "They always do. Dart adjusts as the day shifts — new Lightning Lane availability, wait time changes, timing updates."],
               ].map(([q, a]) => (
                 <div key={q as string} style={{ marginBottom: 18, paddingBottom: 18, borderBottom: '1px solid var(--rule)' }}>
@@ -78,7 +78,7 @@ export default function FirstTimeDisneyWorldPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Launching August 2026</div>
+          <div className="eyebrow">Early access starts September 1</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Less planning. Less scanning. More memories.
           </h2>

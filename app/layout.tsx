@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     default: 'HeyDart — Disney World Lightning Lane booking assistant',
   },
   description:
-    'HeyDart is a real-time Disney World assistant. Dart connects to live Lightning Lane, dining, and wait time data to help your family decide what to do next. Launching August 2026.',
+    'HeyDart is a real-time Disney World assistant. Dining alerts open in August, early access starts September 1, and the full seasonal launch follows in October 2026.',
   keywords: [
     'Disney World',
     'Lightning Lane',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: 'HeyDart',
     title: 'HeyDart — Disney World Lightning Lane booking assistant',
     description:
-      'HeyDart watches Lightning Lane Multi Pass and books selections as they drop. A personal concierge for Walt Disney World guests. Launching August 2026.',
+      'HeyDart combines live park data with your plans and preferences to help run your Disney World day. Early access starts September 1, 2026.',
     url: 'https://heydart.com',
     images: [
       {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'HeyDart — Disney World Lightning Lane booking assistant',
     description:
-      'HeyDart watches Lightning Lane Multi Pass and books selections as they drop. Launching August 2026.',
+      'HeyDart combines live park data with your plans and preferences. Early access starts September 1, 2026.',
     images: ['/images/dart-logo-mark.png'],
   },
   alternates: {
@@ -103,7 +103,7 @@ const softwareAppSchema = {
   applicationCategory: 'TravelApplication',
   operatingSystem: 'Web',
   description:
-    'HeyDart is a real-time Disney World assistant that connects to live Lightning Lane availability, standby waits, dining alerts, and mobile order timing to help families decide what to do next. Launching August 2026. Not affiliated with The Walt Disney Company.',
+    'HeyDart is a real-time Disney World assistant that connects to live Lightning Lane availability, standby waits, dining alerts, and mobile order timing to help families decide what to do next. Early access starts September 1, 2026. Not affiliated with The Walt Disney Company.',
   offers: [
     {
       '@type': 'Offer',
@@ -112,7 +112,7 @@ const softwareAppSchema = {
       price: '15',
       priceCurrency: 'USD',
       availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-08-01',
+      validFrom: '2026-09-01',
     },
     {
       '@type': 'Offer',
@@ -121,7 +121,7 @@ const softwareAppSchema = {
       price: '25',
       priceCurrency: 'USD',
       availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-08-01',
+      validFrom: '2026-09-01',
     },
     {
       '@type': 'Offer',
@@ -130,7 +130,7 @@ const softwareAppSchema = {
       price: '45',
       priceCurrency: 'USD',
       availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-08-01',
+      validFrom: '2026-09-01',
     },
     {
       '@type': 'Offer',
@@ -139,7 +139,7 @@ const softwareAppSchema = {
       price: '75',
       priceCurrency: 'USD',
       availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-08-01',
+      validFrom: '2026-09-01',
     },
     {
       '@type': 'Offer',
@@ -148,7 +148,7 @@ const softwareAppSchema = {
       price: '120',
       priceCurrency: 'USD',
       availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-08-01',
+      validFrom: '2026-09-01',
     },
   ],
 };

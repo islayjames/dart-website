@@ -4,7 +4,7 @@ import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
   title: 'Trip Pass · Real-Time Disney Help Across Your Whole Trip · Dart',
-  description: 'Trip Pass covers up to 7 park days in a 15-day window — plus concierge support on rest days. $45 for parties of 1–8. Launching August 2026.',
+  description: 'Trip Pass covers up to 7 park days in a 15-day window — plus concierge support on rest days. $45 for parties of 1–8. Early access starts September 1, 2026.',
   alternates: { canonical: 'https://heydart.com/trip-pass' },
   openGraph: { title: 'Trip Pass · Dart', url: 'https://heydart.com/trip-pass', images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart' }] },
 };
@@ -41,7 +41,7 @@ export default function TripPassPage() {
               ))}
             </div>
             <div className="pcard featured" style={{ maxWidth: 380, width: '100%' }}>
-              <div className="pcard-flag">Most popular</div>
+              <div className="pcard-flag">Best for a full trip</div>
               <div className="pcard-eyebrow" style={{ marginBottom: 4 }}>For the trip</div>
               <div className="pcard-name">Trip Pass</div>
               <p className="pcard-body">
@@ -78,7 +78,7 @@ export default function TripPassPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Launching August 2026</div>
+          <div className="eyebrow">Early access starts September 1</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Be a guest at your own vacation.
           </h2>

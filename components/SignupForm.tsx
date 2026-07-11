@@ -96,6 +96,8 @@ export default function SignupForm({ source = 'unknown', preselectedTier = '' }:
         <label htmlFor="interest">What are you interested in?</label>
         <select id="interest" name="interest" defaultValue={preselectedTier}>
           <option value="">Not sure yet</option>
+          <option value="dining-alerts">Dining Alerts Early Access</option>
+          <option value="beta">Beta program</option>
           <option value="1day-8">Day Pass — one park day</option>
           <option value="trip-8">Trip Pass — up to 7 park days in 15</option>
           <option value="annual-8">Annual Pass — frequent visitor</option>

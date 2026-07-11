@@ -13,7 +13,7 @@ const PRICES = {
 const QUICK_FAQS = [
   ['What does Trip Pass actually cover?', 'Up to 7 park days within a 15-day window. Cover your whole Disney vacation, not just one isolated day.'],
   ['Is dining a separate tier?', 'No. Every pass includes dining reservation alerts, walk-up waitlist timing, and mobile order timing. It\'s all one Dart experience.'],
-  ['Do I need a My Disney Experience account?', 'Yes. Dart connects to MDE via a standard Friends & Family connection — same as every other tool in the category.'],
+  ['Do I need a My Disney Experience account?', 'Yes. Dart works alongside MDE and uses Friends & Family to understand your party and plans.'],
   ['Larger party sizes?', 'Day Pass and Trip Pass support up to 20 guests at a different price. Annual Pass is currently up to 8. Need more? Get in touch.'],
   ['Where does my discount get sent?', 'To the email you sign up with. We\'ll send your code in time for your first park day.'],
 ] as const;
@@ -117,7 +117,7 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
 
             {/* Trip Pass — featured */}
             <div className="pcard featured">
-              <div className="pcard-flag">Most popular</div>
+              <div className="pcard-flag">Best for a full trip</div>
               <div className="pcard-head">
                 <IconBadge icon={IconHunt} tint="brick" size={44} />
                 <div>
@@ -156,9 +156,8 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
                 </div>
               </div>
               <p className="pcard-body">
-                For frequent visitors. You know your way around — tell Dart what you want and let it
-                handle the rest. Put your day (or half-day) on autopilot and relax in the place you
-                love.
+                For frequent visitors. Save your party and preferences, then let Dart handle more of
+                the monitoring and schedule adjustments while you enjoy the place you love.
               </p>
               <div className="pcard-price">
                 {partyLarge ? (

@@ -191,9 +191,8 @@ export default function PartnershipsPage() {
               A note on how we work.
             </h3>
             <p style={{ fontSize: 15, color: 'var(--ink-2)', lineHeight: 1.65 }}>
-              We respond to every partnership email within a week. We&apos;ll be direct about what
-              we can offer right now and what&apos;s still being figured out. No auto-responders, no
-              pitch decks — just a conversation about whether working together makes sense.
+              We&apos;ll be direct about what we can offer right now and what&apos;s still being figured out.
+              No canned pitch — just a conversation about whether working together makes sense.
             </p>
           </div>
         </div>
