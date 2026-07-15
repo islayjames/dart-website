@@ -32,7 +32,9 @@ Never expose `SANITY_API_READ_TOKEN` to the browser or commit it. Published page
 
 ### Tailnet-only draft preview
 
-Set `SANITY_API_READ_TOKEN` to a Sanity Viewer token and generate a separate `SANITY_PREVIEW_SECRET`. Start the Next.js server on localhost and expose it only through Tailscale Serve. Enable a guide preview with `/api/draft/enable?secret=...&slug=...`; the server sets an HTTP-only Draft Mode cookie and redirects to the rendered guide. Draft previews are visibly labeled, carry `noindex`, emit no public Article/Breadcrumb JSON-LD, and never enter the public guide index, static params, or sitemap. Use `/api/draft/disable` to leave preview mode.
+Set `SANITY_API_READ_TOKEN` to a Sanity Viewer token and generate a separate `SANITY_PREVIEW_SECRET`. Start the Next.js server on localhost and expose it through the currently approved private preview transport; Tailscale Serve is convenient today but is not a CMS dependency. Enable a guide preview with `/api/draft/enable?secret=...&slug=...`; the server sets an HTTP-only Draft Mode cookie and redirects to the rendered guide. Draft previews are visibly labeled, carry `noindex`, emit no public Article/Breadcrumb JSON-LD, and never enter the public guide index, static params, or sitemap. Use `/api/draft/disable` to leave preview mode.
+
+Sanity CORS origins are required only for origins that host the browser-based Studio, such as `https://heydart.com` for `/studio`. The rendered draft-preview server reads Sanity through its server-only Viewer token and does not require its private preview hostname to be added to Sanity CORS. Add a Tailscale origin only if Studio itself is intentionally operated from that Tailscale origin.
 
 ## Editorial workflow
 
