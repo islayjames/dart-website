@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import test from 'node:test';
 
 import {
@@ -7,6 +8,7 @@ import {
   buildGuideJsonLd,
   buildGuideMetadata,
   categoryLabel,
+  guideAttribution,
   isSanityConfigured,
 } from '../lib/sanity/editorial.ts';
 import { guidePreviewPath, isPreviewConfigured } from '../lib/sanity/preview.ts';
@@ -60,4 +62,35 @@ test('guide structured data includes article and breadcrumb facts', () => {
   assert.equal(article.dateModified, '2026-07-11');
   assert.equal(article.image, 'https://cdn.example/hero.jpg');
   assert.equal(breadcrumbs.itemListElement[2].item, 'https://heydart.com/guides/guide-title');
+});
+
+test('guide attribution keeps HeyDart organizational authorship honest', () => {
+  assert.deepEqual(guideAttribution({ authorName: 'HeyDart' }), { label: 'HeyDart', schema: { '@type': 'Organization', name: 'HeyDart' } });
+  assert.deepEqual(guideAttribution({ author: { name: 'James Simmons' } }), { label: 'James Simmons', schema: { '@type': 'Person', name: 'James Simmons' } });
+});
+
+test('guide body schema supports links and accessible editorial components', () => {
+  const schema = readFileSync(new URL('../sanity/schemaTypes/guide.ts', import.meta.url), 'utf8');
+  assert.match(schema, /type: 'guideDecisionMap'/);
+  assert.match(schema, /type: 'guideLineup'/);
+  assert.match(schema, /type: 'guideTable'/);
+  assert.match(schema, /name: 'link'/);
+});
+
+test('guide page renders structured components with accessible table behavior', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  assert.match(page, /guideDecisionMap/);
+  assert.match(page, /guideLineup/);
+  assert.match(page, /guideTable/);
+  assert.match(page, /tabIndex=\{0\}/);
+  assert.match(page, /<caption>/);
+  assert.match(page, /guideAttribution/);
+});
+
+test('guide structured components have responsive production styles', () => {
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(css, /\.guide-decision-map/);
+  assert.match(css, /\.guide-lineup/);
+  assert.match(css, /\.guide-table-scroll/);
+  assert.match(css, /overflow-x: auto/);
 });

@@ -4,7 +4,7 @@ import { sanityFetch } from './client';
 const guideProjection = `{
   _id, title, "slug": slug.current, summary, category, body, publishedAt, updatedAt,
   primaryQuestion, directAnswer, noindex, seoTitle, seoDescription,
-  "author": author->{name}, "reviewer": reviewer->{name},
+  authorName, "author": author->{name}, "reviewer": reviewer->{name},
   "heroImage": heroImage.asset->{"url": url, "alt": ^.alt}, sources,
   cta, "relatedGuides": relatedGuides[]->{title, "slug": slug.current, summary}
 }`;
