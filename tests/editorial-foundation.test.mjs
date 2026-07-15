@@ -9,6 +9,7 @@ import {
   categoryLabel,
   isSanityConfigured,
 } from '../lib/sanity/editorial.ts';
+import { guidePreviewPath, isPreviewConfigured } from '../lib/sanity/preview.ts';
 
 test('editorial taxonomy is English-first and ready for pt-BR', () => {
   assert.deepEqual(SUPPORTED_LOCALES, ['en', 'pt-BR']);
@@ -22,6 +23,20 @@ test('Sanity remains disabled unless both public connection values exist', () =>
   assert.equal(isSanityConfigured({}), false);
   assert.equal(isSanityConfigured({ NEXT_PUBLIC_SANITY_PROJECT_ID: 'abc' }), false);
   assert.equal(isSanityConfigured({ NEXT_PUBLIC_SANITY_PROJECT_ID: 'abc', NEXT_PUBLIC_SANITY_DATASET: 'production' }), true);
+});
+
+test('draft preview requires both server-only credentials', () => {
+  assert.equal(isPreviewConfigured({}), false);
+  assert.equal(isPreviewConfigured({ SANITY_API_READ_TOKEN: 'token' }), false);
+  assert.equal(isPreviewConfigured({ SANITY_PREVIEW_SECRET: 'secret' }), false);
+  assert.equal(isPreviewConfigured({ SANITY_API_READ_TOKEN: 'token', SANITY_PREVIEW_SECRET: 'secret' }), true);
+});
+
+test('draft preview accepts only canonical guide slugs', () => {
+  assert.equal(guidePreviewPath('character-dining-compared'), '/guides/character-dining-compared');
+  assert.equal(guidePreviewPath('../pricing'), null);
+  assert.equal(guidePreviewPath('https://example.com'), null);
+  assert.equal(guidePreviewPath('Uppercase'), null);
 });
 
 test('guide metadata uses SEO overrides, canonical URL, and noindex', () => {

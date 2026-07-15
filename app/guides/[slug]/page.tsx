@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import { PortableText } from '@portabletext/react';
 import { buildGuideJsonLd, buildGuideMetadata, categoryLabel } from '@/lib/sanity/editorial';
 import { getGuide, getGuideSlugs } from '@/lib/sanity/queries';
@@ -9,18 +10,22 @@ import { getGuide, getGuideSlugs } from '@/lib/sanity/queries';
 export const revalidate = 300;
 export async function generateStaticParams() { return (await getGuideSlugs()).map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const guide = await getGuide((await params).slug);
-  return guide ? buildGuideMetadata(guide) : { title: 'Guide not found', robots: { index: false, follow: false } };
+  const preview = (await draftMode()).isEnabled;
+  const guide = await getGuide((await params).slug, preview);
+  if (!guide) return { title: 'Guide not found', robots: { index: false, follow: false } };
+  const metadata = buildGuideMetadata(guide);
+  return preview ? { ...metadata, robots: { index: false, follow: false } } : metadata;
 }
 const displayDate = (date: string) => new Date(date).toLocaleDateString('en-US', { dateStyle: 'long' });
 
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
-  const guide = await getGuide((await params).slug);
+  const preview = (await draftMode()).isEnabled;
+  const guide = await getGuide((await params).slug, preview);
   if (!guide) notFound();
   const jsonLd = buildGuideJsonLd(guide);
   return <article className="guide-article">
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.article) }} />
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.breadcrumbs) }} />
+    {!preview && <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.article) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd.breadcrumbs) }} /></>}
+    {preview && <aside className="container-narrow" role="status" style={{ marginBlock: '1rem', padding: '0.75rem 1rem', border: '2px solid #a85b32', background: '#fff8ee' }}><strong>Draft preview · not published</strong> · <a href="/api/draft/disable">Exit preview</a></aside>}
     <header className="guide-hero container-narrow"><nav aria-label="Breadcrumb"><Link href="/guides">Guides</Link> / {categoryLabel(guide.category)}</nav><span className="tag tag-outline">{categoryLabel(guide.category)}</span><h1>{guide.title}</h1><p className="lead">{guide.summary}</p><p className="guide-byline">By {guide.author?.name || 'HeyDart'}{guide.reviewer && <> · Reviewed by {guide.reviewer.name}</>}<br />{guide.publishedAt && <>Published <time dateTime={guide.publishedAt}>{displayDate(guide.publishedAt)}</time></>}{guide.updatedAt && <> · Updated <time dateTime={guide.updatedAt}>{displayDate(guide.updatedAt)}</time></>}</p></header>
     {guide.heroImage && <div className="guide-image container"><Image src={guide.heroImage.url} alt={guide.heroImage.alt} width={1200} height={675} priority /></div>}
     <div className="guide-body container-narrow">
