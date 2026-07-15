@@ -98,4 +98,5 @@ test('guide structured components have responsive production styles', () => {
   assert.match(css, /\.guide-lineup/);
   assert.match(css, /\.guide-table-scroll/);
   assert.match(css, /overflow-x: auto/);
+  assert.match(css, /\.guide-article > \.guide-body \{ padding-top: 52px/);
 });
