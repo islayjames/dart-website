@@ -5,7 +5,7 @@ const guideProjection = `{
   _id, title, "slug": slug.current, summary, category, body, publishedAt, updatedAt,
   primaryQuestion, directAnswer, noindex, seoTitle, seoDescription,
   authorName, "author": author->{name}, "reviewer": reviewer->{name},
-  "heroImage": heroImage.asset->{"url": url, "alt": ^.alt}, sources,
+  "heroImage": {"url": heroImage.asset->url, "alt": heroImage.alt}, sources,
   cta, "relatedGuides": relatedGuides[]->{title, "slug": slug.current, summary}
 }`;
 
