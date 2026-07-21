@@ -12,6 +12,7 @@ import {
   isSanityConfigured,
 } from '../lib/sanity/editorial.ts';
 import { guidePreviewPath, isPreviewConfigured } from '../lib/sanity/preview.ts';
+import * as previewHelpers from '../lib/sanity/preview.ts';
 
 test('editorial taxonomy is English-first and ready for pt-BR', () => {
   assert.deepEqual(SUPPORTED_LOCALES, ['en', 'pt-BR']);
@@ -39,6 +40,44 @@ test('draft preview accepts only canonical guide slugs', () => {
   assert.equal(guidePreviewPath('../pricing'), null);
   assert.equal(guidePreviewPath('https://example.com'), null);
   assert.equal(guidePreviewPath('Uppercase'), null);
+});
+
+test('Sanity Open preview uses a short-lived generated token and canonical guide path', () => {
+  assert.equal(typeof previewHelpers.buildSanityGuidePreviewUrl, 'function');
+  const previewUrl = new URL(previewHelpers.buildSanityGuidePreviewUrl({
+    origin: 'https://preview.example.com',
+    secret: 'generated-secret',
+    slug: 'hardest-disney-world-dining-reservations',
+    vercelProtectionBypass: 'vercel-bypass',
+  }));
+  assert.equal(previewUrl.origin, 'https://preview.example.com');
+  assert.equal(previewUrl.pathname, '/api/draft/enable');
+  assert.equal(previewUrl.searchParams.get('sanity-preview-secret'), 'generated-secret');
+  assert.equal(previewUrl.searchParams.get('sanity-preview-pathname'), '/guides/hardest-disney-world-dining-reservations');
+  assert.equal(previewUrl.searchParams.get('sanity-preview-perspective'), 'drafts');
+  assert.equal(previewUrl.searchParams.get('x-vercel-protection-bypass'), 'vercel-bypass');
+  assert.equal(previewUrl.searchParams.get('x-vercel-set-bypass-cookie'), 'true');
+  assert.equal(previewUrl.searchParams.has('secret'), false);
+});
+
+test('draft enable validates generated Sanity tokens and restricts redirects to guide paths', () => {
+  assert.equal(typeof previewHelpers.guidePreviewPathFromUrl, 'function');
+  assert.equal(previewHelpers.guidePreviewPathFromUrl('https://preview.example.com/guides/character-dining-compared?draft=1'), '/guides/character-dining-compared');
+  assert.equal(previewHelpers.guidePreviewPathFromUrl('https://evil.example/pricing'), null);
+  assert.equal(previewHelpers.guidePreviewPathFromUrl('https://preview.example.com/guides/../pricing'), null);
+
+  const routeSource = readFileSync(new URL('../app/api/draft/enable/route.ts', import.meta.url), 'utf8');
+  assert.match(routeSource, /validatePreviewUrl/);
+  assert.match(routeSource, /previewClient/);
+});
+
+test('Studio Open preview creates a short-lived Sanity token instead of linking to production', () => {
+  const configSource = readFileSync(new URL('../sanity.config.ts', import.meta.url), 'utf8');
+  assert.match(configSource, /resolveGuideProductionUrl/);
+  assert.match(configSource, /createPreviewSecret/);
+  assert.match(configSource, /buildSanityGuidePreviewUrl/);
+  assert.match(configSource, /sanity-preview-url-secret\.vercel-protection-bypass/);
+  assert.doesNotMatch(configSource, /\/guides\/\$\{document\.slug\.current\}/);
 });
 
 test('guide metadata uses SEO overrides, canonical URL, and noindex', () => {
