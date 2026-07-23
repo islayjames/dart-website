@@ -139,3 +139,8 @@ test('guide structured components have responsive production styles', () => {
   assert.match(css, /overflow-x: auto/);
   assert.match(css, /\.guide-article > \.guide-body \{ padding-top: 52px/);
 });
+
+test('guide primary CTA label keeps white contrast inside article links', () => {
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(css, /\.guide-body a\.btn-primary\s*\{[^}]*color:\s*#fff[^}]*text-decoration:\s*none[^}]*\}/);
+});
