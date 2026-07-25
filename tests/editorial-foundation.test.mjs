@@ -127,7 +127,9 @@ test('guide page renders structured components with accessible table behavior', 
   assert.match(page, /guideLineup/);
   assert.match(page, /guideTable/);
   assert.match(page, /tabIndex=\{0\}/);
-  assert.match(page, /<caption>/);
+  assert.match(page, /className="guide-table-caption" id=\{captionId\}/);
+  assert.match(page, /<table aria-labelledby=\{captionId\}>/);
+  assert.doesNotMatch(page, /<caption>/);
   assert.match(page, /guideAttribution/);
 });
 
@@ -174,7 +176,7 @@ test('multi-column guide tables become labeled mobile cards instead of horizonta
   assert.match(page, /data-label=\{table\.columns\?\.\[cellIndex\]\}/);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.is-compact, \.guide-table-scroll\.is-stacked\s*\{[^}]*overflow-x:\s*hidden[^}]*touch-action:\s*pan-y/);
   assert.match(css, /\.guide-table-scroll\.is-stacked table\s*\{[^}]*display:\s*block[^}]*width:\s*100%[^}]*min-width:\s*100%[^}]*table-layout:\s*fixed/);
-  assert.match(css, /\.guide-table-scroll\.is-stacked caption\s*\{[^}]*display:\s*block[^}]*width:\s*100%[^}]*box-sizing:\s*border-box/);
+  assert.match(css, /\.guide-table-caption\s*\{[^}]*display:\s*block[^}]*width:\s*100%[^}]*box-sizing:\s*border-box/);
   assert.match(css, /\.guide-table-scroll\.is-stacked thead\s*\{[^}]*display:\s*none/);
   assert.match(css, /\.guide-table-scroll\.is-stacked tbody, \.guide-table-scroll\.is-stacked tr\s*\{[^}]*width:\s*100%[^}]*box-sizing:\s*border-box/);
   assert.match(css, /\.guide-table-scroll\.is-stacked td::before/);

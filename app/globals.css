@@ -145,7 +145,7 @@ img { max-width: 100%; display: block; }
 .guide-table-scroll.is-sectioned td { white-space: nowrap; }
 .guide-table-scroll.is-sectioned .guide-table-section th { padding: 10px 14px; background: var(--cream-2); color: var(--twilight); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .guide-table-scroll.is-compact td { white-space: pre-line; }
-.guide-table-scroll caption { padding: 18px; text-align: left; color: var(--twilight); font-family: var(--serif); font-size: 23px; font-weight: 600; }
+.guide-table-caption { display: block; width: 100%; max-width: 100%; box-sizing: border-box; padding: 18px; text-align: left; color: var(--twilight); font-family: var(--serif); font-size: 23px; font-weight: 600; }
 .guide-table-scroll th, .guide-table-scroll td { padding: 12px 14px; border-top: 1px solid var(--rule); text-align: left; vertical-align: top; font-size: 13px; line-height: 1.45; }
 .guide-table-scroll thead th { background: var(--twilight); color: var(--cream); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; }
 .guide-table-scroll tbody th { color: var(--twilight); min-width: 190px; }
@@ -169,14 +169,14 @@ img { max-width: 100%; display: block; }
   .guide-lineup-row small { grid-column: 1; }
   .guide-table-scroll.is-compact, .guide-table-scroll.is-stacked { overflow-x: hidden; touch-action: pan-y; }
   .guide-table-scroll.is-sectioned { width: calc(100vw - 20px); overflow-x: hidden; touch-action: pan-y; }
-  .guide-table-scroll.is-sectioned caption { padding: 16px 14px; font-size: 19px; line-height: 1.2; }
+  .guide-table-scroll.is-sectioned .guide-table-caption { padding: 16px 14px; font-size: 19px; line-height: 1.2; }
   .guide-table-scroll.is-sectioned th, .guide-table-scroll.is-sectioned td { padding: 8px 7px; font-size: 11px; line-height: 1.3; }
   .guide-table-scroll.is-sectioned thead th { font-size: 9px; letter-spacing: .04em; }
   .guide-table-scroll.is-sectioned tbody th { min-width: 0; overflow-wrap: anywhere; }
   .guide-table-scroll.is-sectioned .guide-table-section th { padding: 9px 10px; font-size: 11px; }
   .guide-table-scroll.is-compact tbody th { width: 27%; }
   .guide-table-scroll.is-stacked table { display: block; width: 100%; min-width: 100%; max-width: 100%; table-layout: fixed; }
-  .guide-table-scroll.is-stacked caption { display: block; width: 100%; max-width: 100%; box-sizing: border-box; }
+
   .guide-table-scroll.is-stacked thead { display: none; }
   .guide-table-scroll.is-stacked tbody, .guide-table-scroll.is-stacked tr { display: block; width: 100%; max-width: 100%; box-sizing: border-box; }
   .guide-table-scroll.is-stacked tr { padding: 14px 16px; border-top: 1px solid var(--rule); }
