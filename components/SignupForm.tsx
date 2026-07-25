@@ -56,17 +56,17 @@ export default function SignupForm({ source = 'unknown', preselectedTier = '' }:
         aria-live="polite"
       >
         <div className="serif-i" style={{ fontSize: 26, marginBottom: 12, color: 'var(--gold)' }}>
-          You're on the waitlist.
+          You&apos;re on the waitlist.
         </div>
         <p style={{ color: 'var(--cream-2)', maxWidth: 460 }}>
-          We'll prioritize your trip dates and send your launch discount code in time for your first park day. Thanks for being early.
+          We&apos;ll prioritize your trip dates and send your launch discount code in time for your first park day. Thanks for being early.
         </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit}>
       {/* Name */}
       <div className="form-field">
         <label htmlFor="name">Name</label>
