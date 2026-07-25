@@ -160,9 +160,10 @@ test('guide body lists restore visible markers after the global reset', () => {
   assert.match(css, /\.guide-body > ol\s*\{[^}]*list-style:\s*decimal[^}]*padding-left:/);
 });
 
-test('guide body fourth-level headings render as styled section labels', () => {
+test('guide body fourth-level headings render as compact ruled section labels', () => {
   const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
-  assert.match(css, /\.guide-body > h4\s*\{[^}]*color:\s*var\(--twilight\)[^}]*font-size:/);
+  assert.match(css, /\.guide-body > h4\s*\{[^}]*display:\s*flex[^}]*font-family:\s*var\(--sans\)[^}]*font-size:\s*14px[^}]*text-transform:\s*uppercase/);
+  assert.match(css, /\.guide-body > h4::before\s*\{[^}]*width:\s*24px[^}]*height:\s*3px[^}]*background:\s*var\(--gold\)/);
 });
 
 test('multi-column guide tables become labeled mobile cards instead of horizontal scrollers', () => {
