@@ -56,9 +56,10 @@ const guidePortableTextComponents: PortableTextComponents = {
     guideTable: ({ value }) => {
       const table = value as GuideTable;
       const compact = table.columns?.length === 2;
-      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}`} tabIndex={0} role="region" aria-label={table.caption}>
+      const stacked = (table.columns?.length || 0) >= 3;
+      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}`} tabIndex={0} role="region" aria-label={table.caption}>
         <table><caption>{table.caption}</caption><thead><tr>{table.columns?.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
-          <tbody>{table.rows?.map((row, rowIndex) => <tr id={row.anchor} key={row._key || rowIndex}>{row.cells?.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td key={cellIndex}>{cell}</td>)}</tr>)}</tbody>
+          <tbody>{table.rows?.map((row, rowIndex) => <tr id={row.anchor} key={row._key || rowIndex}>{row.cells?.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>)}</tbody>
         </table>
       </div>;
     },

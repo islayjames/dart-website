@@ -153,3 +153,29 @@ test('two-column guide tables use a compact non-scrolling layout', () => {
   assert.match(css, /\.guide-table-scroll\.is-compact\s*\{[^}]*max-width:\s*760px/);
   assert.match(css, /\.guide-table-scroll\.is-compact table\s*\{[^}]*min-width:\s*0/);
 });
+
+test('guide body lists restore visible markers after the global reset', () => {
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(css, /\.guide-body > ul\s*\{[^}]*list-style:\s*disc[^}]*padding-left:/);
+  assert.match(css, /\.guide-body > ol\s*\{[^}]*list-style:\s*decimal[^}]*padding-left:/);
+});
+
+test('guide body fourth-level headings render as styled section labels', () => {
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(css, /\.guide-body > h4\s*\{[^}]*color:\s*var\(--twilight\)[^}]*font-size:/);
+});
+
+test('multi-column guide tables become labeled mobile cards instead of horizontal scrollers', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(page, /\(table\.columns\?\.length \|\| 0\) >= 3/);
+  assert.match(page, /is-stacked/);
+  assert.match(page, /data-label=\{table\.columns\?\.\[cellIndex\]\}/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.is-stacked table\s*\{[^}]*min-width:\s*0[^}]*display:\s*block/);
+  assert.match(css, /\.guide-table-scroll\.is-stacked td::before/);
+});
+
+test('compact reference tables preserve one attraction per rendered line', () => {
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(css, /\.guide-table-scroll\.is-compact td\s*\{[^}]*white-space:\s*pre-line/);
+});
