@@ -169,13 +169,35 @@ test('guide body fourth-level headings render as compact ruled section labels', 
 test('multi-column guide tables become labeled mobile cards instead of horizontal scrollers', () => {
   const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
   const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
-  assert.match(page, /\(table\.columns\?\.length \|\| 0\) >= 3/);
+  assert.match(page, /\(table\.columns\?\.length \|\| 0\) >= 3 && !sectioned/);
   assert.match(page, /is-stacked/);
   assert.match(page, /data-label=\{table\.columns\?\.\[cellIndex\]\}/);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.is-compact, \.guide-table-scroll\.is-stacked\s*\{[^}]*overflow-x:\s*hidden[^}]*touch-action:\s*pan-y/);
-  assert.match(css, /\.guide-table-scroll\.is-stacked table\s*\{[^}]*min-width:\s*0[^}]*display:\s*block/);
+  assert.match(css, /\.guide-table-scroll\.is-stacked table\s*\{[^}]*display:\s*block[^}]*width:\s*100%[^}]*min-width:\s*100%[^}]*table-layout:\s*fixed/);
+  assert.match(css, /\.guide-table-scroll\.is-stacked caption\s*\{[^}]*display:\s*block[^}]*width:\s*100%[^}]*box-sizing:\s*border-box/);
   assert.match(css, /\.guide-table-scroll\.is-stacked thead\s*\{[^}]*display:\s*none/);
+  assert.match(css, /\.guide-table-scroll\.is-stacked tbody, \.guide-table-scroll\.is-stacked tr\s*\{[^}]*width:\s*100%[^}]*box-sizing:\s*border-box/);
   assert.match(css, /\.guide-table-scroll\.is-stacked td::before/);
+});
+
+test('park-grouped attraction comparisons stay three-column tables on mobile', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(page, /const sectioned = table\.rows\?\.some/);
+  assert.match(page, /is-sectioned/);
+  assert.match(page, /className="guide-table-section"/);
+  assert.match(page, /scope="rowgroup" colSpan=\{table\.columns\?\.length \|\| 1\}/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned table\s*\{[^}]*min-width:\s*0[^}]*table-layout:\s*fixed/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-attraction-column\s*\{[^}]*width:\s*60%/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-section th/);
+});
+
+test('guide headings receive stable slug IDs for in-page links', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  assert.match(page, /function headingId\(value: unknown\)/);
+  assert.match(page, /h2: \(\{ children, value \}\) => <h2 id=\{headingId\(value\)\}>/);
+  assert.match(page, /h3: \(\{ children, value \}\) => <h3 id=\{headingId\(value\)\}>/);
+  assert.match(page, /replace\(\/\[\^a-z0-9\]\+\/g, '-'\)/);
 });
 
 test('compact reference tables preserve one attraction per rendered line', () => {

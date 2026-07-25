@@ -11,8 +11,25 @@ import { getGuide, getGuideSlugs } from '@/lib/sanity/queries';
 type DecisionMap = { eyebrow?: string; title: string; intro?: string; note?: string; groups?: { _key?: string; heading: string; note?: string; items?: { _key?: string; anchor?: string; title: string; subtitle: string; meta?: string; muted?: boolean }[] }[] };
 type Lineup = { eyebrow?: string; title: string; intro?: string; note?: string; groups?: { _key?: string; heading: string; items?: { _key?: string; name: string; location: string; meta?: string }[] }[] };
 type GuideTable = { caption: string; columns?: string[]; rows?: { _key?: string; anchor?: string; cells?: string[] }[] };
+type HeadingBlock = { children?: { text?: string }[] };
+
+function headingId(value: unknown) {
+  const text = (value as HeadingBlock)?.children?.map((child) => child.text || '').join('') || '';
+  return text
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[’']/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
 const guidePortableTextComponents: PortableTextComponents = {
+  block: {
+    h2: ({ children, value }) => <h2 id={headingId(value)}>{children}</h2>,
+    h3: ({ children, value }) => <h3 id={headingId(value)}>{children}</h3>,
+    h4: ({ children, value }) => <h4 id={headingId(value)}>{children}</h4>,
+  },
   marks: {
     link: ({ children, value }) => {
       const href = (value as { href?: string })?.href || '#';
@@ -56,10 +73,19 @@ const guidePortableTextComponents: PortableTextComponents = {
     guideTable: ({ value }) => {
       const table = value as GuideTable;
       const compact = table.columns?.length === 2;
-      const stacked = (table.columns?.length || 0) >= 3;
-      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}`} tabIndex={0} role="region" aria-label={table.caption}>
-        <table><caption>{table.caption}</caption><thead><tr>{table.columns?.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
-          <tbody>{table.rows?.map((row, rowIndex) => <tr id={row.anchor} key={row._key || rowIndex}>{row.cells?.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>)}</tbody>
+      const sectioned = table.rows?.some((row) => row.cells?.length && row.cells.slice(1).every((cell) => !cell.trim())) || false;
+      const stacked = (table.columns?.length || 0) >= 3 && !sectioned;
+      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}`} tabIndex={0} role="region" aria-label={table.caption}>
+        <table>
+          {sectioned && <colgroup><col className="guide-table-attraction-column" /><col /><col /></colgroup>}
+          <caption>{table.caption}</caption>
+          <thead><tr>{table.columns?.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
+          <tbody>{table.rows?.map((row, rowIndex) => {
+            const cells = row.cells || [];
+            const sectionRow = sectioned && cells.length > 0 && cells.slice(1).every((cell) => !cell.trim());
+            if (sectionRow) return <tr className="guide-table-section" key={row._key || rowIndex}><th scope="rowgroup" colSpan={table.columns?.length || 1}>{cells[0]}</th></tr>;
+            return <tr id={row.anchor} key={row._key || rowIndex}>{cells.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>;
+          })}</tbody>
         </table>
       </div>;
     },
