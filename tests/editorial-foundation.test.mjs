@@ -172,7 +172,9 @@ test('multi-column guide tables become labeled mobile cards instead of horizonta
   assert.match(page, /\(table\.columns\?\.length \|\| 0\) >= 3/);
   assert.match(page, /is-stacked/);
   assert.match(page, /data-label=\{table\.columns\?\.\[cellIndex\]\}/);
-  assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.is-stacked table\s*\{[^}]*min-width:\s*0[^}]*display:\s*block/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.is-compact, \.guide-table-scroll\.is-stacked\s*\{[^}]*overflow-x:\s*hidden[^}]*touch-action:\s*pan-y/);
+  assert.match(css, /\.guide-table-scroll\.is-stacked table\s*\{[^}]*min-width:\s*0[^}]*display:\s*block/);
+  assert.match(css, /\.guide-table-scroll\.is-stacked thead\s*\{[^}]*display:\s*none/);
   assert.match(css, /\.guide-table-scroll\.is-stacked td::before/);
 });
 

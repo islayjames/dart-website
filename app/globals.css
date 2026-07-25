@@ -162,10 +162,10 @@ img { max-width: 100%; display: block; }
   .guide-decision-groups h3, .guide-lineup-groups h3 { font-size: 22px; }
   .guide-lineup-row { grid-template-columns: 1fr; }
   .guide-lineup-row small { grid-column: 1; }
-  .guide-table-scroll.is-compact, .guide-table-scroll.is-stacked { overflow-x: visible; }
+  .guide-table-scroll.is-compact, .guide-table-scroll.is-stacked { overflow-x: hidden; touch-action: pan-y; }
   .guide-table-scroll.is-compact tbody th { width: 27%; }
   .guide-table-scroll.is-stacked table { min-width: 0; display: block; }
-  .guide-table-scroll.is-stacked thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .guide-table-scroll.is-stacked thead { display: none; }
   .guide-table-scroll.is-stacked tbody, .guide-table-scroll.is-stacked tr { display: block; }
   .guide-table-scroll.is-stacked tr { padding: 14px 16px; border-top: 1px solid var(--rule); }
   .guide-table-scroll.is-stacked tbody th { display: block; width: 100%; min-width: 0; padding: 0 0 10px; border: 0; font-size: 15px; }
