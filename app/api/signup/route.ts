@@ -1,18 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { validateSignupPayload, type SignupPayload } from '@/lib/signup-validation';
 
 const LOOPS_API = 'https://app.loops.so/api/v1';
-
-interface SignupPayload {
-  email?: string;
-  name?: string;
-  interest?: string;
-  party_size?: string;
-  trip_type?: string;
-  biggest_stress?: string;
-  visit_dates?: string;
-  email_consent?: string;
-  _source?: string;
-}
 
 export async function POST(request: NextRequest) {
   let data: SignupPayload;
@@ -23,10 +12,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { email } = data;
-  if (!email) {
-    return NextResponse.json({ success: false, error: 'Email required' }, { status: 400 });
+  const validation = validateSignupPayload(data);
+  if (!validation.ok) {
+    return NextResponse.json({ success: false, error: validation.error }, { status: 400 });
   }
+  data = validation.data;
+  const { email } = data;
 
   const apiKey = process.env.LOOPS_API_KEY;
   if (!apiKey) {
