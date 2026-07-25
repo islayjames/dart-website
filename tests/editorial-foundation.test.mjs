@@ -144,3 +144,12 @@ test('guide primary CTA label keeps white contrast inside article links', () => 
   const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
   assert.match(css, /\.guide-body a\.btn-primary\s*\{[^}]*color:\s*#fff[^}]*text-decoration:\s*none[^}]*\}/);
 });
+
+test('two-column guide tables use a compact non-scrolling layout', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(page, /table\.columns\?\.length === 2/);
+  assert.match(page, /guide-table-scroll\$\{compact \? ' is-compact' : ''\}/);
+  assert.match(css, /\.guide-table-scroll\.is-compact\s*\{[^}]*max-width:\s*760px/);
+  assert.match(css, /\.guide-table-scroll\.is-compact table\s*\{[^}]*min-width:\s*0/);
+});
