@@ -74,18 +74,25 @@ const guidePortableTextComponents: PortableTextComponents = {
       const table = value as GuideTable;
       const compact = table.columns?.length === 2;
       const sectioned = table.rows?.some((row) => row.cells?.length && row.cells.slice(1).every((cell) => !cell.trim())) || false;
-      const stacked = (table.columns?.length || 0) >= 3 && !sectioned;
+      const normalizedColumns = table.columns?.map((column) => column.toLowerCase()) || [];
+      const periodMatrix = !sectioned
+        && normalizedColumns.some((column) => column === 'peak' || column.includes('peak period'))
+        && normalizedColumns.some((column) => column === 'low' || column.includes('lower period'));
+      const stacked = (table.columns?.length || 0) >= 3 && !sectioned && !periodMatrix;
       const captionId = `guide-table-${table._key || headingId({ children: [{ text: table.caption }] })}`;
-      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
+      const fourColumnMatrix = periodMatrix && table.columns?.length === 4;
+      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
         <div className="guide-table-caption" id={captionId}>{table.caption}</div>
         <table aria-labelledby={captionId}>
           {sectioned && <colgroup><col className="guide-table-attraction-column" /><col /><col /></colgroup>}
+          {periodMatrix && <colgroup><col className="guide-table-label-column" />{table.columns?.slice(1).map((_, index) => <col key={index} />)}</colgroup>}
           <thead><tr>{table.columns?.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
           <tbody>{table.rows?.map((row, rowIndex) => {
             const cells = row.cells || [];
             const sectionRow = sectioned && cells.length > 0 && cells.slice(1).every((cell) => !cell.trim());
             if (sectionRow) return <tr className="guide-table-section" key={row._key || rowIndex}><th scope="rowgroup" colSpan={table.columns?.length || 1}>{cells[0]}</th></tr>;
-            return <tr id={row.anchor} key={row._key || rowIndex}>{cells.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>;
+            const totalRow = cells[0]?.startsWith('Combined total:');
+            return <tr className={totalRow ? 'guide-table-total' : undefined} id={row.anchor} key={row._key || rowIndex}>{cells.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>;
           })}</tbody>
         </table>
       </div>;

@@ -168,10 +168,10 @@ test('guide body fourth-level headings render as compact ruled section labels', 
   assert.match(css, /\.guide-body > h4::before\s*\{[^}]*width:\s*24px[^}]*height:\s*3px[^}]*background:\s*var\(--gold\)/);
 });
 
-test('multi-column guide tables become labeled mobile cards instead of horizontal scrollers', () => {
+test('unclassified multi-column guide tables retain a labeled mobile-card fallback', () => {
   const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
   const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
-  assert.match(page, /\(table\.columns\?\.length \|\| 0\) >= 3 && !sectioned/);
+  assert.match(page, /\(table\.columns\?\.length \|\| 0\) >= 3 && !sectioned && !periodMatrix/);
   assert.match(page, /is-stacked/);
   assert.match(page, /data-label=\{table\.columns\?\.\[cellIndex\]\}/);
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.is-compact, \.guide-table-scroll\.is-stacked\s*\{[^}]*overflow-x:\s*hidden[^}]*touch-action:\s*pan-y/);
@@ -182,6 +182,21 @@ test('multi-column guide tables become labeled mobile cards instead of horizonta
   assert.match(css, /\.guide-table-scroll\.is-stacked td::before/);
 });
 
+test('Peak and Low comparisons remain adjacent in a mobile period matrix', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(page, /const periodMatrix = !sectioned/);
+  assert.match(page, /column === 'peak'/);
+  assert.match(page, /column === 'low'/);
+  assert.match(page, /is-period-matrix/);
+  assert.match(page, /guide-table-label-column/);
+  assert.match(page, /cells\[0\]\?\.startsWith\('Combined total:'\)/);
+  assert.match(page, /guide-table-total/);
+  assert.match(css, /\.guide-table-scroll\.is-period-matrix table\s*\{[^}]*min-width:\s*0[^}]*table-layout:\s*fixed/);
+  assert.match(css, /\.guide-table-scroll\.is-period-matrix \.guide-table-label-column\s*\{[^}]*width:\s*48%/);
+  assert.match(css, /\.guide-table-scroll \.guide-table-total th, \.guide-table-scroll \.guide-table-total td/);
+});
+
 test('park-grouped attraction comparisons stay three-column tables on mobile', () => {
   const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
   const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
@@ -189,7 +204,7 @@ test('park-grouped attraction comparisons stay three-column tables on mobile', (
   assert.match(page, /is-sectioned/);
   assert.match(page, /className="guide-table-section"/);
   assert.match(page, /scope="rowgroup" colSpan=\{table\.columns\?\.length \|\| 1\}/);
-  assert.match(css, /\.guide-table-scroll\.is-sectioned table\s*\{[^}]*min-width:\s*0[^}]*table-layout:\s*fixed/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned table, \.guide-table-scroll\.is-period-matrix table\s*\{[^}]*min-width:\s*0[^}]*table-layout:\s*fixed/);
   assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-attraction-column\s*\{[^}]*width:\s*60%/);
   assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-section th/);
 });
