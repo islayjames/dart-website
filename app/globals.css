@@ -160,7 +160,7 @@ img { max-width: 100%; display: block; }
 .guide-table-scroll tbody th { color: var(--twilight); min-width: 190px; }
 .guide-table-scroll.is-compact tbody th { width: 32%; min-width: 0; }
 .guide-table-scroll.is-row-grouped table { table-layout: fixed; }
-.guide-table-scroll.is-row-grouped tbody th { border-right: 1px solid var(--rule-strong); background: var(--cream-2); color: var(--twilight); font-weight: 800; vertical-align: middle; }
+.guide-table-scroll.is-row-grouped tbody th { border-right: 1px solid var(--rule-strong); background: var(--paper); color: var(--twilight); font-weight: 800; vertical-align: top; }
 .guide-table-scroll.is-row-grouped tbody td { background: var(--paper); }
 @media (max-width: 720px) {
   .guide-hero { padding-top: 36px; padding-bottom: 28px; }

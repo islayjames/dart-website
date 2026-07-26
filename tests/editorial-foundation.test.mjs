@@ -178,7 +178,7 @@ test('consecutive roster labels collapse into accessible row groups', () => {
   assert.match(page, /rowSpan=\{rowGroupSpans\[rowIndex\]\}/);
   assert.match(page, /scope="rowgroup"/);
   assert.match(page, /is-row-grouped/);
-  assert.match(css, /\.guide-table-scroll\.is-row-grouped tbody th\s*\{[^}]*background:\s*var\(--cream-2\)[^}]*font-weight:\s*800[^}]*vertical-align:\s*middle/);
+  assert.match(css, /\.guide-table-scroll\.is-row-grouped tbody th\s*\{[^}]*background:\s*var\(--paper\)[^}]*font-weight:\s*800[^}]*vertical-align:\s*top/);
 });
 
 test('guide body lists restore visible markers after the global reset', () => {
