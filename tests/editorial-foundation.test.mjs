@@ -103,6 +103,23 @@ test('guide hero projection preserves alt text and omits an unconfigured image o
   assert.match(querySource, /"heroImage": select\(defined\(heroImage\.asset\) => \{"url": heroImage\.asset->url, "alt": heroImage\.alt\}\)/);
 });
 
+test('guide index cards render linked responsive hero images when configured', () => {
+  const pageSource = readFileSync(new URL('../app/guides/page.tsx', import.meta.url), 'utf8');
+  assert.match(pageSource, /import Image from 'next\/image'/);
+  assert.match(pageSource, /guide\.heroImage &&/);
+  assert.match(pageSource, /className="guide-card-image"/);
+  assert.match(pageSource, /src=\{guide\.heroImage\.url\}/);
+  assert.match(pageSource, /alt=\{guide\.heroImage\.alt\}/);
+  assert.match(pageSource, /sizes="\(max-width: 720px\) calc\(100vw - 56px\), 824px"/);
+});
+
+test('the short evergreen Lightning Lane URL permanently replaces the launch URL', () => {
+  const configSource = readFileSync(new URL('../next.config.ts', import.meta.url), 'utf8');
+  assert.match(configSource, /source: "\/guides\/is-lightning-lane-worth-it-disney-world-2026"/);
+  assert.match(configSource, /destination: "\/guides\/is-lightning-lane-worth-it-disney-world"/);
+  assert.match(configSource, /permanent: true/);
+});
+
 test('guide structured data includes article and breadcrumb facts', () => {
   const guide = {
     title: 'Guide title', slug: 'guide-title', summary: 'Summary', publishedAt: '2026-07-10',
