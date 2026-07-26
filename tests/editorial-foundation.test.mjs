@@ -234,6 +234,17 @@ test('park-grouped attraction comparisons stay three-column tables on mobile', (
   assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-section th/);
 });
 
+test('five-column sectioned value matrices fit compact mobile comparisons', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(page, /const fiveColumnSectioned = sectioned && table\.columns\?\.length === 5/);
+  assert.match(page, /fiveColumnSectioned \? ' has-five-columns'/);
+  assert.match(page, /table\.columns\?\.slice\(1\)\.map/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned\.has-five-columns \.guide-table-attraction-column\s*\{[^}]*width:\s*28%/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned\.has-five-columns table\s*\{[^}]*width:\s*calc\(100% - 2px\)/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.is-sectioned\.has-five-columns th, \.guide-table-scroll\.is-sectioned\.has-five-columns td\s*\{[^}]*padding:\s*7px 4px[^}]*font-size:\s*9\.5px/);
+});
+
 test('queue-savings table renders park and tier averages as nested summary rows', () => {
   const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
   const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
