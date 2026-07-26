@@ -35,6 +35,12 @@ test('draft preview requires both server-only credentials', () => {
   assert.equal(isPreviewConfigured({ SANITY_API_READ_TOKEN: 'token', SANITY_PREVIEW_SECRET: 'secret' }), true);
 });
 
+test('draft guide fetches bypass the published-content cache', () => {
+  const clientSource = readFileSync(new URL('../lib/sanity/client.ts', import.meta.url), 'utf8');
+  assert.match(clientSource, /previewClient\.fetch<T>\(query, params, \{ cache: 'no-store' \}\)/);
+  assert.match(clientSource, /client\.fetch<T>\(query, params\)/);
+});
+
 test('draft preview accepts only canonical guide slugs', () => {
   assert.equal(guidePreviewPath('character-dining-compared'), '/guides/character-dining-compared');
   assert.equal(guidePreviewPath('../pricing'), null);
