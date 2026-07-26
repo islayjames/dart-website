@@ -142,9 +142,12 @@ img { max-width: 100%; display: block; }
 .guide-table-scroll.is-compact table { min-width: 0; }
 .guide-table-scroll.is-sectioned table, .guide-table-scroll.is-period-matrix table { min-width: 0; table-layout: fixed; }
 .guide-table-scroll.is-sectioned .guide-table-attraction-column { width: 60%; }
+.guide-table-scroll.is-sectioned.has-five-columns .guide-table-attraction-column { width: 28%; }
+.guide-table-scroll.is-sectioned.has-five-columns table { width: calc(100% - 2px); }
 .guide-table-scroll.is-period-matrix .guide-table-label-column { width: 48%; }
 .guide-table-scroll.is-period-matrix.has-four-columns .guide-table-label-column { width: 31%; }
 .guide-table-scroll.is-sectioned td { white-space: nowrap; }
+.guide-table-scroll.is-sectioned.has-five-columns td { white-space: normal; overflow-wrap: anywhere; }
 .guide-table-scroll.is-sectioned .guide-table-section th, .guide-table-scroll.is-sectioned .guide-table-section td { padding: 10px 14px; background: var(--cream-2); color: var(--twilight); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .guide-table-scroll.has-summary-rows .guide-table-summary th, .guide-table-scroll.has-summary-rows .guide-table-summary td { border-top: 3px solid var(--gold); background: var(--twilight); color: var(--cream); font-weight: 900; }
 .guide-table-scroll.has-summary-rows .guide-table-subsection th, .guide-table-scroll.has-summary-rows .guide-table-subsection td { border-top: 2px solid var(--rule-strong); background: var(--cream-2); color: var(--twilight); font-size: 12px; font-weight: 900; }
@@ -180,6 +183,7 @@ img { max-width: 100%; display: block; }
   .guide-table-scroll.is-sectioned, .guide-table-scroll.is-period-matrix { width: calc(100vw - 20px); overflow-x: hidden; touch-action: pan-y; }
   .guide-table-scroll.is-sectioned .guide-table-caption, .guide-table-scroll.is-period-matrix .guide-table-caption { padding: 16px 14px; font-size: 19px; line-height: 1.2; }
   .guide-table-scroll.is-sectioned th, .guide-table-scroll.is-sectioned td, .guide-table-scroll.is-period-matrix th, .guide-table-scroll.is-period-matrix td { padding: 8px 7px; font-size: 11px; line-height: 1.3; }
+  .guide-table-scroll.is-sectioned.has-five-columns th, .guide-table-scroll.is-sectioned.has-five-columns td { padding: 7px 4px; font-size: 9.5px; line-height: 1.25; }
   .guide-table-scroll.is-sectioned thead th, .guide-table-scroll.is-period-matrix thead th { font-size: 9px; letter-spacing: .04em; }
   .guide-table-scroll.is-sectioned tbody th, .guide-table-scroll.is-period-matrix tbody th { min-width: 0; overflow-wrap: anywhere; }
   .guide-table-scroll.is-period-matrix td { font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }

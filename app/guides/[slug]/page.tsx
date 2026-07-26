@@ -86,10 +86,11 @@ const guidePortableTextComponents: PortableTextComponents = {
       const stacked = (table.columns?.length || 0) >= 3 && !sectioned && !periodMatrix;
       const captionId = `guide-table-${table._key || headingId({ children: [{ text: table.caption }] })}`;
       const fourColumnMatrix = periodMatrix && table.columns?.length === 4;
-      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${rowGrouped ? ' is-row-grouped' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${hasSummaryRows ? ' has-summary-rows' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
+      const fiveColumnSectioned = sectioned && table.columns?.length === 5;
+      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${rowGrouped ? ' is-row-grouped' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${hasSummaryRows ? ' has-summary-rows' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}${fiveColumnSectioned ? ' has-five-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
         <div className="guide-table-caption" id={captionId}>{table.caption}</div>
         <table aria-labelledby={captionId}>
-          {sectioned && <colgroup><col className="guide-table-attraction-column" /><col /><col /></colgroup>}
+          {sectioned && <colgroup><col className="guide-table-attraction-column" />{table.columns?.slice(1).map((_, index) => <col key={index} />)}</colgroup>}
           {periodMatrix && <colgroup><col className="guide-table-label-column" />{table.columns?.slice(1).map((_, index) => <col key={index} />)}</colgroup>}
           <thead><tr>{table.columns?.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
           <tbody>{table.rows?.map((row, rowIndex) => {
