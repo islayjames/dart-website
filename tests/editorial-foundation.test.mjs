@@ -98,9 +98,9 @@ test('guide metadata uses SEO overrides, canonical URL, and noindex', () => {
   assert.deepEqual(metadata.robots, { index: false, follow: true });
 });
 
-test('guide hero projection preserves Sanity alt text', () => {
+test('guide hero projection preserves alt text and omits an unconfigured image object', () => {
   const querySource = readFileSync(new URL('../lib/sanity/queries.ts', import.meta.url), 'utf8');
-  assert.match(querySource, /"heroImage": \{"url": heroImage\.asset->url, "alt": heroImage\.alt\}/);
+  assert.match(querySource, /"heroImage": select\(defined\(heroImage\.asset\) => \{"url": heroImage\.asset->url, "alt": heroImage\.alt\}\)/);
 });
 
 test('guide structured data includes article and breadcrumb facts', () => {
