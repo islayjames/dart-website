@@ -14,5 +14,7 @@ export const urlForImage = (source: Parameters<ReturnType<typeof imageUrlBuilder
 export async function sanityFetch<T>(query: string, params: Record<string, unknown> = {}, preview = false): Promise<T | null> {
   if (!sanityConfigured) return null;
   if (preview && !process.env.SANITY_API_READ_TOKEN) return null;
-  return (preview ? previewClient : client).fetch<T>(query, params);
+  return preview
+    ? previewClient.fetch<T>(query, params, { cache: 'no-store' })
+    : client.fetch<T>(query, params);
 }

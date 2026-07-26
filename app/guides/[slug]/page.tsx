@@ -10,9 +10,26 @@ import { getGuide, getGuideSlugs } from '@/lib/sanity/queries';
 
 type DecisionMap = { eyebrow?: string; title: string; intro?: string; note?: string; groups?: { _key?: string; heading: string; note?: string; items?: { _key?: string; anchor?: string; title: string; subtitle: string; meta?: string; muted?: boolean }[] }[] };
 type Lineup = { eyebrow?: string; title: string; intro?: string; note?: string; groups?: { _key?: string; heading: string; items?: { _key?: string; name: string; location: string; meta?: string }[] }[] };
-type GuideTable = { caption: string; columns?: string[]; rows?: { _key?: string; anchor?: string; cells?: string[] }[] };
+type GuideTable = { _key?: string; caption: string; columns?: string[]; rows?: { _key?: string; anchor?: string; cells?: string[] }[] };
+type HeadingBlock = { children?: { text?: string }[] };
+
+function headingId(value: unknown) {
+  const text = (value as HeadingBlock)?.children?.map((child) => child.text || '').join('') || '';
+  return text
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[’']/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
 const guidePortableTextComponents: PortableTextComponents = {
+  block: {
+    h2: ({ children, value }) => <h2 id={headingId(value)}>{children}</h2>,
+    h3: ({ children, value }) => <h3 id={headingId(value)}>{children}</h3>,
+    h4: ({ children, value }) => <h4 id={headingId(value)}>{children}</h4>,
+  },
   marks: {
     link: ({ children, value }) => {
       const href = (value as { href?: string })?.href || '#';
@@ -55,9 +72,35 @@ const guidePortableTextComponents: PortableTextComponents = {
     },
     guideTable: ({ value }) => {
       const table = value as GuideTable;
-      return <div className="guide-table-scroll" tabIndex={0} role="region" aria-label={table.caption}>
-        <table><caption>{table.caption}</caption><thead><tr>{table.columns?.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
-          <tbody>{table.rows?.map((row, rowIndex) => <tr id={row.anchor} key={row._key || rowIndex}>{row.cells?.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td key={cellIndex}>{cell}</td>)}</tr>)}</tbody>
+      const compact = table.columns?.length === 2;
+      const parkAverageLabels = new Set(['Magic Kingdom average', 'EPCOT average', 'Hollywood Studios average', 'Animal Kingdom average']);
+      const tierAverageLabels = new Set(['Tier 1 average', 'Tier 2 average', 'Single Pass average']);
+      const hasSummaryRows = table.rows?.some((row) => parkAverageLabels.has(row.cells?.[0] || '')) || false;
+      const sectioned = hasSummaryRows || table.rows?.some((row) => row.cells?.length && row.cells.slice(1).every((cell) => !cell.trim())) || false;
+      const normalizedColumns = table.columns?.map((column) => column.toLowerCase()) || [];
+      const periodMatrix = !sectioned
+        && normalizedColumns.some((column) => column === 'peak' || column.includes('peak period'))
+        && normalizedColumns.some((column) => column === 'low' || column.includes('lower period'));
+      const stacked = (table.columns?.length || 0) >= 3 && !sectioned && !periodMatrix;
+      const captionId = `guide-table-${table._key || headingId({ children: [{ text: table.caption }] })}`;
+      const fourColumnMatrix = periodMatrix && table.columns?.length === 4;
+      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${hasSummaryRows ? ' has-summary-rows' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
+        <div className="guide-table-caption" id={captionId}>{table.caption}</div>
+        <table aria-labelledby={captionId}>
+          {sectioned && <colgroup><col className="guide-table-attraction-column" /><col /><col /></colgroup>}
+          {periodMatrix && <colgroup><col className="guide-table-label-column" />{table.columns?.slice(1).map((_, index) => <col key={index} />)}</colgroup>}
+          <thead><tr>{table.columns?.map((column) => <th scope="col" key={column}>{column}</th>)}</tr></thead>
+          <tbody>{table.rows?.map((row, rowIndex) => {
+            const cells = row.cells || [];
+            const sectionRow = sectioned && cells.length > 0 && cells.slice(1).every((cell) => !cell.trim());
+            const parkAverageRow = hasSummaryRows && parkAverageLabels.has(cells[0] || '');
+            const tierAverageRow = hasSummaryRows && tierAverageLabels.has(cells[0] || '');
+            if (parkAverageRow) return <tr className="guide-table-section guide-table-summary" key={row._key || rowIndex}><th scope="rowgroup">{cells[0]}</th>{cells.slice(1).map((cell, cellIndex) => <td data-label={table.columns?.[cellIndex + 1]} key={cellIndex}>{cell}</td>)}</tr>;
+            if (tierAverageRow) return <tr className="guide-table-subsection" key={row._key || rowIndex}><th scope="rowgroup">{cells[0]}</th>{cells.slice(1).map((cell, cellIndex) => <td data-label={table.columns?.[cellIndex + 1]} key={cellIndex}>{cell}</td>)}</tr>;
+            if (sectionRow) return <tr className="guide-table-section" key={row._key || rowIndex}><th scope="rowgroup" colSpan={table.columns?.length || 1}>{cells[0]}</th></tr>;
+            const totalRow = cells[0]?.startsWith('Combined total:');
+            return <tr className={totalRow ? 'guide-table-total' : undefined} id={row.anchor} key={row._key || rowIndex}>{cells.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>;
+          })}</tbody>
         </table>
       </div>;
     },
