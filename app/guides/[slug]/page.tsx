@@ -84,7 +84,7 @@ const guidePortableTextComponents: PortableTextComponents = {
       const stacked = (table.columns?.length || 0) >= 3 && !sectioned && !periodMatrix;
       const captionId = `guide-table-${table._key || headingId({ children: [{ text: table.caption }] })}`;
       const fourColumnMatrix = periodMatrix && table.columns?.length === 4;
-      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
+      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${hasSummaryRows ? ' has-summary-rows' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
         <div className="guide-table-caption" id={captionId}>{table.caption}</div>
         <table aria-labelledby={captionId}>
           {sectioned && <colgroup><col className="guide-table-attraction-column" /><col /><col /></colgroup>}

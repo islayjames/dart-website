@@ -222,8 +222,11 @@ test('queue-savings table renders park and tier averages as nested summary rows'
   assert.match(page, /const tierAverageLabels = new Set\(\['Tier 1 average', 'Tier 2 average', 'Single Pass average'\]\)/);
   assert.match(page, /className="guide-table-section guide-table-summary"/);
   assert.match(page, /className="guide-table-subsection"/);
-  assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-section th, \.guide-table-scroll\.is-sectioned \.guide-table-section td/);
-  assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-subsection th, \.guide-table-scroll\.is-sectioned \.guide-table-subsection td/);
+  assert.match(page, /hasSummaryRows \? ' has-summary-rows'/);
+  assert.match(css, /\.guide-table-scroll\.has-summary-rows \.guide-table-summary th, \.guide-table-scroll\.has-summary-rows \.guide-table-summary td\s*\{[^}]*background:\s*var\(--twilight\)[^}]*color:\s*var\(--cream\)[^}]*font-weight:\s*900/);
+  assert.match(css, /\.guide-table-scroll\.has-summary-rows \.guide-table-subsection th, \.guide-table-scroll\.has-summary-rows \.guide-table-subsection td\s*\{[^}]*background:\s*var\(--cream-2\)[^}]*font-weight:\s*900/);
+  assert.match(css, /\.guide-table-scroll\.has-summary-rows tbody tr:not\(\.guide-table-section\):not\(\.guide-table-subsection\) > th\s*\{[^}]*padding-left:\s*30px/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.guide-table-scroll\.has-summary-rows tbody tr:not\(\.guide-table-section\):not\(\.guide-table-subsection\) > th\s*\{[^}]*padding-left:\s*18px/);
 });
 
 test('guide headings receive stable slug IDs for in-page links', () => {
