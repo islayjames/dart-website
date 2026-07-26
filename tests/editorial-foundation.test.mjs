@@ -200,13 +200,24 @@ test('Peak and Low comparisons remain adjacent in a mobile period matrix', () =>
 test('park-grouped attraction comparisons stay three-column tables on mobile', () => {
   const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
   const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
-  assert.match(page, /const sectioned = table\.rows\?\.some/);
+  assert.match(page, /const sectioned = hasSummaryRows \|\| table\.rows\?\.some/);
   assert.match(page, /is-sectioned/);
   assert.match(page, /className="guide-table-section"/);
   assert.match(page, /scope="rowgroup" colSpan=\{table\.columns\?\.length \|\| 1\}/);
   assert.match(css, /\.guide-table-scroll\.is-sectioned table, \.guide-table-scroll\.is-period-matrix table\s*\{[^}]*min-width:\s*0[^}]*table-layout:\s*fixed/);
   assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-attraction-column\s*\{[^}]*width:\s*60%/);
   assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-section th/);
+});
+
+test('queue-savings table renders park and tier averages as nested summary rows', () => {
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(page, /const parkAverageLabels = new Set\(\['Magic Kingdom average', 'EPCOT average', 'Hollywood Studios average', 'Animal Kingdom average'\]\)/);
+  assert.match(page, /const tierAverageLabels = new Set\(\['Tier 1 average', 'Tier 2 average', 'Single Pass average'\]\)/);
+  assert.match(page, /className="guide-table-section guide-table-summary"/);
+  assert.match(page, /className="guide-table-subsection"/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-section th, \.guide-table-scroll\.is-sectioned \.guide-table-section td/);
+  assert.match(css, /\.guide-table-scroll\.is-sectioned \.guide-table-subsection th, \.guide-table-scroll\.is-sectioned \.guide-table-subsection td/);
 });
 
 test('guide headings receive stable slug IDs for in-page links', () => {

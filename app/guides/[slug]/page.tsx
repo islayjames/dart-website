@@ -73,7 +73,10 @@ const guidePortableTextComponents: PortableTextComponents = {
     guideTable: ({ value }) => {
       const table = value as GuideTable;
       const compact = table.columns?.length === 2;
-      const sectioned = table.rows?.some((row) => row.cells?.length && row.cells.slice(1).every((cell) => !cell.trim())) || false;
+      const parkAverageLabels = new Set(['Magic Kingdom average', 'EPCOT average', 'Hollywood Studios average', 'Animal Kingdom average']);
+      const tierAverageLabels = new Set(['Tier 1 average', 'Tier 2 average', 'Single Pass average']);
+      const hasSummaryRows = table.rows?.some((row) => parkAverageLabels.has(row.cells?.[0] || '')) || false;
+      const sectioned = hasSummaryRows || table.rows?.some((row) => row.cells?.length && row.cells.slice(1).every((cell) => !cell.trim())) || false;
       const normalizedColumns = table.columns?.map((column) => column.toLowerCase()) || [];
       const periodMatrix = !sectioned
         && normalizedColumns.some((column) => column === 'peak' || column.includes('peak period'))
@@ -90,6 +93,10 @@ const guidePortableTextComponents: PortableTextComponents = {
           <tbody>{table.rows?.map((row, rowIndex) => {
             const cells = row.cells || [];
             const sectionRow = sectioned && cells.length > 0 && cells.slice(1).every((cell) => !cell.trim());
+            const parkAverageRow = hasSummaryRows && parkAverageLabels.has(cells[0] || '');
+            const tierAverageRow = hasSummaryRows && tierAverageLabels.has(cells[0] || '');
+            if (parkAverageRow) return <tr className="guide-table-section guide-table-summary" key={row._key || rowIndex}><th scope="rowgroup">{cells[0]}</th>{cells.slice(1).map((cell, cellIndex) => <td data-label={table.columns?.[cellIndex + 1]} key={cellIndex}>{cell}</td>)}</tr>;
+            if (tierAverageRow) return <tr className="guide-table-subsection" key={row._key || rowIndex}><th scope="rowgroup">{cells[0]}</th>{cells.slice(1).map((cell, cellIndex) => <td data-label={table.columns?.[cellIndex + 1]} key={cellIndex}>{cell}</td>)}</tr>;
             if (sectionRow) return <tr className="guide-table-section" key={row._key || rowIndex}><th scope="rowgroup" colSpan={table.columns?.length || 1}>{cells[0]}</th></tr>;
             const totalRow = cells[0]?.startsWith('Combined total:');
             return <tr className={totalRow ? 'guide-table-total' : undefined} id={row.anchor} key={row._key || rowIndex}>{cells.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>;
