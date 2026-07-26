@@ -19,6 +19,19 @@ export type Guide = {
   cta?: { enabled?: boolean; label?: string; url?: string };
 };
 
+export function groupConsecutiveLabels(rows: Array<{ cells?: string[] }>) {
+  const spans = rows.map(() => 0);
+  let start = 0;
+  while (start < rows.length) {
+    const label = rows[start].cells?.[0] || '';
+    let end = start + 1;
+    while (label && end < rows.length && rows[end].cells?.[0] === label) end += 1;
+    spans[start] = end - start;
+    start = end;
+  }
+  return spans;
+}
+
 export function guideAttribution(guide: Pick<Guide, 'authorName' | 'author'>) {
   if (guide.author?.name) return { label: guide.author.name, schema: { '@type': 'Person', name: guide.author.name } };
   const label = guide.authorName || 'HeyDart';
