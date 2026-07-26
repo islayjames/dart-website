@@ -9,6 +9,7 @@ import {
   buildGuideMetadata,
   categoryLabel,
   guideAttribution,
+  groupConsecutiveLabels,
   isSanityConfigured,
 } from '../lib/sanity/editorial.ts';
 import { guidePreviewPath, isPreviewConfigured } from '../lib/sanity/preview.ts';
@@ -160,6 +161,24 @@ test('two-column guide tables use a compact non-scrolling layout', () => {
   assert.match(page, /guide-table-scroll\$\{compact \? ' is-compact' : ''\}/);
   assert.match(css, /\.guide-table-scroll\.is-compact\s*\{[^}]*max-width:\s*760px/);
   assert.match(css, /\.guide-table-scroll\.is-compact table\s*\{[^}]*min-width:\s*0/);
+});
+
+test('consecutive roster labels collapse into accessible row groups', () => {
+  assert.deepEqual(groupConsecutiveLabels([
+    { cells: ['Tier 1', 'Big Thunder Mountain Railroad'] },
+    { cells: ['Tier 1', 'Jungle Cruise'] },
+    { cells: ['Tier 2', 'The Barnstormer'] },
+    { cells: ['Single Pass', 'Seven Dwarfs Mine Train'] },
+    { cells: ['Single Pass', 'TRON Lightcycle / Run'] },
+  ]), [2, 0, 1, 2, 0]);
+
+  const page = readFileSync(new URL('../app/guides/[slug]/page.tsx', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../app/globals.css', import.meta.url), 'utf8');
+  assert.match(page, /groupConsecutiveLabels\(table\.rows \|\| \[\]\)/);
+  assert.match(page, /rowSpan=\{rowGroupSpans\[rowIndex\]\}/);
+  assert.match(page, /scope="rowgroup"/);
+  assert.match(page, /is-row-grouped/);
+  assert.match(css, /\.guide-table-scroll\.is-row-grouped tbody th\s*\{[^}]*background:\s*var\(--cream-2\)[^}]*font-weight:\s*800[^}]*vertical-align:\s*middle/);
 });
 
 test('guide body lists restore visible markers after the global reset', () => {

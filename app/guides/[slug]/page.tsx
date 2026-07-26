@@ -5,7 +5,7 @@ import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
 import type { PortableTextComponents } from '@portabletext/react';
-import { buildGuideJsonLd, buildGuideMetadata, categoryLabel, guideAttribution } from '@/lib/sanity/editorial';
+import { buildGuideJsonLd, buildGuideMetadata, categoryLabel, groupConsecutiveLabels, guideAttribution } from '@/lib/sanity/editorial';
 import { getGuide, getGuideSlugs } from '@/lib/sanity/queries';
 
 type DecisionMap = { eyebrow?: string; title: string; intro?: string; note?: string; groups?: { _key?: string; heading: string; note?: string; items?: { _key?: string; anchor?: string; title: string; subtitle: string; meta?: string; muted?: boolean }[] }[] };
@@ -73,6 +73,8 @@ const guidePortableTextComponents: PortableTextComponents = {
     guideTable: ({ value }) => {
       const table = value as GuideTable;
       const compact = table.columns?.length === 2;
+      const rowGrouped = compact && table.columns?.[0] === 'Product / tier' && table.columns?.[1] === 'Attraction or experience';
+      const rowGroupSpans = rowGrouped ? groupConsecutiveLabels(table.rows || []) : [];
       const parkAverageLabels = new Set(['Magic Kingdom average', 'EPCOT average', 'Hollywood Studios average', 'Animal Kingdom average']);
       const tierAverageLabels = new Set(['Tier 1 average', 'Tier 2 average', 'Single Pass average']);
       const hasSummaryRows = table.rows?.some((row) => parkAverageLabels.has(row.cells?.[0] || '')) || false;
@@ -84,7 +86,7 @@ const guidePortableTextComponents: PortableTextComponents = {
       const stacked = (table.columns?.length || 0) >= 3 && !sectioned && !periodMatrix;
       const captionId = `guide-table-${table._key || headingId({ children: [{ text: table.caption }] })}`;
       const fourColumnMatrix = periodMatrix && table.columns?.length === 4;
-      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${hasSummaryRows ? ' has-summary-rows' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
+      return <div className={`guide-table-scroll${compact ? ' is-compact' : ''}${rowGrouped ? ' is-row-grouped' : ''}${stacked ? ' is-stacked' : ''}${sectioned ? ' is-sectioned' : ''}${hasSummaryRows ? ' has-summary-rows' : ''}${periodMatrix ? ' is-period-matrix' : ''}${fourColumnMatrix ? ' has-four-columns' : ''}`} tabIndex={0} role="region" aria-labelledby={captionId}>
         <div className="guide-table-caption" id={captionId}>{table.caption}</div>
         <table aria-labelledby={captionId}>
           {sectioned && <colgroup><col className="guide-table-attraction-column" /><col /><col /></colgroup>}
@@ -98,6 +100,7 @@ const guidePortableTextComponents: PortableTextComponents = {
             if (parkAverageRow) return <tr className="guide-table-section guide-table-summary" key={row._key || rowIndex}><th scope="rowgroup">{cells[0]}</th>{cells.slice(1).map((cell, cellIndex) => <td data-label={table.columns?.[cellIndex + 1]} key={cellIndex}>{cell}</td>)}</tr>;
             if (tierAverageRow) return <tr className="guide-table-subsection" key={row._key || rowIndex}><th scope="rowgroup">{cells[0]}</th>{cells.slice(1).map((cell, cellIndex) => <td data-label={table.columns?.[cellIndex + 1]} key={cellIndex}>{cell}</td>)}</tr>;
             if (sectionRow) return <tr className="guide-table-section" key={row._key || rowIndex}><th scope="rowgroup" colSpan={table.columns?.length || 1}>{cells[0]}</th></tr>;
+            if (rowGrouped) return <tr id={row.anchor} key={row._key || rowIndex}>{rowGroupSpans[rowIndex] > 0 && <th scope="rowgroup" rowSpan={rowGroupSpans[rowIndex]}>{cells[0]}</th>}<td data-label={table.columns?.[1]}>{cells[1]}</td></tr>;
             const totalRow = cells[0]?.startsWith('Combined total:');
             return <tr className={totalRow ? 'guide-table-total' : undefined} id={row.anchor} key={row._key || rowIndex}>{cells.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td data-label={table.columns?.[cellIndex]} key={cellIndex}>{cell}</td>)}</tr>;
           })}</tbody>

@@ -156,6 +156,9 @@ img { max-width: 100%; display: block; }
 .guide-table-scroll thead th { background: var(--twilight); color: var(--cream); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; }
 .guide-table-scroll tbody th { color: var(--twilight); min-width: 190px; }
 .guide-table-scroll.is-compact tbody th { width: 32%; min-width: 0; }
+.guide-table-scroll.is-row-grouped table { table-layout: fixed; }
+.guide-table-scroll.is-row-grouped tbody th { border-right: 1px solid var(--rule-strong); background: var(--cream-2); color: var(--twilight); font-weight: 800; vertical-align: middle; }
+.guide-table-scroll.is-row-grouped tbody td { background: var(--paper); }
 @media (max-width: 720px) {
   .guide-hero { padding-top: 36px; padding-bottom: 28px; }
   .guide-hero nav { margin-bottom: 24px; }
@@ -185,6 +188,8 @@ img { max-width: 100%; display: block; }
   .guide-table-scroll.is-sectioned .guide-table-subsection th, .guide-table-scroll.is-sectioned .guide-table-subsection td { padding: 8px 7px; font-size: 10.5px; }
   .guide-table-scroll.has-summary-rows tbody tr:not(.guide-table-section):not(.guide-table-subsection) > th { padding-left: 18px; }
   .guide-table-scroll.is-compact tbody th { width: 27%; }
+  .guide-table-scroll.is-row-grouped tbody th { padding: 10px 8px; font-size: 11px; line-height: 1.3; overflow-wrap: anywhere; }
+  .guide-table-scroll.is-row-grouped tbody td { padding: 10px; font-size: 12px; line-height: 1.35; }
   .guide-table-scroll.is-stacked table { display: block; width: 100%; min-width: 100%; max-width: 100%; table-layout: fixed; }
 
   .guide-table-scroll.is-stacked thead { display: none; }
