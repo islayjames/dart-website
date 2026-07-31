@@ -74,6 +74,8 @@ export default function DiningMobileOrderHelpPage() {
         <div className="container-narrow">
           <div className="eyebrow" style={{ marginBottom: 16 }}>Related guides</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
+            <Link href="/guides/hardest-disney-world-dining-reservations" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Hardest dining reservations →</Link>
+            <Link href="/guides/walt-disney-world-character-dining-compared" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Character dining compared →</Link>
             <Link href="/lightning-lane-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Lightning Lane help →</Link>
             <Link href="/disney-world-with-kids" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Disney World with kids →</Link>
             <Link href="/trip-pass" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Trip Pass →</Link>
