@@ -29,6 +29,7 @@ const OWNED_SIGNUP_SOURCES = new Set([
   'toddler-nap-guide',
   'character-dining-guide',
   'hardest-reservations-guide',
+  'guide-lightning-lane-worth-it',
 ]);
 
 function normalizeSignupSource(source?: string): string {
