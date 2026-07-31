@@ -159,3 +159,20 @@ test('sitemap does not publish a shared or synthetic last-modified date', () => 
   const sitemap = read('app/sitemap.ts');
   assert.doesNotMatch(sitemap, /lastModified|LAST_UPDATED/);
 });
+
+test('shared navigation and footer expose the guide hub without article-specific global links', () => {
+  const nav = read('components/Nav.tsx');
+  const footer = read('components/Footer.tsx');
+
+  assert.match(nav, /const NAV_LINKS = \[[\s\S]*?href: '\/guides', label: 'Guides'/);
+  assert.equal((nav.match(/href: '\/guides'/g) || []).length, 1);
+  assert.match(footer, /<h4>For your trip<\/h4>[\s\S]*?<Link href="\/guides">Guides<\/Link>/);
+  assert.equal((footer.match(/href="\/guides"/g) || []).length, 1);
+
+  for (const source of [nav, footer]) {
+    assert.doesNotMatch(
+      source,
+      /href=["']\/guides\/(?:disney-world-toddler-nap-spots|walt-disney-world-character-dining-compared|hardest-disney-world-dining-reservations|is-lightning-lane-worth-it-disney-world)["']/,
+    );
+  }
+});

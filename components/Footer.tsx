@@ -36,6 +36,7 @@ export default function Footer() {
           <div>
             <h4>For your trip</h4>
             <ul>
+              <li><Link href="/guides">Guides</Link></li>
               <li><Link href="/first-time-disney-world">First time at Disney World</Link></li>
               <li><Link href="/disney-world-with-kids">Disney World with kids</Link></li>
               <li><Link href="/lightning-lane-help">Lightning Lane help</Link></li>

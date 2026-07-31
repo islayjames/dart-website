@@ -8,6 +8,7 @@ import NextImage from 'next/image';
 const NAV_LINKS = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/pricing', label: 'Pricing' },
+  { href: '/guides', label: 'Guides' },
   { href: '/about', label: 'About' },
   { href: '/learn', label: 'Learn' },
 ] as const;
