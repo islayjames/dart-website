@@ -69,6 +69,7 @@ export default function LightningLaneHelpPage() {
         <div className="container-narrow">
           <div className="eyebrow" style={{ marginBottom: 16 }}>Related guides</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
+            <Link href="/guides/is-lightning-lane-worth-it-disney-world" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Is Lightning Lane worth it? →</Link>
             <Link href="/first-time-disney-world" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>First time at Disney World →</Link>
             <Link href="/dining-mobile-order-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Dining &amp; mobile order help →</Link>
             <Link href="/trip-pass" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Trip Pass →</Link>
