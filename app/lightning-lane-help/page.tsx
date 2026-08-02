@@ -2,19 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
-const howToSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'HowTo',
-  name: 'How to plan your Lightning Lane day at Disney World',
-  step: [
-    { '@type': 'HowToStep', position: 1, name: 'Purchase Lightning Lane Multi Pass in My Disney Experience', text: 'Buy LLMP in the MDE app starting at park open (or 7am for resort guests). This gives you one Lightning Lane selection at a time.' },
-    { '@type': 'HowToStep', position: 2, name: 'Make your first Lightning Lane selection', text: 'Choose your highest-priority attraction first — typically the one with the longest standby wait. Dart watches availability and alerts you to the best windows.' },
-    { '@type': 'HowToStep', position: 3, name: 'Redeem and rebook', text: 'After redeeming or 2 hours have passed, you can make your next selection. Dart tracks timing and recommends when to rebook based on wait patterns.' },
-    { '@type': 'HowToStep', position: 4, name: 'Watch for walk-up and modified availability', text: 'Lightning Lane availability shifts throughout the day. Dart monitors for better times and walk-up opportunities so you can rebook without constantly checking the app.' },
-    { '@type': 'HowToStep', position: 5, name: 'Balance Lightning Lane with standby', text: "Not every attraction needs Lightning Lane. Dart recommends when to use your selection vs. join the standby line based on current wait times and your party's priorities." },
-  ],
-};
-
 export const metadata: Metadata = {
   title: 'Lightning Lane Multi Pass Help · Dart',
   description: 'Dart monitors Lightning Lane availability and helps you decide when to take a selection — so you stop scanning and start riding.',
@@ -25,7 +12,6 @@ export const metadata: Metadata = {
 export default function LightningLaneHelpPage() {
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <PageHeader
         eyebrow="Lightning Lane help"
         title={<>Stop scanning. <span style={{ color: 'var(--brick)' }}>Start riding.</span></>}
