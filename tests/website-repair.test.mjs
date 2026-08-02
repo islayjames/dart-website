@@ -160,6 +160,24 @@ test('sitemap does not publish a shared or synthetic last-modified date', () => 
   assert.doesNotMatch(sitemap, /lastModified|LAST_UPDATED/);
 });
 
+test('HowTo structured data is limited to the visible six-step how-it-works guide', () => {
+  for (const route of [
+    'app/first-time-disney-world/page.tsx',
+    'app/lightning-lane-help/page.tsx',
+    'app/dining-mobile-order-help/page.tsx',
+  ]) {
+    assert.doesNotMatch(read(route), /['"]@type['"]:\s*['"]HowTo['"]/);
+  }
+
+  const howItWorks = read('app/how-it-works/page.tsx');
+  assert.match(howItWorks, /['"]@type['"]:\s*['"]HowTo['"]/);
+  assert.equal((howItWorks.match(/['"]@type['"]:\s*['"]HowToStep['"]/g) || []).length, 6);
+  assert.deepEqual(
+    [...howItWorks.matchAll(/n:\s*'(\d{2})'/g)].map((match) => match[1]),
+    ['01', '02', '03', '04', '05', '06'],
+  );
+});
+
 test('shared navigation and footer expose the guide hub without article-specific global links', () => {
   const nav = read('components/Nav.tsx');
   const footer = read('components/Footer.tsx');

@@ -2,18 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 
-const howToSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'HowTo',
-  name: 'How to time Disney World dining and mobile orders',
-  step: [
-    { '@type': 'HowToStep', position: 1, name: 'Book dining reservations 60 days in advance', text: "Walt Disney World dining reservations open 60 days before your arrival date. Popular restaurants like Be Our Guest and Cinderella's Royal Table fill within minutes of opening." },
-    { '@type': 'HowToStep', position: 2, name: 'Watch for cancellations', text: 'Reservations open up frequently as guests cancel. Dart watches dining availability and alerts you the moment a table opens — you confirm the booking yourself in My Disney Experience.' },
-    { '@type': 'HowToStep', position: 3, name: 'Use mobile order strategically', text: 'Open the My Disney Experience app and select Mobile Order at a quick-service location. Place the order 30–45 minutes before you want to eat. Dart tracks mobile order wait times and recommends when to place your order.' },
-    { '@type': 'HowToStep', position: 4, name: "Arrive when your order is ready", text: "After placing your mobile order, tap 'I'm Here' when you arrive at the restaurant. Wait times vary — Dart tracks current pickup wait times so you're not stuck waiting." },
-  ],
-};
-
 export const metadata: Metadata = {
   title: 'Disney World Dining Reservations & Mobile Order Timing · Dart',
   description: "Dart watches dining availability and mobile order timing so you don't miss a table or waste time in a pickup queue. You confirm the booking yourself in MDE.",
@@ -24,7 +12,6 @@ export const metadata: Metadata = {
 export default function DiningMobileOrderHelpPage() {
   return (
     <div>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <PageHeader
         eyebrow="Dining & mobile order"
         title={<>Hungry kids don&apos;t wait. <span style={{ color: 'var(--brick)' }}>Dart doesn&apos;t either.</span></>}
