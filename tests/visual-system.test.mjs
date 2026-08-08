@@ -40,6 +40,18 @@ test('production illustration assets satisfy the intended pixel contracts', () =
   for (const name of square) assert.deepEqual(pngDimensions(`public/images/${name}`), [1024, 1024], name);
   assert.deepEqual(pngDimensions('public/images/home-hero.png'), [1024, 1280]);
   assert.deepEqual(pngDimensions('public/images/about-portrait.png'), [832, 1248]);
+  assert.deepEqual(pngDimensions('public/images/home-hero-planner.png'), [1024, 1280]);
+  assert.deepEqual(pngDimensions('public/images/about-portrait-planner.png'), [832, 1248]);
+  for (const name of ['dart-thinking-planner.png', 'hiw-2-planner.png', 'hiw-4-planner.png']) {
+    assert.deepEqual(pngDimensions(`public/images/${name}`), [1024, 1024], name);
+  }
+});
+
+test('rendered routes use cache-busting planner-kit asset filenames', () => {
+  const source = [read('app/page.tsx'), read('app/how-it-works/page.tsx'), read('app/about/page.tsx')].join('\n');
+  for (const name of ['home-hero-planner.png', 'dart-thinking-planner.png', 'hiw-2-planner.png', 'hiw-4-planner.png', 'about-portrait-planner.png']) {
+    assert.ok(source.includes(name), `missing planner asset reference: ${name}`);
+  }
 });
 
 test('visible illustration descriptions no longer claim castles or old generic itinerary art', () => {

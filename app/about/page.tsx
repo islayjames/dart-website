@@ -126,7 +126,7 @@ export default function AboutPage() {
                 style={{ position: 'relative', aspectRatio: '3 / 4' }}
               >
                 <NextImage
-                  src="/images/about-portrait.png"
+                  src="/images/about-portrait-planner.png"
                   alt="HeyDart founders with Dart the fox in a colorful, invented park promenade"
                   fill
                   style={{ objectFit: 'cover' }}
