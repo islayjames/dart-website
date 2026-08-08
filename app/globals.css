@@ -661,15 +661,16 @@ body {
 
 /* ============= Hero image frame (iteration 02) ============= */
 .hero-image-frame {
+  aspect-ratio: 16 / 9;
   border-radius: var(--r-xl);
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(251,243,223,0.16);
   background: var(--twilight-deep);
-  max-width: 520px;
+  max-width: 680px;
   margin-left: auto;
 }
 @media (max-width: 880px) { .hero-image-frame { max-width: 100%; margin-left: 0; } }
-.hero-image-frame img { display: block; width: 100%; height: auto; }
+.hero-image-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* ============= Illustration frames (How it works) ============= */
 .illo-frame { border-radius: var(--r-lg); overflow: hidden; background: var(--bg-2); border: 1px solid var(--rule); max-width: 520px; }

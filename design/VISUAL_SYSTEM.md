@@ -28,9 +28,13 @@ Every Dart appearance must retain:
 - dark bare paws and feet;
 - tall pointed ears and slim upright proportions;
 - exactly one slate-blue crossbody satchel with one strap, flap, and button;
-- a locked personal-planner kit carried inside the satchel: the top third of a small accordion-folded pale-aqua map and one short marigold pencil. In every full-body illustration or animation, both must visibly protrude together from the opening of the existing satchel while the satchel front stays plain. The folded map uses only vague lagoon path lines and three colored dots—never a framed card, badge, label, or recognizable park layout. Keep the contents sparse and subordinate to Dart's silhouette.
+- a locked personal-planner kit carried inside the satchel: the top third of a small accordion-folded pale-aqua map and one short marigold pencil. In every full-body illustration or animation, the satchel flap must be visibly lifted a little, a narrow dark interior opening must be visible beneath it, and both items must emerge from that interior—not from behind a closed bag and never from the bag front. The folded map uses only vague lagoon path lines and three colored dots—never a framed card, badge, label, or recognizable park layout. Keep the opening, contents, and props sparse and subordinate to Dart's silhouette.
 
 No shirts, shoes, scarves, extra bags, straps, tails, limbs, duplicate foxes, or accessories beyond the locked planner kit. The planner pieces must never contain words, numbers, attraction icons, mouse-ear markers, recognizable park-map geometry, branded tickets, or copied interface elements.
+
+### Homepage hero composition
+
+The homepage hero uses a wide, shallow landscape illustration (16:9 source; approximately 3:2 or wider rendered frame), not a portrait character card. Keep Dart fully readable within the landscape scene, with safe lateral breathing room and the open satchel construction visible. On mobile the same source may crop toward portrait, but Dart's ears, face, lifted flap, interior gap, folded map, and pencil must remain inside the crop.
 
 ## Approved park cues
 
