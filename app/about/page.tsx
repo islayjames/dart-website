@@ -126,8 +126,8 @@ export default function AboutPage() {
                 style={{ position: 'relative', aspectRatio: '3 / 4' }}
               >
                 <NextImage
-                  src="/images/about-portrait.png"
-                  alt="Founders portrait — husband and wife illustrated in watercolor"
+                  src="/images/about-portrait-folded-map.png"
+                  alt="HeyDart founders with Dart the fox in a colorful, invented park promenade"
                   fill
                   style={{ objectFit: 'cover' }}
                   sizes="(max-width: 768px) 100vw, 50vw"

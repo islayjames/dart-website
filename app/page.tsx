@@ -58,8 +58,8 @@ export default function HomePage() {
             <div className="hero-image-col">
               <div className="hero-image-frame">
                 <NextImage
-                  src="/images/home-hero.png"
-                  alt="Dart the fox gazing up at a castle at dusk"
+                  src="/images/home-hero-folded-map.png"
+                  alt="Dart the fox in a colorful, invented park promenade beneath striped canopies and lanterns"
                   width={520}
                   height={650}
                   style={{ width: '100%', height: 'auto', display: 'block' }}
@@ -188,7 +188,7 @@ export default function HomePage() {
               <div className="rec-card-head">
                 <div className="rec-card-avatar">
                   <NextImage
-                    src="/images/dart-thinking.png"
+                    src="/images/dart-thinking-folded-map.png"
                     alt="Dart the fox"
                     width={56}
                     height={56}

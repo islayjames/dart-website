@@ -1,32 +1,32 @@
 @import "tailwindcss";
 
-/* heydart.com — Storybook Nightfall (light-mode default) design tokens */
+/* heydart.com — Whimsical Park Day (light-mode default) design tokens */
 :root {
   /* ---- Light mode (default) ---- */
-  --bg: #fbf3df;            /* warm buttercream — page background */
-  --bg-2: #f5e7c1;          /* lifted buttercream */
-  --paper: #ffffff;         /* card surface on cream */
-  --paper-2: #fffaee;       /* card hover */
-  --ink: #1f1b3a;           /* primary text — deep ink with violet warmth */
-  --ink-2: #4d4763;         /* secondary text */
-  --ink-3: #7a7390;         /* muted */
-  --rule: rgba(31, 27, 58, 0.12);
-  --rule-strong: rgba(31, 27, 58, 0.22);
+  --bg: #e7f5f1;            /* pale aqua — page background */
+  --bg-2: #d6eee9;          /* lifted aqua */
+  --paper: #ffffff;         /* clean card surface */
+  --paper-2: #f4fbf9;       /* card hover */
+  --ink: #12343b;           /* deep lagoon */
+  --ink-2: #365f64;         /* secondary text */
+  --ink-3: #4f7074;         /* muted, AA on pale aqua */
+  --rule: rgba(18, 52, 59, 0.12);
+  --rule-strong: rgba(18, 52, 59, 0.22);
 
   /* ---- Accents ---- */
-  --brick: #c8362a;         /* primary CTA — theme-park marquee red */
-  --brick-deep: #a52a20;
-  --twilight: #2a2562;      /* dark accent panels — softer than cobalt */
-  --twilight-deep: #1c184a;
-  --magenta: #c1378a;       /* punctuation accent (deeper for cream bg) */
-  --teal: #2c8a82;          /* success / dining (deeper for cream bg) */
-  --gold: #c88a1c;           /* deep amber — vintage poster, accents on cream */
-  --gold-deep: #a07014;
-  --rust: #b96a3c;           /* fox fur tone */
+  --brick: #d84a35;         /* sunset coral — primary CTA */
+  --brick-deep: #b93425;
+  --twilight: #12343b;      /* deep lagoon panels */
+  --twilight-deep: #0b262c;
+  --magenta: #b93678;       /* restrained bougainvillea accent */
+  --teal: #177b72;          /* palm-free park teal */
+  --gold: #e3a218;          /* marigold decorative accent */
+  --gold-deep: #a56600;
+  --rust: #c94f32;          /* fox-fur accent */
 
-  /* ---- Cream-on-dark (for twilight panels) ---- */
-  --cream: #fbf3df;
-  --cream-2: #ede0bd;
+  /* ---- Aqua-on-dark (legacy token names retained for compatibility) ---- */
+  --cream: #e7f5f1;
+  --cream-2: #cbe3de;
 
   /* ---- Backwards-compat aliases used across the codebase ---- */
   --cream-bg: var(--bg);
@@ -47,9 +47,9 @@
   --r-pill: 999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(31,27,58,0.08), 0 0 0 1px rgba(31,27,58,0.04);
-  --shadow-md: 0 12px 32px rgba(31,27,58,0.12), 0 2px 4px rgba(31,27,58,0.06);
-  --shadow-glow: 0 0 0 1px rgba(200,54,42,0.35), 0 8px 28px rgba(200,54,42,0.18);
+  --shadow-sm: 0 1px 2px rgba(18,52,59,0.08), 0 0 0 1px rgba(18,52,59,0.04);
+  --shadow-md: 0 12px 32px rgba(18,52,59,0.12), 0 2px 4px rgba(18,52,59,0.06);
+  --shadow-glow: 0 0 0 1px rgba(216,74,53,0.35), 0 8px 28px rgba(216,74,53,0.18);
 }
 
 * { box-sizing: border-box; }
@@ -223,7 +223,7 @@ img { max-width: 100%; display: block; }
 .nav {
   position: sticky; top: 0; z-index: 50;
   backdrop-filter: blur(12px);
-  background: rgba(251, 243, 223, 0.82);
+  background: rgba(231, 245, 241, 0.88);
   border-bottom: 1px solid var(--rule);
 }
 .nav-inner {
@@ -254,7 +254,7 @@ img { max-width: 100%; display: block; }
 
 /* ============= Tags ============= */
 .tag { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: var(--r-pill); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.tag-gold { background: var(--gold); color: #fff; }
+.tag-gold { background: var(--gold); color: var(--ink); }
 .tag-magenta { background: var(--magenta); color: #fff; }
 .tag-teal { background: var(--teal); color: #fff; }
 .tag-brick { background: var(--brick); color: #fff; }
@@ -353,7 +353,7 @@ img { max-width: 100%; display: block; }
   max-width: 100%;
   border-radius: var(--r-lg);
   overflow: hidden;
-  background: linear-gradient(135deg, #f5e7c1, #ede0bd);
+  background: linear-gradient(135deg, var(--bg-2), var(--paper-2));
   border: 1px dashed var(--rule-strong);
 }
 .section-twilight .art-frame { border-color: rgba(251, 243, 223, 0.28); background: linear-gradient(135deg, var(--twilight-deep), var(--twilight)); }
@@ -377,7 +377,7 @@ img { max-width: 100%; display: block; }
   .hero { padding: 32px 0 40px; }
   /* Image first on mobile — pull it above the headline */
   .hero-image-col { order: -1; }
-  /* Wider, shallower crop so the castle is visible and the CTA stays above the fold */
+  /* Wider, shallower crop keeps the park-day action visible and the CTA above the fold */
   .hero-art { aspect-ratio: 16 / 9; border-radius: var(--r-lg) var(--r-lg) 0 0; border-bottom: none; }
   /* Push text down a touch so it reads as caption-below-image */
   .hero-text-col { padding-top: 22px; }
@@ -507,22 +507,22 @@ img { max-width: 100%; display: block; }
 .step h3 { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 26px; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 10px; color: var(--twilight); }
 @media (max-width: 720px) { .step { grid-template-columns: 1fr; } }
 
-/* ============= Background — sparse hand-drawn star/sparkle motif on cream ============= */
+/* ============= Background — sparse hand-drawn park-confetti motif on aqua ============= */
 body {
   background-color: var(--bg);
   background-image:
-    radial-gradient(circle at 8% 12%, rgba(200,138,28,0.40) 0 1.4px, transparent 1.6px),
-    radial-gradient(circle at 22% 38%, rgba(42,37,98,0.20) 0 1px, transparent 1.2px),
-    radial-gradient(circle at 36% 8%, rgba(200,138,28,0.35) 0 1px, transparent 1.2px),
-    radial-gradient(circle at 56% 24%, rgba(193,55,138,0.22) 0 1.2px, transparent 1.4px),
-    radial-gradient(circle at 72% 42%, rgba(193,55,138,0.28) 0 1.2px, transparent 1.4px),
-    radial-gradient(circle at 88% 16%, rgba(200,138,28,0.36) 0 1.2px, transparent 1.4px),
-    radial-gradient(circle at 14% 68%, rgba(42,37,98,0.18) 0 1px, transparent 1.2px),
-    radial-gradient(circle at 32% 88%, rgba(200,138,28,0.36) 0 1.4px, transparent 1.6px),
-    radial-gradient(circle at 64% 76%, rgba(42,37,98,0.18) 0 1.2px, transparent 1.4px),
-    radial-gradient(circle at 82% 92%, rgba(200,138,28,0.32) 0 1px, transparent 1.2px),
-    linear-gradient(45deg, transparent 49.5%, rgba(200,138,28,0.10) 49.8%, rgba(200,138,28,0.10) 50.2%, transparent 50.5%),
-    linear-gradient(135deg, transparent 49.5%, rgba(200,138,28,0.10) 49.8%, rgba(200,138,28,0.10) 50.2%, transparent 50.5%);
+    radial-gradient(circle at 8% 12%, rgba(227,162,24,0.42) 0 1.4px, transparent 1.6px),
+    radial-gradient(circle at 22% 38%, rgba(23,123,114,0.22) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 36% 8%, rgba(216,74,53,0.32) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 56% 24%, rgba(185,54,120,0.22) 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 72% 42%, rgba(23,123,114,0.24) 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 88% 16%, rgba(227,162,24,0.36) 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 14% 68%, rgba(216,74,53,0.20) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 32% 88%, rgba(227,162,24,0.36) 0 1.4px, transparent 1.6px),
+    radial-gradient(circle at 64% 76%, rgba(23,123,114,0.20) 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 82% 92%, rgba(185,54,120,0.26) 0 1px, transparent 1.2px),
+    linear-gradient(45deg, transparent 49.5%, rgba(227,162,24,0.10) 49.8%, rgba(227,162,24,0.10) 50.2%, transparent 50.5%),
+    linear-gradient(135deg, transparent 49.5%, rgba(216,74,53,0.08) 49.8%, rgba(216,74,53,0.08) 50.2%, transparent 50.5%);
   background-size:
     520px 520px, 520px 520px, 520px 520px, 520px 520px, 520px 520px,
     520px 520px, 520px 520px, 520px 520px, 520px 520px, 520px 520px,
@@ -656,7 +656,7 @@ body {
 }
 
 /* ============= Starlit hero background ============= */
-.hero.starlit { background: linear-gradient(160deg, var(--twilight-deep) 0%, var(--twilight) 60%, #3d2f6e 100%); }
+.hero.starlit { background: linear-gradient(160deg, var(--twilight-deep) 0%, var(--twilight) 58%, #1b5f66 100%); }
 .hero.starlit::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(251,243,223,0.6) 1px, transparent 1px); background-size: 60px 60px; background-position: 0 0, 30px 30px; opacity: 0.15; pointer-events: none; }
 
 /* ============= Hero image frame (iteration 02) ============= */
@@ -699,7 +699,7 @@ body {
 
 .connect-card-head { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
 .connect-card-title { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 22px; color: var(--twilight); letter-spacing: -0.01em; }
-.connect-card.featured .connect-card-title { font-size: 28px; color: #1a5e58; }
+.connect-card.featured .connect-card-title { font-size: 28px; color: var(--teal); }
 .connect-card-sub { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
 
 .connect-card-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 14.5px; color: var(--ink-2); }
