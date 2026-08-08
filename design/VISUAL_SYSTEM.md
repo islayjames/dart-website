@@ -28,7 +28,7 @@ Every Dart appearance must retain:
 - dark bare paws and feet;
 - tall pointed ears and slim upright proportions;
 - exactly one slate-blue crossbody satchel with one strap, flap, and button;
-- a locked personal-planner kit carried in the satchel: one small folded pale-aqua route card with an abstract lagoon path and three colored dots, two rounded itinerary tabs in coral and marigold, and one short marigold pencil. In every full-body illustration or animation, show at least one unmistakable member of that kit peeking from the existing satchel opening—prefer the route card, optionally joined by a tab or pencil. Other pieces may remain inside when the pose or crop requires restraint. The kit must remain sparse, nonlinguistic, and subordinate to Dart's silhouette.
+- a locked personal-planner kit carried inside the satchel: the top third of a small accordion-folded pale-aqua map and one short marigold pencil. In every full-body illustration or animation, both must visibly protrude together from the opening of the existing satchel while the satchel front stays plain. The folded map uses only vague lagoon path lines and three colored dots—never a framed card, badge, label, or recognizable park layout. Keep the contents sparse and subordinate to Dart's silhouette.
 
 No shirts, shoes, scarves, extra bags, straps, tails, limbs, duplicate foxes, or accessories beyond the locked planner kit. The planner pieces must never contain words, numbers, attraction icons, mouse-ear markers, recognizable park-map geometry, branded tickets, or copied interface elements.
 
