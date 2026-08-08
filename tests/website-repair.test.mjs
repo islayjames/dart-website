@@ -115,6 +115,7 @@ test('signup source normalization preserves owned sources and bounds unknown inp
       'character-dining-guide',
       'hardest-reservations-guide',
       'guide-lightning-lane-worth-it',
+      'fantasmic-dining-package-guide',
     ]),
   ];
   assert.ok(ownedSources.length >= 13);
