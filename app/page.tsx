@@ -58,7 +58,7 @@ export default function HomePage() {
             <div className="hero-image-col">
               <div className="hero-image-frame">
                 <NextImage
-                  src="/images/home-hero-vertical-trifold-landscape.png"
+                  src="/images/home-hero-left-side-trifold-landscape.png"
                   alt="Dart the fox in a colorful, invented park promenade beneath striped canopies and lanterns"
                   width={1536}
                   height={864}
