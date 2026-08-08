@@ -34,7 +34,7 @@ No shirts, shoes, scarves, extra bags, straps, tails, limbs, duplicate foxes, or
 
 ### Homepage hero composition
 
-The homepage hero uses a wide, shallow landscape illustration (16:9 source; approximately 3:2 or wider rendered frame), not a portrait character card. Keep Dart fully readable within the landscape scene, with safe lateral breathing room and the open satchel construction visible. On mobile the same source may crop toward portrait, but Dart's ears, face, lifted flap, interior gap, folded map, and pencil must remain inside the crop.
+The homepage hero uses a wide, shallow landscape illustration (16:9 source; approximately 3:2 or wider rendered frame), not a portrait character card. Keep Dart fully readable within the landscape scene, with safe lateral breathing room and the recessed side pocket, folded map, and pencil visible. On mobile the same source may crop toward portrait, but Dart's ears, face, side pocket, folded map, and pencil must remain inside the crop.
 
 ## Approved park cues
 
