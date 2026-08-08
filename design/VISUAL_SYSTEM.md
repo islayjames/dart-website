@@ -1,6 +1,6 @@
 # HeyDart whimsical visual system
 
-Status: implementation direction approved by Lindsay Simmons on 2026-08-07. Public deployment and Sanity publication remain subject to James approval.
+Status: implementation direction approved by Lindsay Simmons on 2026-08-07. Website release approved by Lindsay on 2026-08-08 under the authority James delegated to her. Future public deployment and Sanity publication may be approved by either James or Lindsay.
 
 ## Promise
 
@@ -58,4 +58,4 @@ No shirts, shoes, scarves, extra bags, straps, tails, limbs, duplicate foxes, or
 3. Reject character drift, anatomy failures, extra accessories, pseudo-text, tropical cues, or accidental IP.
 4. Preserve full-frame context and inspect actual desktop/mobile crops.
 5. Keep source and cropped production files separate.
-6. Do not deploy website or publish Sanity assets without the applicable release approval.
+6. Do not deploy website or publish Sanity assets without the applicable release approval from James or Lindsay.
