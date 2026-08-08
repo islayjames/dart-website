@@ -40,7 +40,7 @@ test('production illustration assets satisfy the intended pixel contracts', () =
   for (const name of square) assert.deepEqual(pngDimensions(`public/images/${name}`), [1024, 1024], name);
   assert.deepEqual(pngDimensions('public/images/home-hero.png'), [1024, 1280]);
   assert.deepEqual(pngDimensions('public/images/about-portrait.png'), [832, 1248]);
-  assert.deepEqual(pngDimensions('public/images/home-hero-left-side-trifold-landscape.png'), [1536, 864]);
+  assert.deepEqual(pngDimensions('public/images/home-hero-side-pocket-trifold-landscape.png'), [1536, 864]);
   assert.deepEqual(pngDimensions('public/images/about-portrait-folded-map.png'), [832, 1248]);
   for (const name of ['dart-thinking-folded-map.png', 'hiw-2-folded-map.png', 'hiw-4-folded-map.png']) {
     assert.deepEqual(pngDimensions(`public/images/${name}`), [1024, 1024], name);
@@ -49,7 +49,7 @@ test('production illustration assets satisfy the intended pixel contracts', () =
 
 test('rendered routes use cache-busting folded-map asset filenames', () => {
   const source = [read('app/page.tsx'), read('app/how-it-works/page.tsx'), read('app/about/page.tsx')].join('\n');
-  for (const name of ['home-hero-left-side-trifold-landscape.png', 'dart-thinking-folded-map.png', 'hiw-2-folded-map.png', 'hiw-4-folded-map.png', 'about-portrait-folded-map.png']) {
+  for (const name of ['home-hero-side-pocket-trifold-landscape.png', 'dart-thinking-folded-map.png', 'hiw-2-folded-map.png', 'hiw-4-folded-map.png', 'about-portrait-folded-map.png']) {
     assert.ok(source.includes(name), `missing folded-map asset reference: ${name}`);
   }
 });
@@ -74,8 +74,8 @@ test('visual system source-of-truth bans tropical shorthand and recognizable par
 
 test('every full Dart asset uses the locked nonlinguistic folded-map planner kit', () => {
   const spec = read('design/VISUAL_SYSTEM.md');
-  for (const required of ['personal-planner kit', 'tri-fold park map standing vertically', 'short marigold pencil', 'front flap must hang over the bag front', 'viewer-right', 'main bag cavity at viewer-left', 'emerge together through that left opening', 'sit visibly in front of their lower portions', 'Nothing may cross, pierce, touch', 'side pocket, mini-pouch, sleeve, holder, bracket', 'looping path', 'abstract lagoon shape', 'three clustered colored nodes', 'wide, shallow landscape illustration']) {
-    assert.ok(spec.includes(required), `missing left-side satchel rule: ${required}`);
+  for (const required of ['personal-planner kit', 'shallow side pocket attached to the lower viewer-left side panel', 'tri-fold park map standing vertically', 'short marigold pencil', 'main satchel top and large front flap stay clean', 'dark open mouth', 'stitched outer edge', 'front pocket wall', 'emerge together through that pocket mouth', 'sit visibly in front of and hide their lower portions', 'Nothing may float above the pocket', 'Never add a second pocket', 'looping path', 'abstract lagoon shape', 'three clustered colored nodes', 'wide, shallow landscape illustration']) {
+    assert.ok(spec.includes(required), `missing side-pocket planner rule: ${required}`);
   }
   for (const forbidden of ['continents, a world map, streets, labels, attraction icons', 'recognizable park-map geometry', 'branded tickets', 'copied interface elements']) {
     assert.ok(spec.includes(forbidden), `missing tri-fold exclusion: ${forbidden}`);
