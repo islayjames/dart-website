@@ -188,7 +188,7 @@ export default function HomePage() {
               <div className="rec-card-head">
                 <div className="rec-card-avatar">
                   <NextImage
-                    src="/images/dart-thinking-folded-map.png"
+                    src="/images/dart-thinking-side-pocket.png"
                     alt="Dart the fox"
                     width={56}
                     height={56}
