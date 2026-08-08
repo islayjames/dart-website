@@ -59,7 +59,7 @@ export default function HomePage() {
               <div className="hero-image-frame">
                 <NextImage
                   src="/images/home-hero.png"
-                  alt="Dart the fox gazing up at a castle at dusk"
+                  alt="Dart the fox in a colorful, invented park promenade beneath striped canopies and lanterns"
                   width={520}
                   height={650}
                   style={{ width: '100%', height: 'auto', display: 'block' }}

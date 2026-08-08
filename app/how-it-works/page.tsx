@@ -91,7 +91,7 @@ const STEPS = [
     n: '02',
     title: 'Add your plans and commitments.',
     body: "Dining reservations, meet-ups, naps, breaks, hotel time, stroller or ECV needs, shows, parades, fireworks — anything your family needs to protect. Dart shapes the day around them.",
-    img: { src: '/images/hiw-2.png', alt: 'Illustration of a Disney itinerary with Dart the fox', ratio: '16 / 9' },
+    img: { src: '/images/hiw-2.png', alt: "Dart the fox thinking through a family's plans in a colorful park promenade", ratio: '16 / 9', position: 'center 18%' },
   },
   {
     n: '03',
@@ -103,7 +103,7 @@ const STEPS = [
     n: '04',
     title: 'Dart connects to live Disney park data.',
     body: 'Lightning Lane availability, standby waits, dining reservation alerts, walk-up waitlist timing, mobile order wait times, entertainment schedules, park hours, your itinerary where available.',
-    img: { src: '/images/hiw-4.png', alt: 'Illustration of live park data signals flowing to Dart', ratio: '16 / 9' },
+    img: { src: '/images/hiw-4.png', alt: 'Dart the fox moving through a colorful park promenade as live conditions change', ratio: '16 / 9', position: 'center 18%' },
   },
   {
     n: '05',
@@ -174,7 +174,7 @@ export default function HowItWorksPage() {
                         src={step.img.src}
                         alt={step.img.alt}
                         fill
-                        style={{ objectFit: 'cover' }}
+                        style={{ objectFit: 'cover', objectPosition: step.img.position }}
                         sizes="(max-width: 880px) 100vw, 720px"
                       />
                     </div>
