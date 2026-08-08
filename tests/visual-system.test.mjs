@@ -55,7 +55,17 @@ test('visible illustration descriptions no longer claim castles or old generic i
 
 test('visual system source-of-truth bans tropical shorthand and recognizable park IP', () => {
   const spec = read('design/VISUAL_SYSTEM.md');
-  for (const phrase of ['palms', 'hibiscus', 'Ferris wheels', 'copied park architecture', 'one slate-blue crossbody satchel']) {
-    assert.match(spec, new RegExp(phrase, 'i'));
+  for (const required of ['palms, tropical leaves, hibiscus', 'dense flowers, beaches, water', 'castles, Ferris wheels', 'copied park architecture', 'Disney typography/logos', 'readable generated text, pseudo-text']) {
+    assert.ok(spec.includes(required), `missing visual-system rule: ${required}`);
+  }
+});
+
+test('every full Dart asset uses the locked nonlinguistic personal-planner kit', () => {
+  const spec = read('design/VISUAL_SYSTEM.md');
+  for (const required of ['personal-planner kit', 'pale-aqua route card', 'abstract lagoon path', 'three colored dots', 'itinerary tabs in coral and marigold', 'short marigold pencil']) {
+    assert.ok(spec.includes(required), `missing planner-kit rule: ${required}`);
+  }
+  for (const forbidden of ['recognizable park-map geometry', 'branded tickets', 'copied interface elements']) {
+    assert.ok(spec.includes(forbidden), `missing planner-kit exclusion: ${forbidden}`);
   }
 });
