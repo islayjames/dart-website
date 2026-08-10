@@ -31,6 +31,7 @@ const OWNED_SIGNUP_SOURCES = new Set([
   'hardest-reservations-guide',
   'guide-lightning-lane-worth-it',
   'fantasmic-dining-package-guide',
+  'park-day-order-guide',
 ]);
 
 function normalizeSignupSource(source?: string): string {
