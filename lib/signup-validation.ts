@@ -32,6 +32,7 @@ const OWNED_SIGNUP_SOURCES = new Set([
   'guide-lightning-lane-worth-it',
   'fantasmic-dining-package-guide',
   'park-day-order-guide',
+  'disney-world-planning-apps-guide',
 ]);
 
 function normalizeSignupSource(source?: string): string {
