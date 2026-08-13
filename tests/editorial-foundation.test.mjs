@@ -87,19 +87,24 @@ test('Studio Open preview creates a short-lived Sanity token instead of linking 
   assert.doesNotMatch(configSource, /\/guides\/\$\{document\.slug\.current\}/);
 });
 
-test('Studio document loading survives unavailable Open preview dependencies', async () => {
+test('Studio document loading falls back to public draft mode when protected Preview access is unavailable', async () => {
   assert.equal(typeof previewHelpers.resolveSanityGuidePreviewUrl, 'function');
 
   const fetchFailure = await previewHelpers.resolveSanityGuidePreviewUrl({
-    origin: 'https://preview.example.com',
+    origin: 'https://protected-preview.example.com',
+    fallbackOrigin: 'https://heydart.com',
     slug: 'best-disney-world-planning-apps-families',
     fetchVercelProtectionBypass: async () => { throw new Error('forbidden'); },
-    createSecret: async () => ({ secret: 'unused' }),
+    createSecret: async () => ({ secret: 'generated-secret' }),
   });
-  assert.equal(fetchFailure, undefined);
+  const fallbackUrl = new URL(fetchFailure);
+  assert.equal(fallbackUrl.origin, 'https://heydart.com');
+  assert.equal(fallbackUrl.searchParams.get('sanity-preview-secret'), 'generated-secret');
+  assert.equal(fallbackUrl.searchParams.has('x-vercel-protection-bypass'), false);
 
   const secretFailure = await previewHelpers.resolveSanityGuidePreviewUrl({
-    origin: 'https://preview.example.com',
+    origin: 'https://protected-preview.example.com',
+    fallbackOrigin: 'https://heydart.com',
     slug: 'best-disney-world-planning-apps-families',
     fetchVercelProtectionBypass: async () => 'vercel-bypass',
     createSecret: async () => { throw new Error('forbidden'); },

@@ -19,6 +19,7 @@ async function resolveGuideProductionUrl(_previousUrl: string | undefined, conte
   const client = getClient({ apiVersion: '2025-02-19' });
   return resolveSanityGuidePreviewUrl({
     origin: previewOrigin,
+    fallbackOrigin: 'https://heydart.com',
     slug,
     fetchVercelProtectionBypass: () => client.fetch<string | null>(
       '*[_id == "sanity-preview-url-secret.vercel-protection-bypass" && _type == "sanity.vercelProtectionBypass"][0].secret',
