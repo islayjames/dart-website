@@ -2,7 +2,7 @@ import { createPreviewSecret } from '@sanity/preview-url-secret/create-secret';
 import { defineConfig, type ResolveProductionUrlContext } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
-import { buildSanityGuidePreviewUrl } from './lib/sanity/preview';
+import { resolveSanityGuidePreviewUrl } from './lib/sanity/preview';
 import { schemaTypes } from './sanity/schemaTypes';
 import { apiVersion, dataset, projectId } from './sanity/env';
 
@@ -17,19 +17,19 @@ async function resolveGuideProductionUrl(_previousUrl: string | undefined, conte
   if (!previewOrigin || typeof slug !== 'string') return undefined;
 
   const client = getClient({ apiVersion: '2025-02-19' });
-  const vercelProtectionBypass = await client.fetch<string | null>(
-    '*[_id == "sanity-preview-url-secret.vercel-protection-bypass" && _type == "sanity.vercelProtectionBypass"][0].secret',
-  );
-  if (!vercelProtectionBypass) return undefined;
-
-  const { secret } = await createPreviewSecret(
-    client,
-    'sanity.studio',
-    'https://heydart.com/studio',
-    currentUser?.id,
-  );
-
-  return buildSanityGuidePreviewUrl({ origin: previewOrigin, secret, slug, vercelProtectionBypass });
+  return resolveSanityGuidePreviewUrl({
+    origin: previewOrigin,
+    slug,
+    fetchVercelProtectionBypass: () => client.fetch<string | null>(
+      '*[_id == "sanity-preview-url-secret.vercel-protection-bypass" && _type == "sanity.vercelProtectionBypass"][0].secret',
+    ),
+    createSecret: () => createPreviewSecret(
+      client,
+      'sanity.studio',
+      'https://heydart.com/studio',
+      currentUser?.id,
+    ),
+  });
 }
 
 export default defineConfig({

@@ -82,9 +82,29 @@ test('Studio Open preview creates a short-lived Sanity token instead of linking 
   const configSource = readFileSync(new URL('../sanity.config.ts', import.meta.url), 'utf8');
   assert.match(configSource, /resolveGuideProductionUrl/);
   assert.match(configSource, /createPreviewSecret/);
-  assert.match(configSource, /buildSanityGuidePreviewUrl/);
+  assert.match(configSource, /resolveSanityGuidePreviewUrl/);
   assert.match(configSource, /sanity-preview-url-secret\.vercel-protection-bypass/);
   assert.doesNotMatch(configSource, /\/guides\/\$\{document\.slug\.current\}/);
+});
+
+test('Studio document loading survives unavailable Open preview dependencies', async () => {
+  assert.equal(typeof previewHelpers.resolveSanityGuidePreviewUrl, 'function');
+
+  const fetchFailure = await previewHelpers.resolveSanityGuidePreviewUrl({
+    origin: 'https://preview.example.com',
+    slug: 'best-disney-world-planning-apps-families',
+    fetchVercelProtectionBypass: async () => { throw new Error('forbidden'); },
+    createSecret: async () => ({ secret: 'unused' }),
+  });
+  assert.equal(fetchFailure, undefined);
+
+  const secretFailure = await previewHelpers.resolveSanityGuidePreviewUrl({
+    origin: 'https://preview.example.com',
+    slug: 'best-disney-world-planning-apps-families',
+    fetchVercelProtectionBypass: async () => 'vercel-bypass',
+    createSecret: async () => { throw new Error('forbidden'); },
+  });
+  assert.equal(secretFailure, undefined);
 });
 
 test('guide metadata uses SEO overrides, canonical URL, and noindex', () => {
