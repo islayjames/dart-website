@@ -28,23 +28,41 @@ export function buildSanityGuidePreviewUrl({ origin, secret, slug, vercelProtect
 
 export async function resolveSanityGuidePreviewUrl({
   origin,
+  fallbackOrigin,
   slug,
   fetchVercelProtectionBypass,
   createSecret,
 }: {
   origin: string | undefined;
+  fallbackOrigin?: string;
   slug: string | undefined;
   fetchVercelProtectionBypass: () => Promise<string | null>;
   createSecret: () => Promise<{ secret: string }>;
 }) {
   if (!origin || !slug || !guidePreviewPath(slug)) return undefined;
 
+  let secret: string;
   try {
-    const vercelProtectionBypass = await fetchVercelProtectionBypass();
-    if (!vercelProtectionBypass) return undefined;
-    const { secret } = await createSecret();
-    return buildSanityGuidePreviewUrl({ origin, secret, slug, vercelProtectionBypass });
+    ({ secret } = await createSecret());
   } catch {
     return undefined;
   }
+
+  try {
+    const vercelProtectionBypass = await fetchVercelProtectionBypass();
+    if (vercelProtectionBypass) {
+      return buildSanityGuidePreviewUrl({ origin, secret, slug, vercelProtectionBypass });
+    }
+  } catch {
+    // Reviewers may not be allowed to read the protected Preview bypass document.
+  }
+
+  if (!fallbackOrigin) return undefined;
+  const destination = guidePreviewPath(slug);
+  if (!destination) return undefined;
+  const previewUrl = new URL('/api/draft/enable', fallbackOrigin);
+  previewUrl.searchParams.set('sanity-preview-secret', secret);
+  previewUrl.searchParams.set('sanity-preview-pathname', destination);
+  previewUrl.searchParams.set('sanity-preview-perspective', 'drafts');
+  return previewUrl.toString();
 }
