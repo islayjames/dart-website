@@ -202,13 +202,17 @@ test('route-relevant help pages link every published guide without stuffing glob
   const lightning = read('app/lightning-lane-help/page.tsx');
   const dining = read('app/dining-mobile-order-help/page.tsx');
   const families = read('app/disney-world-with-kids/page.tsx');
+  const firstTime = read('app/first-time-disney-world/page.tsx');
   const nav = read('components/Nav.tsx');
   const footer = read('components/Footer.tsx');
 
   assert.match(lightning, /href="\/guides\/is-lightning-lane-worth-it-disney-world"/);
   assert.match(dining, /href="\/guides\/hardest-disney-world-dining-reservations"/);
   assert.match(dining, /href="\/guides\/walt-disney-world-character-dining-compared"/);
+  assert.match(dining, /href="\/guides\/disney-dining-reservation-sold-out"/);
+  assert.match(dining, /href="\/guides\/fantasmic-dining-package-worth-it"/);
   assert.match(families, /href="\/guides\/disney-world-toddler-nap-spots"/);
+  assert.match(firstTime, /href="\/guides\/which-disney-world-park-each-day"/);
   for (const globalChrome of [nav, footer]) {
     assert.doesNotMatch(globalChrome, /href="\/guides\//);
   }
