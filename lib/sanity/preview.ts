@@ -25,3 +25,26 @@ export function buildSanityGuidePreviewUrl({ origin, secret, slug, vercelProtect
   previewUrl.searchParams.set('x-vercel-set-bypass-cookie', 'true');
   return previewUrl.toString();
 }
+
+export async function resolveSanityGuidePreviewUrl({
+  origin,
+  slug,
+  fetchVercelProtectionBypass,
+  createSecret,
+}: {
+  origin: string | undefined;
+  slug: string | undefined;
+  fetchVercelProtectionBypass: () => Promise<string | null>;
+  createSecret: () => Promise<{ secret: string }>;
+}) {
+  if (!origin || !slug || !guidePreviewPath(slug)) return undefined;
+
+  try {
+    const vercelProtectionBypass = await fetchVercelProtectionBypass();
+    if (!vercelProtectionBypass) return undefined;
+    const { secret } = await createSecret();
+    return buildSanityGuidePreviewUrl({ origin, secret, slug, vercelProtectionBypass });
+  } catch {
+    return undefined;
+  }
+}
