@@ -116,16 +116,37 @@ test('guide metadata uses SEO overrides, canonical URL, and noindex', () => {
   const metadata = buildGuideMetadata({
     title: 'Guide title', slug: 'guide-title', summary: 'Summary', seoTitle: 'Search title',
     seoDescription: 'Search description', noindex: true,
+    publishedAt: '2026-07-10T12:00:00Z', updatedAt: '2026-07-11T13:00:00Z',
+    heroImage: { url: 'https://cdn.example/hero.jpg', alt: 'A family with Dart', width: 1536, height: 864 },
   });
   assert.equal(metadata.title, 'Search title');
   assert.equal(metadata.description, 'Search description');
   assert.equal(metadata.alternates.canonical, 'https://heydart.com/guides/guide-title');
   assert.deepEqual(metadata.robots, { index: false, follow: true });
+  assert.equal(metadata.openGraph.publishedTime, '2026-07-10T12:00:00Z');
+  assert.equal(metadata.openGraph.modifiedTime, '2026-07-11T13:00:00Z');
+  assert.deepEqual(metadata.openGraph.images, [{
+    url: 'https://cdn.example/hero.jpg', alt: 'A family with Dart', width: 1536, height: 864,
+  }]);
+  assert.deepEqual(metadata.twitter.images, metadata.openGraph.images);
 });
 
 test('guide hero projection preserves alt text and omits an unconfigured image object', () => {
   const querySource = readFileSync(new URL('../lib/sanity/queries.ts', import.meta.url), 'utf8');
-  assert.match(querySource, /"heroImage": select\(defined\(heroImage\.asset\) => \{"url": heroImage\.asset->url, "alt": heroImage\.alt\}\)/);
+  assert.match(querySource, /"heroImage": select\(defined\(heroImage\.asset\) => \{/);
+  assert.match(querySource, /"width": heroImage\.asset->metadata\.dimensions\.width/);
+  assert.match(querySource, /"height": heroImage\.asset->metadata\.dimensions\.height/);
+});
+
+test('guide hub overrides inherited homepage share metadata', () => {
+  const pageSource = readFileSync(new URL('../app/guides/page.tsx', import.meta.url), 'utf8');
+  assert.match(pageSource, /const url = 'https:\/\/heydart\.com\/guides'/);
+  assert.match(pageSource, /openGraph: \{ type: 'website', siteName: 'HeyDart', title, description, url, images: \[shareImage\] \}/);
+  assert.match(pageSource, /twitter: \{ card: 'summary_large_image', title, description, images: \[shareImage\] \}/);
+  assert.match(pageSource, /url: 'https:\/\/heydart\.com\/images\/guides-share-card\.png'/);
+  assert.match(pageSource, /width: 1536/);
+  assert.match(pageSource, /height: 864/);
+  assert.match(pageSource, /alt: 'Dart introducing Disney World guides for dining, park days, and Lightning Lane planning'/);
 });
 
 test('guide index cards render linked responsive hero images when configured', () => {

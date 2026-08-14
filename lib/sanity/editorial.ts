@@ -13,7 +13,8 @@ export type Guide = {
   _id?: string; title: string; slug: string; summary: string; category?: string;
   body?: unknown[]; publishedAt?: string; updatedAt?: string; noindex?: boolean;
   seoTitle?: string; seoDescription?: string; primaryQuestion?: string; directAnswer?: string;
-  authorName?: string; author?: { name: string }; reviewer?: { name: string }; heroImage?: { url: string; alt: string };
+  authorName?: string; author?: { name: string }; reviewer?: { name: string };
+  heroImage?: { url: string; alt: string; width?: number; height?: number };
   sources?: { title: string; url: string; publisher?: string }[];
   relatedGuides?: Pick<Guide, 'title' | 'slug' | 'summary'>[];
   cta?: { enabled?: boolean; label?: string; url?: string };
@@ -47,15 +48,26 @@ export function isSanityConfigured(env: Record<string, string | undefined> = pro
 }
 
 const SITE_URL = 'https://heydart.com';
-export function buildGuideMetadata(guide: Pick<Guide, 'title' | 'slug' | 'summary' | 'seoTitle' | 'seoDescription' | 'noindex' | 'heroImage'>) {
+export function buildGuideMetadata(guide: Pick<Guide, 'title' | 'slug' | 'summary' | 'seoTitle' | 'seoDescription' | 'noindex' | 'publishedAt' | 'updatedAt' | 'heroImage'>) {
   const title = guide.seoTitle || guide.title;
   const description = guide.seoDescription || guide.summary;
   const url = `${SITE_URL}/guides/${guide.slug}`;
+  const image = guide.heroImage ? {
+    url: guide.heroImage.url,
+    alt: guide.heroImage.alt,
+    width: guide.heroImage.width,
+    height: guide.heroImage.height,
+  } : undefined;
   return {
     title, description, alternates: { canonical: url },
     robots: guide.noindex ? { index: false, follow: true } : undefined,
-    openGraph: { type: 'article', title, description, url, images: guide.heroImage ? [{ url: guide.heroImage.url, alt: guide.heroImage.alt }] : undefined },
-    twitter: { card: 'summary_large_image', title, description, images: guide.heroImage ? [guide.heroImage.url] : undefined },
+    openGraph: {
+      type: 'article', title, description, url,
+      publishedTime: guide.publishedAt,
+      modifiedTime: guide.updatedAt || guide.publishedAt,
+      images: image ? [image] : undefined,
+    },
+    twitter: { card: 'summary_large_image', title, description, images: image ? [image] : undefined },
   };
 }
 

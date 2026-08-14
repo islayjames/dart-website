@@ -5,7 +5,23 @@ import PageHeader from '@/components/PageHeader';
 import { getGuides } from '@/lib/sanity/queries';
 import { categoryLabel } from '@/lib/sanity/editorial';
 
-export const metadata: Metadata = { title: 'Disney World guides', description: 'Practical, carefully reviewed Disney World planning guides from HeyDart.', alternates: { canonical: 'https://heydart.com/guides' } };
+const title = 'Disney World guides';
+const description = 'Practical, carefully reviewed Disney World planning guides from HeyDart.';
+const url = 'https://heydart.com/guides';
+const shareImage = {
+  url: 'https://heydart.com/images/guides-share-card.png',
+  width: 1536,
+  height: 864,
+  alt: 'Dart introducing Disney World guides for dining, park days, and Lightning Lane planning',
+};
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: { canonical: url },
+  openGraph: { type: 'website', siteName: 'HeyDart', title, description, url, images: [shareImage] },
+  twitter: { card: 'summary_large_image', title, description, images: [shareImage] },
+};
 
 export default async function GuidesPage() {
   const guides = await getGuides();
