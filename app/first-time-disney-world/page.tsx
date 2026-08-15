@@ -4,7 +4,7 @@ import PageHeader from '@/components/PageHeader';
 
 export const metadata: Metadata = {
   title: 'First Time at Disney World? Here\'s What to Know · Dart',
-  description: 'Lightning Lane, MDE, and what Dart actually handles — a clear guide for first-time Disney World visitors. Early access starts September 1, 2026.',
+  description: 'Lightning Lane, MDE, and what Dart actually handles — plus free dining alerts in September and the full Dart launch in October 2026.',
   alternates: { canonical: 'https://heydart.com/first-time-disney-world' },
   openGraph: { title: 'First Time at Disney World? Here\'s What to Know · Dart', url: 'https://heydart.com/first-time-disney-world', images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart' }] },
 };
@@ -65,15 +65,15 @@ export default function FirstTimeDisneyWorldPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Early access starts September 1</div>
+          <div className="eyebrow">Free dining alerts arrive in September</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Less planning. Less scanning. More memories.
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px' }}>
-            Join for August dining alerts, controlled September access, and the launch discount.
+            Start with free pre-trip dining alerts. Add a Dart pass for live trip support when the full assistant launches in October.
           </p>
           <Link className="btn btn-primary btn-large" href="/pricing?source=first-time-disney-world">
-            Join the waitlist & get the launch discount →
+            Get free alerts or join the Dart launch list →
           </Link>
         </div>
       </section>

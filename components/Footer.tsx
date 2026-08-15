@@ -17,7 +17,7 @@ export default function Footer() {
               <span>heydart</span>
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.55, maxWidth: 320, color: 'var(--cream-2)' }}>
-              A planning and in-park assistant for Walt Disney World guests. Pre-launch, 2026.
+              Free pre-trip dining alerts in September. Full planning and in-park support launches in October 2026.
             </p>
           </div>
 

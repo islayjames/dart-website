@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     default: 'HeyDart — Disney World Lightning Lane booking assistant',
   },
   description:
-    'HeyDart is a real-time Disney World assistant. Dining alerts open in August, early access starts September 1, and the full seasonal launch follows in October 2026.',
+    'Free pre-trip dining alerts arrive in September. Purchase a Dart pass for live Disney World trip support when the full assistant launches in October 2026.',
   keywords: [
     'Disney World',
     'Lightning Lane',
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: 'HeyDart',
     title: 'HeyDart — Disney World Lightning Lane booking assistant',
     description:
-      'HeyDart combines live park data with your plans and preferences to help run your Disney World day. Early access starts September 1, 2026.',
+      'Start with free pre-trip dining alerts in September. Full live trip support from Dart launches in October 2026.',
     url: 'https://heydart.com',
     images: [
       {
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'HeyDart — Disney World Lightning Lane booking assistant',
     description:
-      'HeyDart combines live park data with your plans and preferences. Early access starts September 1, 2026.',
+      'Free pre-trip dining alerts arrive in September. Full live trip support from Dart launches in October 2026.',
     images: ['/images/dart-logo-mark.png'],
   },
   alternates: {
@@ -95,64 +95,6 @@ const websiteSchema = {
     'HeyDart is a real-time Disney World assistant. Connects to live Lightning Lane availability, dining alerts, standby waits, and mobile order timing to help families plan and navigate their park day.',
 };
 
-const softwareAppSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'HeyDart',
-  url: 'https://heydart.com',
-  applicationCategory: 'TravelApplication',
-  operatingSystem: 'Web',
-  description:
-    'HeyDart is a real-time Disney World assistant that connects to live Lightning Lane availability, standby waits, dining alerts, and mobile order timing to help families decide what to do next. Early access starts September 1, 2026. Not affiliated with The Walt Disney Company.',
-  offers: [
-    {
-      '@type': 'Offer',
-      name: 'Day Pass — parties of 1–8',
-      description: 'One park day of real-time Lightning Lane, dining, and wait time guidance for parties of 1–8.',
-      price: '15',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-09-01',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Day Pass — parties of 9–20',
-      description: 'One park day of real-time Lightning Lane, dining, and wait time guidance for parties of 9–20.',
-      price: '25',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-09-01',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Trip Pass — parties of 1–8',
-      description: 'Up to 7 park days within any 15-day window. Real-time guidance throughout your whole trip.',
-      price: '45',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-09-01',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Trip Pass — parties of 9–20',
-      description: 'Up to 7 park days within any 15-day window for larger groups.',
-      price: '75',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-09-01',
-    },
-    {
-      '@type': 'Offer',
-      name: 'Annual Pass — parties of 1–8',
-      description: 'Unlimited park days for a full year of Disney World trips.',
-      price: '120',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/PreOrder',
-      validFrom: '2026-09-01',
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -178,10 +120,6 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
       </head>
       <body>

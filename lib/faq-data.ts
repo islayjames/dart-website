@@ -4,7 +4,7 @@
  * Used by FAQAccordion component and JSON-LD FAQPage schema.
  *
  * Vocabulary conventions:
- * - Dining alerts: August 2026; product early access: September 1; full launch: October 2026
+ * - Free pre-trip dining alerts: September 2026; full Dart launch: October 2026
  * - Discount: "the launch discount" (not a specific percentage)
  * - Beta reward: "a full year of Dart free"
  * - Plans and commitments (not "manual blocks")
@@ -45,7 +45,7 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'Is dining a separate add-on?',
-    'No. Every Dart pass includes dining-availability monitoring, walk-up waitlist timing, and mobile order timing. Note: Dart watches and alerts — you confirm the booking yourself in MDE. It\'s one assistant, one price.',
+    'Pre-trip dining alerts are free. Dart watches for availability and alerts you; you complete the reservation yourself in My Disney Experience. During the trip, dining awareness, walk-up waitlist timing, and mobile order timing are included with the live Dart support in every paid pass.',
   ],
   [
     'Does Dart book dining reservations for me?',
@@ -57,7 +57,7 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'What does Dart cost?',
-    'Day Pass is $15 for parties up to 8, or $25 for parties of 9–20. Trip Pass (up to 7 park days within a 15-day window) is $45 for parties up to 8, or $75 for parties of 9–20. Annual Pass is $120 for parties up to 8. Every pass includes the full Dart experience — no per-person fees, no add-ons. Waitlist members get the launch discount.',
+    'Pre-trip dining alerts are free. For live trip support, Day Pass is $15 for parties up to 8, or $25 for parties of 9–20. Trip Pass (up to 7 park days within a 15-day window) is $45 for parties up to 8, or $75 for parties of 9–20. Annual Pass is $120 for parties up to 8. Every paid pass includes the full Dart experience — no per-person fees or add-ons. Waitlist members get the launch discount.',
   ],
   [
     'Do I need a My Disney Experience account?',
@@ -77,7 +77,7 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'When does Dart launch?',
-    'Dining alerts open in August. Controlled early access to the full Dart assistant starts September 1, followed by the full seasonal launch in October 2026.',
+    'Free pre-trip dining alerts arrive in September 2026. The full Dart assistant launches in October 2026, when families can purchase live support for a park day, a full trip, or the year.',
   ],
   [
     'What is the beta program?',
@@ -93,7 +93,7 @@ export const FAQ_ENTRIES: [string, string][] = [
   ],
   [
     'Can I use Dart for free?',
-    "There is no free tier for the launched product. Approved beta participants get a full year of Dart free — in exchange for honest feedback in real park conditions. Everyone who applies for the beta receives early-access information regardless of selection.",
+    "Yes. Pre-trip dining alerts are free: Dart monitors availability and alerts you, then you complete the reservation. If you want Dart's live support during your trip, you purchase a Dart pass. Approved beta participants can also receive a full year of the full Dart experience free in exchange for honest feedback in real park conditions.",
   ],
   [
     "What if I'm a Disney cast member?",

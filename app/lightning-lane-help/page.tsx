@@ -27,7 +27,7 @@ export default function LightningLaneHelpPage() {
                 Not just another tool that <span style={{ color: 'var(--brick)' }}>finds openings.</span>
               </h2>
               <p className="lead" style={{ marginBottom: 16 }}>
-                Most tools show you what's available. Dart tells you what to do with it — based on your location, walking time, your family's priorities, and how the rest of the day is shaped.
+                Most tools show you what&apos;s available. Dart tells you what to do with it — based on your location, walking time, your family&apos;s priorities, and how the rest of the day is shaped.
               </p>
               <p style={{ color: 'var(--ink-2)', fontSize: 16, lineHeight: 1.6, marginBottom: 16 }}>
                 You purchase Multi Pass yourself in My Disney Experience, the same way you always have. Dart monitors availability and helps you decide when a selection makes sense for your specific day.
@@ -39,7 +39,7 @@ export default function LightningLaneHelpPage() {
                 ["Dart doesn't buy LLMP for you", 'You purchase Multi Pass in MDE. Dart helps with the decision, not the transaction.'],
                 ["Dart doesn't buy Individual Lightning Lanes", 'LLSP are a separate paid Disney product. You handle those in MDE; Dart can help move one you already own.'],
                 ["No guarantees on availability", "Lightning Lane availability is controlled by Disney. We watch fast and surface recommendations — we can't create openings."],
-                ["Walt Disney World only at launch", "Disneyland support isn't planned for the September 2026 early-access launch."],
+                ["Walt Disney World only at launch", "Disneyland support isn't planned for the October 2026 launch."],
               ].map(([title, body]) => (
                 <div key={title as string} className="card" style={{ marginBottom: 14, padding: 20 }}>
                   <h4 style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 17, marginBottom: 6, color: 'var(--gold)' }}>{title}</h4>
@@ -65,15 +65,15 @@ export default function LightningLaneHelpPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Early access starts September 1</div>
+          <div className="eyebrow">Full Dart launches in October</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Stop scanning. Start riding.
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px' }}>
-            Join for August dining alerts, controlled September access, and the launch discount.
+            Start with free dining alerts in September. Add a Dart pass for live Lightning Lane and trip support in October.
           </p>
           <Link className="btn btn-primary btn-large" href="/pricing?source=lightning-lane-help">
-            Join the waitlist & get the launch discount →
+            Get free alerts or join the Dart launch list →
           </Link>
         </div>
       </section>

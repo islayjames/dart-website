@@ -74,15 +74,15 @@ export default function DiningMobileOrderHelpPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Dining alerts open in August</div>
+          <div className="eyebrow">Free dining alerts arrive in September</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Hungry kids don&apos;t wait. Dart doesn&apos;t either.
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px' }}>
-            Join for August dining alerts, controlled September access, and the launch discount.
+            Dart monitors pre-trip reservation availability and alerts you when a table opens. You complete the reservation in MDE.
           </p>
-          <Link className="btn btn-primary btn-large" href="/pricing?source=dining-mobile-order-help">
-            Join the waitlist & get the launch discount →
+          <Link className="btn btn-primary btn-large" href="/pricing?source=dining-mobile-order-help&amp;interest=dining-alerts#signup">
+            Get free dining alerts →
           </Link>
         </div>
       </section>

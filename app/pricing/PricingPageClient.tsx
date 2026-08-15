@@ -12,13 +12,13 @@ const PRICES = {
 
 const QUICK_FAQS = [
   ['What does Trip Pass actually cover?', 'Up to 7 park days within a 15-day window. Cover your whole Disney vacation, not just one isolated day.'],
-  ['Is dining a separate tier?', 'No. Every pass includes dining reservation alerts, walk-up waitlist timing, and mobile order timing. It\'s all one Dart experience.'],
+  ['Are dining alerts really free?', 'Yes. Pre-trip dining alerts are free: Dart watches for availability and alerts you, then you complete the reservation. Purchase a pass only when you want Dart\'s live support during your trip.'],
   ['Do I need a My Disney Experience account?', 'Yes. Dart works alongside MDE and uses Friends & Family to understand your party and plans.'],
   ['Larger party sizes?', 'Day Pass and Trip Pass support up to 20 guests at a different price. Annual Pass is currently up to 8. Need more? Get in touch.'],
   ['Where does my discount get sent?', 'To the email you sign up with. We\'ll send your code in time for your first park day.'],
 ] as const;
 
-export default function PricingPageClient({ source = 'pricing-direct' }: { source?: string }) {
+export default function PricingPageClient({ source = 'pricing-direct', initialInterest = '' }: { source?: string; initialInterest?: string }) {
   const [partyLarge, setPartyLarge] = useState(false);
   const [signupTier, setSignupTier] = useState('');
 
@@ -42,24 +42,24 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
             No confusing add-ons.
           </h1>
           <p className="lead" style={{ marginTop: 18 }}>
-            Every Dart pass includes real-time guidance powered by live Disney park data, your plans,
-            and your family&apos;s preferences. Trip Pass covers up to 7 park days within a 15-day
-            window — best for most Disney vacations.
+            Pre-trip dining alerts are free. Purchase a Dart pass when you want live Disney park data,
+            your plans, and your family&apos;s preferences working together during the trip. Trip Pass
+            covers up to 7 park days within a 15-day window — best for most Disney vacations.
           </p>
         </div>
       </header>
 
-      {/* Launch discount banner */}
+      {/* Free dining alerts banner */}
       <section style={{ padding: '20px 0', background: 'rgba(200,54,42,0.07)', borderBottom: '1px solid rgba(200,54,42,0.18)' }}>
         <div className="container discount-banner-inner">
           <div className="discount-banner-text">
-            <span className="tag tag-brick">Pre-launch</span>
+            <span className="tag tag-brick">Free in September</span>
             <span className="serif-i" style={{ fontSize: 18, color: 'var(--brick)' }}>
-              Waitlist members get the launch discount.
+              Pre-trip dining alerts are free. No Dart pass required.
             </span>
           </div>
-          <button className="btn btn-primary" onClick={() => goSignup('')}>
-            Join the waitlist →
+          <button className="btn btn-primary" onClick={() => goSignup('dining-alerts')}>
+            Get free dining alerts →
           </button>
         </div>
       </section>
@@ -111,7 +111,7 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
                 <li>Your plans and commitments</li>
               </ul>
               <button className="btn btn-secondary pcard-cta" onClick={() => goSignup('1day-8')}>
-                Start with Day Pass →
+                Join the Day Pass launch list →
               </button>
             </div>
 
@@ -142,7 +142,7 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
                 <li>One purchase covers the whole vacation</li>
               </ul>
               <button className="btn btn-primary pcard-cta" onClick={() => goSignup('trip-8')}>
-                Start with Trip Pass →
+                Join the Trip Pass launch list →
               </button>
             </div>
 
@@ -181,13 +181,13 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
                   goSignup('annual-8');
                 }}
               >
-                {partyLarge ? 'See Annual Pass (1–8)' : 'Start with Annual Pass →'}
+                {partyLarge ? 'See Annual Pass (1–8)' : 'Join the Annual Pass launch list →'}
               </button>
             </div>
           </div>
 
           <p className="muted" style={{ textAlign: 'center', marginTop: 20, fontSize: 14 }}>
-            All passes include the full Dart experience — no per-person fees, no add-ons, no separate dining tier.
+            Pre-trip dining alerts are free. Passes add the full live Dart experience — no per-person fees or add-ons.
           </p>
         </div>
       </section>
@@ -251,15 +251,20 @@ export default function PricingPageClient({ source = 'pricing-direct' }: { sourc
         <div className="container-narrow">
           <div className="eyebrow">Sign up</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 14 }}>
-            Join the waitlist.{' '}
-            <span style={{ color: 'var(--gold)' }}>Get the launch discount.</span>
+            Get free dining alerts.{' '}
+            <span style={{ color: 'var(--gold)' }}>Join the Dart launch list.</span>
           </h2>
           <p className="lead" style={{ marginBottom: 32 }}>
-            Tell us when you&apos;re going. We&apos;ll prioritize beta access and send your discount
-            code in time for your first park day.
+            Tell us when you&apos;re going. We&apos;ll let you know when free dining alerts are available in
+            September and when full live trip support launches in October.
           </p>
           <div className="card">
-            <SignupForm source={source} preselectedTier={signupTier} />
+            <SignupForm
+              key={`${signupTier}:${initialInterest}`}
+              source={source}
+              preselectedTier={signupTier}
+              initialInterest={initialInterest}
+            />
           </div>
           <p className="muted" style={{ marginTop: 18, fontSize: 13 }}>
             We&apos;ll only email you about Dart. You can unsubscribe at any time. Read our{' '}
