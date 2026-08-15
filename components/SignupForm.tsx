@@ -5,9 +5,10 @@ import { useState } from 'react';
 interface SignupFormProps {
   source?: string;
   preselectedTier?: string;
+  initialInterest?: string;
 }
 
-export default function SignupForm({ source = 'unknown', preselectedTier = '' }: SignupFormProps) {
+export default function SignupForm({ source = 'unknown', preselectedTier = '', initialInterest = '' }: SignupFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,10 +57,10 @@ export default function SignupForm({ source = 'unknown', preselectedTier = '' }:
         aria-live="polite"
       >
         <div className="serif-i" style={{ fontSize: 26, marginBottom: 12, color: 'var(--gold)' }}>
-          You&apos;re on the waitlist.
+          You&apos;re on the list.
         </div>
         <p style={{ color: 'var(--cream-2)', maxWidth: 460 }}>
-          We&apos;ll prioritize your trip dates and send your launch discount code in time for your first park day. Thanks for being early.
+          We&apos;ll use your trip dates to prioritize access and let you know when free dining alerts and full Dart support are available.
         </p>
       </div>
     );
@@ -94,9 +95,9 @@ export default function SignupForm({ source = 'unknown', preselectedTier = '' }:
       {/* Interest */}
       <div className="form-field">
         <label htmlFor="interest">What are you interested in?</label>
-        <select id="interest" name="interest" defaultValue={preselectedTier}>
+        <select id="interest" name="interest" defaultValue={preselectedTier || initialInterest}>
           <option value="">Not sure yet</option>
-          <option value="dining-alerts">Dining Alerts Early Access</option>
+          <option value="dining-alerts">Free dining alerts</option>
           <option value="beta">Beta program</option>
           <option value="1day-8">Day Pass — one park day</option>
           <option value="trip-8">Trip Pass — up to 7 park days in 15</option>
@@ -168,7 +169,7 @@ export default function SignupForm({ source = 'unknown', preselectedTier = '' }:
       <div style={{ marginTop: 18 }}>
         <label className="form-checkbox">
           <input type="checkbox" name="email_consent" required />
-          <span>Send me launch updates and my launch discount code.</span>
+          <span>Send me dining-alert availability, Dart launch updates, and my launch discount code.</span>
         </label>
       </div>
 
@@ -184,7 +185,7 @@ export default function SignupForm({ source = 'unknown', preselectedTier = '' }:
         style={{ marginTop: 22, width: '100%' }}
         disabled={loading}
       >
-        {loading ? 'Submitting…' : 'Join the waitlist & get the launch discount →'}
+        {loading ? 'Submitting…' : 'Get free dining alerts & join the Dart list →'}
       </button>
     </form>
   );

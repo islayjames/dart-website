@@ -21,7 +21,7 @@ function read(path) {
   return readFileSync(join(root, path), 'utf8');
 }
 
-test('public source uses the staged launch instead of an August product launch', () => {
+test('public source reflects free September dining alerts and the October Dart launch', () => {
   const staleLaunchPatterns = [
     /Launching August 2026/i,
     /launches August 2026/i,
@@ -29,13 +29,46 @@ test('public source uses the staged launch instead of an August product launch',
     /Launch: August 2026/i,
     /August launch access/i,
     /Launch — live park data/i,
+    /Dining alerts open in August/i,
+    /Early access starts September 1/i,
+    /controlled September access/i,
+    /Dining Alerts add-on/i,
+    /Dining launches Fall/i,
   ];
   const stale = sourceFiles()
     .filter((path) => staleLaunchPatterns.some((pattern) => pattern.test(readFileSync(path, 'utf8'))))
     .map((path) => relative(root, path));
   assert.deepEqual(stale, []);
-  assert.match(read('app/page.tsx'), /Dining alerts open in August/);
-  assert.match(read('app/page.tsx'), /Early access starts September 1/);
+
+  const home = read('app/page.tsx');
+  assert.match(home, /Free dining alerts arrive in September/);
+  assert.match(home, /Full Dart launches in October/);
+  assert.match(home, /Get free dining alerts/);
+  assert.match(home, /you complete the reservation/i);
+  assert.match(home, /live support/i);
+});
+
+test('free dining alert offer continues into pricing and signup', () => {
+  const pricingPage = read('app/pricing/page.tsx');
+  const pricingClient = read('app/pricing/PricingPageClient.tsx');
+  const signup = read('components/SignupForm.tsx');
+  const faq = read('lib/faq-data.ts');
+
+  assert.match(pricingPage, /interest\?: string/);
+  assert.match(pricingPage, /SIGNUP_INTERESTS\.has\(interest\)/);
+  assert.match(pricingClient, /initialInterest/);
+  assert.match(signup, /initialInterest/);
+  assert.match(signup, /Free dining alerts/);
+  assert.match(faq, /Pre-trip dining alerts are free/);
+  assert.match(faq, /purchase a Dart pass/i);
+});
+
+test('unavailable passes are not marked as preorder offers', () => {
+  const layout = read('app/layout.tsx');
+  const pricing = read('app/pricing/page.tsx');
+  assert.doesNotMatch(layout, /SoftwareApplication/);
+  assert.doesNotMatch(layout, /schema\.org\/PreOrder|validFrom/);
+  assert.doesNotMatch(pricing, /schema\.org\/PreOrder|validFrom/);
 });
 
 test('Lightning Lane copy preserves purchase and post-purchase management boundaries', () => {

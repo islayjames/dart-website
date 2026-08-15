@@ -27,7 +27,7 @@ export default function DisneyWorldWithKidsPage() {
                 Built around <span style={{ color: 'var(--brick)' }}>your family.</span>
               </h2>
               <p className="lead" style={{ marginBottom: 16 }}>
-                Tell Dart who's coming — ages, heights, pace, must-dos, nap schedules. It factors all of that into every suggestion so you're not getting recommendations that don't fit your crew.
+                Tell Dart who&apos;s coming — ages, heights, pace, must-dos, nap schedules. It factors all of that into every suggestion so you&apos;re not getting recommendations that don&apos;t fit your crew.
               </p>
               <p style={{ color: 'var(--ink-2)', fontSize: 16, lineHeight: 1.6 }}>
                 Height limits, stroller policies, quiet areas, restroom proximity — Dart is aware of the family-specific constraints that generic advice ignores.
@@ -64,15 +64,15 @@ export default function DisneyWorldWithKidsPage() {
 
       <section className="section section-twilight">
         <div className="container-narrow" style={{ textAlign: 'center' }}>
-          <div className="eyebrow">Early access starts September 1</div>
+          <div className="eyebrow">Free dining alerts arrive in September</div>
           <h2 className="h-section" style={{ marginTop: 14, marginBottom: 18 }}>
             Phone in pocket. Eyes on the kids.
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px' }}>
-            Join for August dining alerts, controlled September access, and the launch discount.
+            Start with free pre-trip dining alerts. Add a Dart pass for live family trip support in October.
           </p>
           <Link className="btn btn-primary btn-large" href="/pricing?source=disney-world-with-kids">
-            Join the waitlist & get the launch discount →
+            Get free alerts or join the Dart launch list →
           </Link>
         </div>
       </section>

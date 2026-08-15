@@ -7,19 +7,19 @@ import { IconHunt, IconDart, IconMagic, IconBadge, IconSchedule, IconGuide, Icon
 export const metadata: Metadata = {
   title: 'HeyDart — Real-time Disney World assistant powered by live park data',
   description:
-    'Dining alerts open in August. Controlled early access to Dart starts September 1, followed by the full seasonal launch in October 2026.',
+    'Free pre-trip dining alerts arrive in September. Purchase Dart for live support during your Disney World trip when the full assistant launches in October 2026.',
   alternates: { canonical: 'https://heydart.com' },
   openGraph: {
     title: 'HeyDart — Real-time Disney World assistant',
     description:
-      'Dining alerts open in August. Early access starts September 1, followed by the full seasonal launch in October.',
+      'Free pre-trip dining alerts arrive in September. Full live trip support from Dart launches in October.',
     url: 'https://heydart.com',
     images: [{ url: '/images/dart-logo-mark.png', alt: 'HeyDart logo mark' }],
   },
   twitter: {
     title: 'HeyDart — Real-time Disney World assistant',
     description:
-      'Dining alerts open in August. Early access starts September 1, followed by the full seasonal launch in October.',
+      'Free pre-trip dining alerts arrive in September. Full live trip support from Dart launches in October.',
     images: ['/images/dart-logo-mark.png'],
   },
 };
@@ -32,26 +32,27 @@ export default function HomePage() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-text-col">
-              <HeroEyebrow>Dining alerts open in August · Early access starts September 1</HeroEyebrow>
+              <HeroEyebrow>Free dining alerts arrive in September · Full Dart launches in October</HeroEyebrow>
               <h1>
                 Be a guest at<br />
                 <span className="alt">your own vacation.</span>
               </h1>
               <p className="lead">
-                Dart connects to live Disney park data — Lightning Lane availability, dining alerts,
-                wait times, mobile order timing — and your own plans, then helps your family decide
-                what to do next. You stay present. Dart handles the running of the day.
+                Start with free pre-trip dining alerts: Dart watches for the table you want and tells
+                you when it opens, then you complete the reservation. When you want live support for
+                the trip itself, a Dart pass brings your plans, preferences, and live park data together
+                so you can stay present while Dart handles the running of the day.
               </p>
               <div className="hero-ctas">
-                <Link className="btn btn-primary btn-large" href="/pricing?source=home-hero">
-                  Join the waitlist &amp; get the launch discount
+                <Link className="btn btn-primary btn-large" href="/pricing?source=home-hero&amp;interest=dining-alerts#signup">
+                  Get free dining alerts
                 </Link>
                 <Link className="btn btn-secondary btn-large" href="/how-it-works">
                   See how Dart works →
                 </Link>
               </div>
               <p style={{ marginTop: 14, fontSize: 13.5, color: 'var(--cream-2)', opacity: 0.78, fontStyle: 'italic' }}>
-                Join for August dining alerts, controlled September access, and early pricing.
+                Free alerts launch in September. Full Dart launches in October; passes start at $15 per party.
               </p>
             </div>
 
@@ -74,14 +75,14 @@ export default function HomePage() {
       {/* ── What Dart connects ── */}
       <section className="section section-cream">
         <div className="container">
-          <div className="eyebrow">What Dart connects</div>
+          <div className="eyebrow">When you add live trip support</div>
           <h2 className="h-section" style={{ marginTop: 8, marginBottom: 14, maxWidth: 720 }}>
-            More than an assistant with web access.
+            Dart runs the day, not just one alert.
           </h2>
           <p className="lead" style={{ marginBottom: 40, maxWidth: 720 }}>
-            Most chat assistants give generic advice. Dart plugs into the things that actually shape
-            your day — live park data, schedules, insider knowledge, and your family&apos;s
-            preferences — and turns them into the next best move.
+            Free dining alerts help before the trip. A paid Dart pass adds the live context that matters
+            once your vacation is moving — park data, schedules, your plans, and your family&apos;s
+            preferences — and turns it into the next best move.
           </p>
 
           <div className="connect-grid">
@@ -238,8 +239,8 @@ export default function HomePage() {
                 <span style={{ color: 'var(--gold)', fontStyle: 'italic' }}>No per-person fees.</span>
               </h2>
               <p className="lead" style={{ marginBottom: 22 }}>
-                Every Dart pass includes real-time guidance — live park data, your plans, and your
-                family&apos;s preferences in one assistant. Pick a Day, a Trip, or a year.
+                Pre-trip dining alerts are free. Purchase a Dart pass when you want real-time guidance
+                during a park day, a full trip, or throughout the year.
               </p>
               <div style={{ padding: 18, borderRadius: 14, background: 'rgba(200,138,28,0.10)', border: '1px solid rgba(200,138,28,0.32)', marginBottom: 22 }}>
                 <div className="serif-i" style={{ fontSize: 20, color: 'var(--gold)', marginBottom: 6 }}>
@@ -302,17 +303,19 @@ export default function HomePage() {
           </h2>
           <div className="grid-2" style={{ gap: 24 }}>
             <div className="card launch-card" style={{ padding: 32 }}>
-              <div className="serif-i" style={{ fontSize: 52, color: 'var(--gold)', lineHeight: 1, marginBottom: 4 }}>August</div>
-              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>Dining alerts</div>
+              <div className="serif-i" style={{ fontSize: 52, color: 'var(--gold)', lineHeight: 1, marginBottom: 4 }}>September</div>
+              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>Free dining alerts</div>
               <p style={{ color: 'var(--cream-2)', fontSize: 14.5, lineHeight: 1.55 }}>
-                Dining availability monitoring opens first, so families can start watching for hard-to-find reservations.
+                Tell Dart what table you want. Dart monitors availability and alerts you when it opens;
+                you complete the reservation yourself. No Dart pass required.
               </p>
             </div>
             <div className="card launch-card" style={{ padding: 32 }}>
-              <div className="serif-i" style={{ fontSize: 52, color: 'var(--magenta)', lineHeight: 1, marginBottom: 4 }}>September 1</div>
-              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>Early access</div>
+              <div className="serif-i" style={{ fontSize: 52, color: 'var(--magenta)', lineHeight: 1, marginBottom: 4 }}>October</div>
+              <div style={{ fontSize: 28, fontWeight: 700, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--cream)', marginBottom: 14 }}>Full Dart launch</div>
               <p style={{ color: 'var(--cream-2)', fontSize: 14.5, lineHeight: 1.55 }}>
-                Controlled early access begins with a small number of live parties, followed by the full seasonal launch in October.
+                Purchase a Day, Trip, or Annual Pass when you want Dart&apos;s live support for Lightning
+                Lane, dining, timing, and the rest of your vacation as the day changes.
               </p>
             </div>
           </div>
@@ -327,10 +330,10 @@ export default function HomePage() {
             <span style={{ color: 'var(--gold)' }}>More memories.</span>
           </h2>
           <p className="lead" style={{ margin: '0 auto 28px', maxWidth: 540 }}>
-            Join for August dining alerts, controlled September access, and the launch discount.
+            Start with free pre-trip dining alerts. Add a Dart pass when you want live support for the trip.
           </p>
-          <Link className="btn btn-primary btn-large" href="/pricing?source=home-final">
-            Join the waitlist →
+          <Link className="btn btn-primary btn-large" href="/pricing?source=home-final&amp;interest=dining-alerts#signup">
+            Get free dining alerts →
           </Link>
           <p style={{ marginTop: 22, fontSize: 12.5, color: 'var(--ink-3)', opacity: 0.7 }}>
             Not affiliated with The Walt Disney Company.{' '}
