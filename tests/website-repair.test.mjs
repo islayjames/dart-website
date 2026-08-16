@@ -245,6 +245,7 @@ test('route-relevant help pages link every published guide without stuffing glob
   assert.match(dining, /href="\/guides\/disney-dining-reservation-sold-out"/);
   assert.match(dining, /href="\/guides\/fantasmic-dining-package-worth-it"/);
   assert.match(families, /href="\/guides\/disney-world-toddler-nap-spots"/);
+  assert.match(firstTime, /href="\/guides\/best-disney-world-planning-apps-families"/);
   assert.match(firstTime, /href="\/guides\/which-disney-world-park-each-day"/);
   for (const globalChrome of [nav, footer]) {
     assert.doesNotMatch(globalChrome, /href="\/guides\//);
