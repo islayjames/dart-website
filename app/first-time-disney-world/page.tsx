@@ -57,6 +57,7 @@ export default function FirstTimeDisneyWorldPage() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
             <Link href="/guides/best-disney-world-planning-apps-families" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Compare Disney World planning apps →</Link>
             <Link href="/guides/which-disney-world-park-each-day" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Which park should you visit each day? →</Link>
+            <Link href="/guides/disney-world-transportation-between-parks-resorts" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Transportation between parks &amp; resorts →</Link>
             <Link href="/lightning-lane-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Lightning Lane help →</Link>
             <Link href="/disney-world-with-kids" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Disney World with kids →</Link>
             <Link href="/dining-mobile-order-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Dining &amp; mobile order help →</Link>
