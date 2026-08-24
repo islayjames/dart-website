@@ -55,6 +55,7 @@ export default function DisneyWorldWithKidsPage() {
           <div className="eyebrow" style={{ marginBottom: 16 }}>Related guides</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>
             <Link href="/guides/disney-world-toddler-nap-spots" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Best toddler nap spots →</Link>
+            <Link href="/guides/magic-kingdom-fireworks-viewing-spots-families" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Magic Kingdom fireworks viewing spots →</Link>
             <Link href="/first-time-disney-world" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>First time at Disney World →</Link>
             <Link href="/lightning-lane-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Lightning Lane help →</Link>
             <Link href="/dining-mobile-order-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Dining &amp; mobile order help →</Link>
