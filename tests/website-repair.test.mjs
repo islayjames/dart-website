@@ -246,6 +246,10 @@ test('route-relevant help pages link every published guide without stuffing glob
   assert.match(dining, /href="\/guides\/fantasmic-dining-package-worth-it"/);
   assert.match(families, /href="\/guides\/disney-world-toddler-nap-spots"/);
   assert.equal(
+    (families.match(/href="\/guides\/disney-world-baby-care-centers-first-aid"[^>]*>Baby Care Centers &amp; First Aid →<\/Link>/g) || []).length,
+    1,
+  );
+  assert.equal(
     (families.match(/href="\/guides\/magic-kingdom-fireworks-viewing-spots-families"[^>]*>Magic Kingdom fireworks viewing spots →<\/Link>/g) || []).length,
     1,
   );
