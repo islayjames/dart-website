@@ -257,10 +257,22 @@ test('route-relevant help pages link every published guide without stuffing glob
     (families.match(/href="\/guides\/magic-kingdom-fireworks-viewing-spots-families"[^>]*>Magic Kingdom fireworks viewing spots →<\/Link>/g) || []).length,
     1,
   );
+  assert.equal(
+    (families.match(/href="\/guides\/disney-world-holidays-2026-families"[^>]*>Disney World holidays for families →<\/Link>/g) || []).length,
+    1,
+  );
   assert.match(firstTime, /href="\/guides\/best-disney-world-planning-apps-families"/);
   assert.match(firstTime, /href="\/guides\/which-disney-world-park-each-day"/);
   assert.equal(
     (firstTime.match(/href="\/guides\/disney-world-transportation-between-parks-resorts"/g) || []).length,
+    1,
+  );
+  assert.equal(
+    (firstTime.match(/href="\/guides\/disney-skyliner-families"[^>]*>Disney Skyliner for families →<\/Link>/g) || []).length,
+    1,
+  );
+  assert.equal(
+    (dining.match(/href="\/guides\/disney-world-dining-large-groups"[^>]*>Disney dining for groups of 6–8 →<\/Link>/g) || []).length,
     1,
   );
   for (const globalChrome of [nav, footer]) {

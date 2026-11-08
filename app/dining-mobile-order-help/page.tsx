@@ -65,6 +65,7 @@ export default function DiningMobileOrderHelpPage() {
             <Link href="/guides/fantasmic-dining-package-worth-it" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Is the Fantasmic! dining package worth it? →</Link>
             <Link href="/guides/hardest-disney-world-dining-reservations" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Hardest dining reservations →</Link>
             <Link href="/guides/walt-disney-world-character-dining-compared" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Character dining compared →</Link>
+            <Link href="/guides/disney-world-dining-large-groups" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Disney dining for groups of 6–8 →</Link>
             <Link href="/lightning-lane-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Lightning Lane help →</Link>
             <Link href="/disney-world-with-kids" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Disney World with kids →</Link>
             <Link href="/trip-pass" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Trip Pass →</Link>

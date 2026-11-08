@@ -58,6 +58,7 @@ export default function DisneyWorldWithKidsPage() {
             <Link href="/guides/disney-world-rest-day" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Plan a Disney World rest day →</Link>
             <Link href="/guides/disney-world-baby-care-centers-first-aid" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Baby Care Centers &amp; First Aid →</Link>
             <Link href="/guides/magic-kingdom-fireworks-viewing-spots-families" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Magic Kingdom fireworks viewing spots →</Link>
+            <Link href="/guides/disney-world-holidays-2026-families" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Disney World holidays for families →</Link>
             <Link href="/first-time-disney-world" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>First time at Disney World →</Link>
             <Link href="/lightning-lane-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Lightning Lane help →</Link>
             <Link href="/dining-mobile-order-help" style={{ color: 'var(--brick)', fontWeight: 600, fontSize: 15 }}>Dining &amp; mobile order help →</Link>
